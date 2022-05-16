@@ -2,8 +2,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <html><head><title>TravelMaker</title>
-
-<script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="${path }/resources/bootstrap/js/draw_course_tm.js"></script>
 <style type="text/css">
 	.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 	.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -42,6 +43,12 @@
 	#pagination a {display:inline-block;margin-right:10px;}
 	#pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>	
+<style type="text/css">
+ #canvas {
+ 	border: 1px solid #bbb;
+ 	margin: 5px;
+ }
+</style>
 
 </head><body>
 
@@ -200,9 +207,11 @@ function getListItem(index, places) {
         itemStr += '    <span>' +  places.address_name  + '</span>'; 
     }
                  
-      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
+    itemStr += '  <span class="tel">' + places.phone  + '</span>' +
                 '</div>';           
-
+	
+/*     itemStr += '<div class="place"><button class="placeBtn" onclick="planInsert(\'' + places.place_name + '\',\'' + places.y + '\',\'' + places.x +  '\')">+</button></div>';
+ */
     el.innerHTML = itemStr;
     el.className = 'item';
 
@@ -269,23 +278,18 @@ function displayPagination(pagination) {
     paginationEl.appendChild(fragment);
 }
 
-
-// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-// 인포윈도우에 장소명을 표시합니다
 function displayInfowindow(marker, title) {
     var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 
-	infowindow.setContent(content);
-	infowindow.open(map, marker);
-	//마커에 클릭이벤트를 등록합니다
-	kakao.maps.event.addListener(marker, 'click', function() {
-		jQuery('#title').val(title);
-	    jQuery('#xy').val(marker.getPosition());
-		  // alert(marker.getPosition());
-	      // alert(title);
-	      // console.log(title);
-	      // infowindow.open(map, marker);
-	});  	
+   infowindow.setContent(content);
+   infowindow.open(map, marker);
+   //마커에 클릭이벤트를 등록합니다
+   kakao.maps.event.addListener(marker, 'click', function(e) {
+      jQuery('#title').val(title);
+      jQuery('#xy').val(marker.getPosition());
+      drawNodeAndLine();
+      e.stopPropagation();
+   });     
 }
 
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다
@@ -297,8 +301,15 @@ function removeAllChildNods(el) {
  
 </script>
 
-<input type = "text" id = "title" value = ""/>
-<input type = "text" id = "xy" value = ""/>
+<input type="text" id="title" value =""/>
+<input type="text" id="xy" value =""/>
+
+<canvas id="canvas" width="1100" height="550"></canvas>
+
+<!-- 코스 그리기 -->
+<script type="text/javascript">
+	[x, y] = drawDefaultNode(x, y);
+</script>
 
 </body>
 </html>
