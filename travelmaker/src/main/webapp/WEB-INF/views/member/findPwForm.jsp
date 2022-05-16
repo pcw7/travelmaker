@@ -14,7 +14,7 @@
 	<input type="text" name="id" required="required" autofocus="autofocus"
 		placeholder="아이디"><br>
 	<input type="text" name="name" required="required" placeholder="이름"><br>
-	<input type="submit" value="비밀번호 찾기">
+	<input type="submit" value="확인">
 </form>
 <a href="findIdForm.do">아이디 찾기</a>
 <a href="joinForm.do">회원가입</a>

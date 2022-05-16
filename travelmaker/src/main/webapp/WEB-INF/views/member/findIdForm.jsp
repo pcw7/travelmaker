@@ -13,7 +13,7 @@
 		placeholder="이름"><br>
 	<input type="text" name="tel" required="required" pattern="\d{3}-\d{4}-\d{4}" 
 		placeholder="전화번호"><br>
-	<input type="submit" value="아이디 찾기">
+	<input type="submit" value="확인">
 </form>
 <a href="findPwForm.do">비밀번호 찾기</a>
 <a href="joinForm.do">회원가입</a>
