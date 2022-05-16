@@ -1,6 +1,7 @@
 package com.ch.tm.controller;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -123,8 +124,22 @@ public class MemberController {
 			model.addAttribute("member", member2);
 			
 			String msg = "";
+			String code = "";
+			Random random = new Random();
+			for(int i=0; i<3; i++) {
+				int index = random.nextInt(25)+65;  // A~Z까지 랜덤 알파멧 생성  
+				code += (char) index;
+			}
+			int numIndex = random.nextInt(9999)+1000; // 4자리 랜덤 정수 생성
+			code += numIndex;
+			msg = code;
 			
+			
+			
+		} else {
+			result = -1;
 		}
+		model.addAttribute("result", result);
 		return "/member/findPw";
 	}
 	

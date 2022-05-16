@@ -9,17 +9,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript">
-	var join = {
-		pw: { 
-			valid: { code:'valid', desc: '사용 가능한 비밀번호입니다.' }, 
-			invalid: { code:'invalid', desc: '비밀번호는 영문 대/소문자, 숫자만 입력하세요.' },
-			lack: { code:'invalid', desc: '비밀번호는 영문 대/소문자, 숫자를 모두 포함해야 합니다.' }, 
-			equal: { code: 'valid', desc: '비밀번호가 일치합니다.' }, 
-			notEqual: { code: 'invalid', desc: '비밀번호가 일치하지 않습니다.' } 
-		}		
-		
-	}
-	
 	function idChk() {
 		if (!frm.id.value) {
 			alert("아이디를 입력한 후에 체크하세요");
@@ -42,14 +31,49 @@
 		});
 	}
 	
-/* 	$('.password').on('keyup', function() { 
-		validate($(this));
-	} */
-
-	function validate(t) {
-		var data = join.pw_status(t);		
-	}
+	// 비밀번호 형태 유효성 검사
+	$("#pwChk1").hide();
+	$("#pwChk2").hide();
+	$("#pwChk3").hide();
+	$("#pwChk4").hide();
 	
+	$("#pw").keyup(function() {  
+	 	var pw = $("#pw").val(); 
+     	var num = pw.search(/[0-9]/g);      //숫자 기입
+	 	var eng = pw.search(/[a-zA-Z]/ig);  //영문자 기입
+	 	var tab = pw.search(/[/\s/]/ig);    //공백
+
+	 	if (tab != -1) {
+	    	 $("#alert1").hide();
+			 $("#alert2").toggle();
+			 $("#alert3").hide();
+			 $("#alert4").hide();
+			 /* $("#submit").attr('disabled', true); */
+		 } else {
+		 	 if (pw.length < 4 ) {  
+				$("#alert1").toggle();
+				$("#alert2").hide();
+				$("#alert3").hide();
+			    $("#alert4").hide();
+			   /*  $("#submit").attr('disabled', true);  */
+   			 } else if (num >= 0 && eng >= 0){
+    			$(".alert").hide(); 
+    			/* $("#submit").attr('disabled', false); */
+ 	  		 } else if (num < 0 && eng >= 0  ) {   
+			    $("#alert1").hide();
+		        $("#alert2").hide();
+		  	    $("#alert3").toggle();    
+		   	    $("#alert4").hide();
+		   	    /* $("#submit").attr('disabled', true); */
+	   		 } else if ( num >= 0 && eng < 0  ){  
+			    $("#alert1").hide();
+				$("#alert2").hide();
+				$("#alert3").hide();
+				$("#alert4").toggle();
+				/* $("#submit").attr('disabled', true); */
+		 	 }
+        } 
+	  });	
 	
 	function chk() {
 		if (frm.password.value != frm.password2.value) {
@@ -72,8 +96,12 @@
 	아이디<input type="text" name="id" required="required" autofocus="autofocus">
 	<input type="button" value="중복체크" onclick="idChk()">
 	<div id="idChk1" class="err1"></div>
-	비밀번호<input type="password" name="password" class="password" required="required">
-	<div class="pwChk">비밀번호를 입력하세요.(영문 대/소문자, 숫자를 모두 포함)</div>
+	비밀번호<input type="password" name="password" id="password" title="비밀번호" 
+		placeholder="영문 대/소문자, 숫자를 모두 포함" required="required">
+	<div id="pwChk1">"숫자와 영문자를 포함해서 4자리 이상"</div>
+	<div id="pwChk2">"공백 없이 입력"</div>
+	<div id="pwChk3">"숫자 필수 포함"</div>
+	<div id="pwChk4">"영문자 필수 포함"</div>	
 	비밀번호 확인<input type="password" name="password2" required="required"><br>
 	이름<input type="text" name="name" required="required"><br>
 	이메일<input type="email" name="email" required="required"><br>

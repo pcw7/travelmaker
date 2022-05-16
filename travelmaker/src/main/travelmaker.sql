@@ -49,4 +49,3 @@ create table plan (
 
 select * from plan;
 
-select * from plan;
