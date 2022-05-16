@@ -27,14 +27,16 @@
 		$('#rInsert').click(function() {
 			var uploadfiles = [];
 			var formData = new FormData();
-			formData.append('reply_content', frm.reply_content.value);
-			formData.append('replier', frm.replier.value);
-			formData.append('bno', frm.bno.value);
-			var files = e.originalEvent.dataTransfer.files; // 드래그 그림들
+			formData.append('reply_content', frm1.reply_content.value);
+			formData.append('replier', frm1.replier.value);
+			formData.append('bno', frm1.bno.value);
+			var inputFile = $("input[name='file']");
+			var files = inputFile[0].files;
+			// var files = e.originalEvent.dataTransfer.files; // 드래그 그림들
 			for (var i = 0; i < files.length; i++) {
 				var file = files[i];
 				uploadfiles.push(file);  // 업로드 파일 목록배열에 추가
-				preview(file, size - 1); // 미리보기
+//				preview(file, size - 1); // 미리보기
 			}
 			$.each(uploadfiles, function(idx, file) {
 				formData.append('file', file, file.name);
@@ -43,8 +45,9 @@
 				url:'rInsert.do', data:formData, type:'post',contentType:false,
 				processData:false, enctype:'multipart/form-data',
 				success: function(data) {
-					$('form').hide();
-					$('#disp').html(data);
+					alert("Uploaded");
+					// $('form').hide();
+					// $('#disp').html(data);
 				}
 			});
 		});
@@ -76,7 +79,7 @@
 				<td>댓글</td><td><textarea rows="3" cols="30" name="reply_content"></textarea></td></tr>
 				<tr><td>사진 <span class="glyphicon glyphicon-picture"></span></td>
 					<td><input type="file" name="file" multiple="multiple"></td></tr>
-				<tr><td><input type="submit" value="댓글 입력" id="rInsert"></td></tr>			<!--  -->
+				<tr><td><input type="button" value="댓글 입력" id="rInsert"></td></tr>		
 		</table>
 	</form>
 	<div id="rvListDisp"></div>

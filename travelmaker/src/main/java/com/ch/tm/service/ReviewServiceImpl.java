@@ -40,4 +40,9 @@ public class ReviewServiceImpl implements ReviewService {
 			rd.insert(rp);
 		}
 	}
+
+	@Override
+	public int getMaxRno() {
+		return rd.getMaxRno();
+	}
 }

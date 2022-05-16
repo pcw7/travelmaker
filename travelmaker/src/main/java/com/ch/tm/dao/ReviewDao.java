@@ -17,4 +17,6 @@ public interface ReviewDao {
 
 	void insert(ReviewPhoto rp);
 
+	int getMaxRno();
+
 }

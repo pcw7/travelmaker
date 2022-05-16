@@ -46,6 +46,12 @@
 		<tr><td>철수</td><!-- 댓글 작성자 -->
 			<td id="td_${rv.rno }">${rv.reply_content }</td><!-- 댓글 -->
 			<td>${rv.update_date}</td><!-- 댓글 수정일 -->
+<%-- 			<td><c:if test="">
+			<c:forEach var="reviewphoto" items="${rvList }">
+				<c:if test="${reviewphoto.imgName!='' }">			
+				<td>${reviewphoto.imgName }<img alt="${reviewphoto.imgName }" src="${path }/resources/upload/${reviewphoto.imgName }" width="100">
+			 	</c:if>
+		 	</c:forEach></c:if></td> --%>
 			<!-- 댓글 작성자와 로그인 한사람의 이름을 비교 같으면 수정/삭제 권한 제공
 				  회원게시판이 아니라서 임으로 게시글 작성자와 비교 -->
 			<%-- <c:if test="${board.writer=='철수' }"> --%>

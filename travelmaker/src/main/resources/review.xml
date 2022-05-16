@@ -6,14 +6,14 @@
 	<select id="list" parameterType="integer" resultType="review">
 		select * from review where bno=#{bno} order by rno
 	</select>
+	<select id="getMaxRno" resultType="integer">
+		select nvl(max(rno),0) + 1 rno from review
+	</select>
 	<insert id="insert" parameterType="review">
-		<selectKey keyProperty="rno" order="BEFORE" resultType="integer">
-			select nvl(max(rno),0) + 1 rno from review
-		</selectKey>
 		insert into review values (#{rno},#{reply_content},sysdate,sysdate,'n',0,#{bno})
 	</insert>
 	<insert id="insertPhoto" parameterType="reviewphoto">
-		insert into reviewphoto values (reviewphoto_seq.nextval, 0, #{rno}, #{imgName})
+		insert into reviewphoto values (reviewphoto_seq.nextval, 1, #{rno}, #{imgName})
 	</insert>
 	<update id="delete" parameterType="review">
 		update review set del='y' where rno=#{rno}

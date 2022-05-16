@@ -39,4 +39,9 @@ public class ReviewDaoImpl implements ReviewDao {
 		sst.insert("reviewns.insertPhoto", rp);
 	}
 
+	@Override
+	public int getMaxRno() {
+		return sst.selectOne("reviewns.getMaxRno");
+	}
+
 }

@@ -33,6 +33,7 @@ public class ReviewController {
 	public String replyList(int bno, Model model) {
 		Board board = bs.select(bno);
 		List<Review> rvList = rs.list(bno);
+		/* List<ReviewPhoto> rpList = rs.list(rno); */
 		model.addAttribute("board", board);
 		model.addAttribute("rvList", rvList);
 		return "board/replyList";
@@ -46,6 +47,8 @@ public class ReviewController {
 	
 	@RequestMapping("board/rInsert")
 	public String rInsert(Review rv, HttpSession session, MultipartHttpServletRequest mhr) throws IOException {
+		int maxRno = rs.getMaxRno();
+		rv.setRno(maxRno);
 		rs.insert(rv);
 		List<MultipartFile> list = mhr.getFiles("file");
 		List<ReviewPhoto> photos = new ArrayList<ReviewPhoto>();
@@ -54,6 +57,7 @@ public class ReviewController {
 			ReviewPhoto rp = new ReviewPhoto();
 			String imgName = mf.getOriginalFilename();
 			rp.setImgName(imgName);
+			rp.setRno(maxRno);
 //			rp.setId(member.getId());
 			photos.add(rp);
 			FileOutputStream fos = new FileOutputStream(new File(real+"/"+imgName));

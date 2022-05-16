@@ -17,4 +17,6 @@ public interface ReviewService {
 
 	void insertPhoto(List<ReviewPhoto> photos);
 
+	int getMaxRno();
+
 }
