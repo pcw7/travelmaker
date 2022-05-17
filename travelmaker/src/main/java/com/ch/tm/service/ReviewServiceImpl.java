@@ -45,4 +45,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public int getMaxRno() {
 		return rd.getMaxRno();
 	}
+
+	@Override
+	public List<ReviewPhoto> listphoto(int bno) {
+		return rd.listphoto(bno);
+	}
 }

@@ -32,10 +32,13 @@ public class ReviewController {
 	@RequestMapping("board/replyList")
 	public String replyList(int bno, Model model) {
 		Board board = bs.select(bno);
-		List<Review> rvList = rs.list(bno);
-		/* List<ReviewPhoto> rpList = rs.list(rno); */
+		List<Review> rvList = rs.list(bno); 
+		List<ReviewPhoto> rpList = rs.listphoto(bno); 
 		model.addAttribute("board", board);
 		model.addAttribute("rvList", rvList);
+		model.addAttribute("rpList", rpList);
+//		System.out.println("rpsize="+rpList.size());
+//		System.out.println("rvsize="+rvList.size());
 		return "board/replyList";
 	}
 	

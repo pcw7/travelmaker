@@ -15,5 +15,11 @@ public class Board {
 	private Date reg_date;	
 	private int readcount;	
 	private String del;	
-	private int mno; 
+	private int mno;
+	// paging용
+	private int startRow;
+	private int endRow;
+	// 검색용
+	private String search;
+	private String keyword;
 }

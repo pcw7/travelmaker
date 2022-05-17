@@ -13,15 +13,15 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDao bd;
 	
-	@Override
-	public int getTotal() {
-		return bd.getTotal();
-	}
+//	@Override
+//	public int getTotal() {
+//		return bd.getTotal();
+//	}
 
-	@Override
-	public List<Board> list(int startRow, int endRow) {
-		return bd.list(startRow, endRow);
-	}
+//	@Override
+//	public List<Board> list(int startRow, int endRow) {
+//		return bd.list(startRow, endRow);
+//	}
 
 	@Override
 	public int getMaxNum() {
@@ -51,6 +51,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int delete(int bno) {
 		return bd.delete(bno);
+	}
+
+	@Override
+	public int getTotal(Board board) {
+		return bd.getTotal(board);
+	}
+
+	@Override
+	public List<Board> list(Board board) {
+		return bd.list(board);
 	}
 
 }

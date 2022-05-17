@@ -15,18 +15,18 @@ public class BoardDaoImpl implements BoardDao{
 	@Autowired
 	private SqlSessionTemplate sst;
 	
-	@Override
-	public int getTotal() {
-		return sst.selectOne("boardns.getTotal");
-	}
+//	@Override
+//	public int getTotal() {
+//		return sst.selectOne("boardns.getTotal");
+//	}
 
-	@Override
-	public List<Board> list(int startRow, int endRow) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		return sst.selectList("boardns.list", map);
-	}
+//	@Override
+//	public List<Board> list(int startRow, int endRow) {
+//		Map<String, Integer> map = new HashMap<String, Integer>();
+//		map.put("startRow", startRow);
+//		map.put("endRow", endRow);
+//		return sst.selectList("boardns.list", map);
+//	}
 
 	@Override
 	public int getMaxNum() {
@@ -56,6 +56,16 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public int delete(int bno) {
 		return sst.update("boardns.delete", bno);
+	}
+
+	@Override
+	public int getTotal(Board board) {
+		return sst.selectOne("boardns.getTotal", board);
+	}
+
+	@Override
+	public List<Board> list(Board board) {
+		return sst.selectList("boardns.list", board);
 	}
 
 }

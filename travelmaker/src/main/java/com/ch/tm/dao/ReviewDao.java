@@ -19,4 +19,6 @@ public interface ReviewDao {
 
 	int getMaxRno();
 
+	List<ReviewPhoto> listphoto(int bno);
+
 }

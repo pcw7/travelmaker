@@ -9,4 +9,5 @@ public class ReviewPhoto {
 	private int rno;
 	private String imgName;
 	
+	private Review review = new Review();
 }

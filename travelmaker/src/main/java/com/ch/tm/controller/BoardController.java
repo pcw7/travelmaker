@@ -89,20 +89,43 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board/list")
-	public String list(String pageNum, Model model) {
+	public String list(Board board, String pageNum, Model model) {
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int rowPerPage = 10;
 		int currentPage = Integer.parseInt(pageNum);
-		int total = bs.getTotal();
+		int total = bs.getTotal(board);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		List<Board> list = bs.list(startRow, endRow);
+		board.setStartRow(startRow);
+		board.setEndRow(endRow);
+		List<Board> list = bs.list(board);
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
 		int bno = total - startRow + 1;
+		String[] title = {"내용"};
+		model.addAttribute("title", title);
 		model.addAttribute("bno", bno);
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
 		return "board/list";
 	}
+	
+//	@RequestMapping("board/list")
+//	public String list(String pageNum, Model model) {
+//		if(pageNum == null || pageNum.equals("")) pageNum = "1";
+//		int rowPerPage = 10;
+//		int currentPage = Integer.parseInt(pageNum);
+//		int total = bs.getTotal();
+//		int startRow = (currentPage - 1) * rowPerPage + 1;
+//		int endRow = startRow + rowPerPage - 1;
+//		List<Board> list = bs.list(startRow, endRow);
+//		PageBean pb = new PageBean(currentPage, rowPerPage, total);
+//		int bno = total - startRow + 1;
+//		String[] title = {"작성자", "내용"};
+//		model.addAttribute("title", title);
+//		model.addAttribute("bno", bno);
+//		model.addAttribute("pb", pb);
+//		model.addAttribute("list", list);
+//		return "board/list";
+//	}
 	
 }
