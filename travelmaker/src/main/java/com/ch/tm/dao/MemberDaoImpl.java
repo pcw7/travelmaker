@@ -35,4 +35,19 @@ public class MemberDaoImpl implements MemberDao {
 		return sst.selectOne("memberns.selectFindPw", member);
 	}
 
+	@Override
+	public int updatePw(Member member) {
+		return sst.update("memberns.updatePw", member);
+	}
+
+	@Override
+	public int update(Member member) {
+		return sst.update("memberns.update", member);
+	}
+
+	@Override
+	public int delete(String id) {
+		return sst.update("memberns.delete", id);
+	}
+
 }

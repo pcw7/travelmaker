@@ -14,4 +14,10 @@ public interface MemberDao {
 
 	Member selectFindPw(Member member);
 
+	int updatePw(Member member);
+
+	int update(Member member);
+
+	int delete(String id);
+
 }

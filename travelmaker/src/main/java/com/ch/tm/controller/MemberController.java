@@ -3,9 +3,12 @@ package com.ch.tm.controller;
 import java.io.IOException;
 import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,8 @@ public class MemberController {
 	private MemberService ms;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private JavaMailSender jMailSender;
 	
 	// 로그인 입력
 	@RequestMapping("loginForm")
@@ -120,9 +125,11 @@ public class MemberController {
 		int result = 0;
 		Member member2 = ms.selectFindPw(member);
 		if (member2 != null) {
+			// 일치하는 회원 계정 존재
 			result = 1;
 			model.addAttribute("member", member2);
 			
+			// 임시 비밀번호 생성
 			String msg = "";
 			String code = "";
 			Random random = new Random();
@@ -130,17 +137,71 @@ public class MemberController {
 				int index = random.nextInt(25)+65;  // A~Z까지 랜덤 알파멧 생성  
 				code += (char) index;
 			}
-			int numIndex = random.nextInt(9999)+1000; // 4자리 랜덤 정수 생성
+			int numIndex = random.nextInt(8999)+1000; // 4자리 랜덤 정수 생성
 			code += numIndex;
-			msg = code;
+			msg = (String)code;
 			
-			
-			
+			MimeMessage mm = jMailSender.createMimeMessage();
+			try {
+				MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
+				mmh.setSubject("트래블메이커 임시비밀번호 입니다.");
+				mmh.setText("임시비밀번호 : " + msg);
+				mmh.setTo(member2.getEmail());
+				mmh.setFrom("jshee1028@naver.com");
+				jMailSender.send(mm);
+				
+				// BCryptPasswordEncoder를 이용한 암호화
+				String encPassword = passwordEncoder.encode(msg);
+				// 이메일이 성공적으로 보내졌으면 멤버 비밀번호 임시 비밀번호로 변경
+				member2.setPassword(encPassword);
+				int resultUpdatePw = ms.updatePw(member2);
+				model.addAttribute("resultUpdatePw", resultUpdatePw);
+			} catch (Exception e) {
+				result = 0;
+				model.addAttribute("msg", e.getMessage());
+			}			
 		} else {
 			result = -1;
 		}
 		model.addAttribute("result", result);
 		return "/member/findPw";
 	}
+	
+	// 로그아웃
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/member/logout";
+	}
+	
+	// 회원 정보 수정 입력
+	@RequestMapping("myUpdateForm")
+	public String myUpdateForm(Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		Member member = ms.select(id);
+		model.addAttribute("member", member);
+		return "/mypage/myUpdateForm";
+	}
+	
+	// 회원 정보 수정 결과
+	@RequestMapping("myUpdate")
+	public String myUpdate(Member member, Model model, HttpSession session) {
+		int result = 0;
+		String encPassword = passwordEncoder.encode(member.getPassword());
+		member.setPassword(encPassword);
+		result = ms.update(member);
+		model.addAttribute("result", result);
+		return "/mypage/myUpdate";
+	}
+	
+	@RequestMapping("delete")
+	public String delete(Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		int result = ms.delete(id);
+		if (result > 0) session.invalidate();
+		model.addAttribute("result", result);
+		return "/mypage/delete";
+	}
+	
 	
 }
