@@ -310,6 +310,9 @@ function removeAllChildNods(el) {
 <script type="text/javascript">
 	[x, y] = drawDefaultNode(x, y);
 </script>
-
+<div>
+<a href="logout.do">로그아웃</a>
+<a href="myUpdateForm.do">마이페이지</a>
+</div>
 </body>
 </html>

@@ -36,4 +36,19 @@ public class MemberServiceImpl implements MemberService {
 		return md.selectFindPw(member);
 	}
 
+	@Override
+	public int updatePw(Member member) {
+		return md.updatePw(member);
+	}
+
+	@Override
+	public int update(Member member) {
+		return md.update(member);
+	}
+
+	@Override
+	public int delete(String id) {
+		return md.delete(id);
+	}
+
 }

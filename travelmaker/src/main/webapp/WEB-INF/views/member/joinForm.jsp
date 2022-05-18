@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript">
+	// 아이디 중복 검사
 	function idChk() {
 		if (!frm.id.value) {
 			alert("아이디를 입력한 후에 체크하세요");
@@ -20,6 +21,7 @@
 		});
 	}
 	
+	// 별명 중복 검사
 	function nickNameChk() {
 		if (!frm.nickName.value) {
 			alert("별명을 입력한 후에 체크하세요");
@@ -31,51 +33,75 @@
 		});
 	}
 	
-	// 비밀번호 형태 유효성 검사
-	$("#pwChk1").hide();
-	$("#pwChk2").hide();
-	$("#pwChk3").hide();
-	$("#pwChk4").hide();
+	/* 서버단에서 처리해보기
+	// 비밀번호 유효성 검사
+	function pwChk() {
+		$.post('pwChk.do', "password="+frm.password.value, function(data) {
+			$('#pwChk1').html(data);
+		});
+	} */
 	
-	$("#pw").keyup(function() {  
-	 	var pw = $("#pw").val(); 
-     	var num = pw.search(/[0-9]/g);      //숫자 기입
-	 	var eng = pw.search(/[a-zA-Z]/ig);  //영문자 기입
-	 	var tab = pw.search(/[/\s/]/ig);    //공백
+	// 비밀번호 유효성 검사
+	function pwChk(str) {
+		var pw = str.value;
+		var msg = "";
+		var checkPoint = 0;
+		
+		// 입력값이 있을 경우에만 실행
+		if (pw.length) {
+			if (pw.length < 4 || pw.length > 16) {
+				msg = "최소 4자 이상, 최대 16자 이하";
+			// 비밀번호 문자열의 길이가 4 ~ 16자인 경우
+			} else {
+				// 비밀번호에 숫자 존재 여부 검사
+				var pattern1 = /[0-9]/;  
+				if (!pattern1.test(pw)) {
+					checkPoint = checkPoint + 1;
+				}
+				// 비밀번호에 영문 소문자 존재 여부 검사
+				var pattern2 = /[a-z]/;
+				if (!pattern2.test(pw)) {
+					checkPoint = checkPoint + 1;
+				}
+				// 비밀번호에 영문 대문자 존재 여부 검사
+				var pattern3 = /[A-Z]/;
+				if (!pattern3.test(pw)) {
+					checkPoint = checkPoint + 1;
+				}
+				// 비밀번호에 특수문자 존재 여부 검사
+				var pattern4 = /[~!@#$%^&*()_+|<>?:{}]/;
+				if (!pattern4.test(pw)) {
+					checkPoint = checkPoint + 1;
+				}
+				if (checkPoint >= 3) {
+					msg = "보안성이 취약한 비밀번호";
+				} else if (checkPoint == 2) {
+					msg = "보안성이 낮은 비밀번호";
+				} else if (checkPoint == 1) {
+					msg = "보안성이 보통인 비밀번호";
+				} else {
+					msg = "보안성이 강력한 비밀번호";
+				}
+			}
+		} else {
+			msg = "비밀번호를 입력해 주세요";
+		}
+		document.getElementById("pwChk1").innerHTML = msg;
+	} 
+	
+	// 암호와 암호확인 일치 검사
+	function pwChk2(str) {
+		if (frm.password.value != frm.password2.value) {
+			document.getElementById("pwChk2").innerHTML = "비밀번호와 비밀번호 확인이 다릅니다";
+		} else {
+			document.getElementById("pwChk2").innerHTML = "비밀번호와 비밀번호 확인이 일치합니다";
+		}
+	}
 
-	 	if (tab != -1) {
-	    	 $("#alert1").hide();
-			 $("#alert2").toggle();
-			 $("#alert3").hide();
-			 $("#alert4").hide();
-			 /* $("#submit").attr('disabled', true); */
-		 } else {
-		 	 if (pw.length < 4 ) {  
-				$("#alert1").toggle();
-				$("#alert2").hide();
-				$("#alert3").hide();
-			    $("#alert4").hide();
-			   /*  $("#submit").attr('disabled', true);  */
-   			 } else if (num >= 0 && eng >= 0){
-    			$(".alert").hide(); 
-    			/* $("#submit").attr('disabled', false); */
- 	  		 } else if (num < 0 && eng >= 0  ) {   
-			    $("#alert1").hide();
-		        $("#alert2").hide();
-		  	    $("#alert3").toggle();    
-		   	    $("#alert4").hide();
-		   	    /* $("#submit").attr('disabled', true); */
-	   		 } else if ( num >= 0 && eng < 0  ){  
-			    $("#alert1").hide();
-				$("#alert2").hide();
-				$("#alert3").hide();
-				$("#alert4").toggle();
-				/* $("#submit").attr('disabled', true); */
-		 	 }
-        } 
-	  });	
-	
+	// submit할 때 암호와 암호확인 일치 검사
 	function chk() {
+		var pw = frm.password.value;
+		
 		if (frm.password.value != frm.password2.value) {
 			alert("비밀번호와 비밀번호 확인이 다릅니다");
 			frm.password.focus();
@@ -83,8 +109,25 @@
 			frm.password2.value = "";
 			return false;
 		}
+		if (pw.length < 4 || pw.length > 16) {
+			alert("비밀번호는 최소 4자 이상 최대 16자 이하");
+			frm.password.focus();
+			return false;
+		}			
 	}
 	
+	// 비밀번호 보기/숨기기
+	$(document).ready(function() {
+		$('.btn').on('click', function() {
+			$('#password').toggleClass('active');
+			if($('#password').hasClass('active')){
+				$(this).prev('input').attr('type', 'text');
+			} else {
+				$(this).prev('input').attr('type', 'password');
+			}
+		});
+	});
+
 	
 </script>
 </head>
@@ -95,21 +138,21 @@
 <form action="join.do" method="post" name="frm" onsubmit="return chk()">
 	아이디<input type="text" name="id" required="required" autofocus="autofocus">
 	<input type="button" value="중복체크" onclick="idChk()">
-	<div id="idChk1" class="err1"></div>
-	비밀번호<input type="password" name="password" id="password" title="비밀번호" 
-		placeholder="영문 대/소문자, 숫자를 모두 포함" required="required">
-	<div id="pwChk1">"숫자와 영문자를 포함해서 4자리 이상"</div>
-	<div id="pwChk2">"공백 없이 입력"</div>
-	<div id="pwChk3">"숫자 필수 포함"</div>
-	<div id="pwChk4">"영문자 필수 포함"</div>	
-	비밀번호 확인<input type="password" name="password2" required="required"><br>
+	<div id="idChk1"></div>
+	비밀번호<input type="password" name="password" id="password" required="required"
+		onKeyup="pwChk(this)" style="ime-mode:disabled;">
+	<input type="button" class="btn" value="**" >
+	<div id="pwChk1"></div>	
+	비밀번호 확인<input type="password" name="password2" required="required"
+		onKeyup="pwChk2()"><br>
+	<div id="pwChk2"></div>
 	이름<input type="text" name="name" required="required"><br>
 	이메일<input type="email" name="email" required="required"><br>
 	전화번호<input type="text" name="tel" required="required"
 		pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000"><br>
 	별명<input type="text" name="nickName" required="required">
 	<input type="button" value="중복체크" onclick="nickNameChk()">
-	<div id="nickNameChk1" class="err2"></div>
+	<div id="nickNameChk1"></div>
 	<input type="submit" value="회원가입">
 </form>
 <a href="loginForm.do">로그인</a>

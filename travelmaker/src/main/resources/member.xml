@@ -22,12 +22,27 @@
 		select * from member where id=#{id} and name=#{name}
 	</select>
 	
-	
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="member">
 		insert into member values (seq_member_mno.nextval, #{id},#{password},
 			#{name},#{email},#{tel},#{nickName},sysdate,'n')
 	</insert>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="updatePw" parameterType="member">
+		update member set password=#{password} where id=#{id}
+	</update>
+	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="member">
+		update member set password=#{password}, email=#{email}, tel=#{tel},
+			nickName=#{nickName} where id=#{id}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="delete" parameterType="string">
+		update member set del='y' where id=#{id}
+	</update>
 	
 	
 </mapper>
