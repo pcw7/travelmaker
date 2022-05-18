@@ -45,7 +45,7 @@
 				url:'rInsert.do', data:formData, type:'post',contentType:false,
 				processData:false, enctype:'multipart/form-data',
 				success: function(data) {
-					alert("Uploaded");
+					alert("댓글이 작성되었습니다");
 					// $('form').hide();
 					// $('#disp').html(data);
 				}

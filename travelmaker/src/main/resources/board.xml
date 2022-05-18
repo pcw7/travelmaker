@@ -2,12 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardns">
-	<select id="getTotal" resultType="integer">
+	<!-- <select id="getTotal" resultType="integer">
 		select count(*) from board where del='n'
+	</select> -->
+	<select id="getTotal" parameterType="board" resultType="integer">
+		select count(*) from board
+		<where> del='n'
+				<!-- keyword 값이 있으면 검색 없으면 생략 -->
+				<if test="keyword != null and keyword != ''">
+					and	${search} like '%'||#{keyword}||'%'
+				</if>
+		</where> 
 	</select>
-	<select id="list" parameterType="map" resultType="board">
+	<!-- <select id="list" parameterType="map" resultType="board">
 		select * from (select a.*, rowNum rn from (select * from board where del='n' order by bno desc
 		) a) where rn between #{startRow} and #{endRow}
+	</select> -->
+	<select id="list" parameterType="board" resultType="board"> <!-- parameterType="board" -->
+		select * from (select a.*, rowNum rn from (select * from board where del='n'
+			<!-- where는 테이블로 부터 데이터 추출 조건 where 뒤에 문장이 있으면 where를 추가하고 없으면 where 생략 -->
+				<!-- keyword 값이 있으면 검색 없으면 생략 -->
+				<if test="keyword != null and keyword != ''">
+					and ${search} like '%'||#{keyword}||'%'
+				</if>
+			order by bno desc) a) where rn between #{startRow} and #{endRow}  
 	</select>
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(bno), 0) + 1 from board

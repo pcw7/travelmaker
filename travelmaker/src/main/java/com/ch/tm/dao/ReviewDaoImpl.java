@@ -44,4 +44,9 @@ public class ReviewDaoImpl implements ReviewDao {
 		return sst.selectOne("reviewns.getMaxRno");
 	}
 
+	@Override
+	public List<ReviewPhoto> listphoto(int bno) {
+		return sst.selectList("reviewns.listphoto", bno);
+	}
+
 }

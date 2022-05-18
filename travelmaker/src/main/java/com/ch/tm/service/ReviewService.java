@@ -19,4 +19,6 @@ public interface ReviewService {
 
 	int getMaxRno();
 
+	List<ReviewPhoto> listphoto(int bno);
+
 }

@@ -52,6 +52,23 @@
 			</c:if>
 		</ul>
 	</div>
+</div>
+
+<div align="center" style="position: fixed; top: 30%; left: 10px">
+	<form action="list.do?pageNum=1">
+		<select name="search">
+			<c:forTokens var="sh" items="content" delims="," varStatus="i">
+				<c:if test="${sh==board.search }">
+					<option value="${sh }" selected="selected">${title[i.index] }</option>
+				</c:if>
+				<c:if test="${sh!=board.search }">
+					<option value="${sh }">${title[i.index] }</option>
+				</c:if>
+			</c:forTokens>
+		</select>
+		<input type="text" name="keyword" value="${board.keyword }">
+		<input type="submit" value="검색">
+	</form>
 	<div align="center"><a href="insertForm.do?bno=0&pageNum=1" class="btn btn-success">게시글 입력</a></div>
 </div>
 

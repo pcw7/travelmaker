@@ -6,9 +6,9 @@ import com.ch.tm.model.Board;
 
 public interface BoardService {
 	
-	int getTotal();
+//	int getTotal();
 
-	List<Board> list(int startRow, int endRow);
+//	List<Board> list(int startRow, int endRow);
 
 	int getMaxNum();
 
@@ -21,5 +21,9 @@ public interface BoardService {
 	int update(Board board);
 
 	int delete(int bno);
+
+	int getTotal(Board board);
+
+	List<Board> list(Board board);
 
 }
