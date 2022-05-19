@@ -24,6 +24,8 @@ create table plan (
 	bno	NUMBER references board(bno) not null			-- 게시글번호
 );
 
+select * from plan;
+
 drop table review cascade constraints;
 create table review ( 
 	rno	NUMBER primary key,								-- 리뷰번호
