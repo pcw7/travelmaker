@@ -22,8 +22,8 @@
  -->
 <script type="text/javascript">
 	$(function() {
-		$('#rvListDisp').load("replyList.do","bno=${board.bno}");
-		$('#boardListDisp').load("list.do", "pageNum=${pageNum}");
+		$('#rvListDisp').load("rvList.do","bno=${board.bno}");
+		$('#boardListDisp').load("bdList.do", "pageNum=${pageNum}");
 		$('#rInsert').click(function() {
 			var uploadfiles = [];
 			var formData = new FormData();
@@ -65,10 +65,10 @@
 			<td>작성일</td><td>${board.reg_date }</td></tr>
 		<tr><td>내용</td><td colspan="3"><pre>${board.content }</pre></td></tr>
 		<tr><td colspan="4" align="center">
-			<a href="list.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
-			<a href="updateForm.do?bno=${board.bno }&pageNum=${pageNum}" class="btn btn-warning">수정</a>
+			<a href="bdList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
+			<a href="bdUpdateForm.do?bno=${board.bno }&pageNum=${pageNum}" class="btn btn-warning">수정</a>
 			<!-- 회원 게시판인 경우에는 폼없이 삭제 여부를 묻고 삭제, 비회원인 경우에는 암호를 확인하기 위한 화면-->
-			<a href="deleteForm.do?bno=${board.bno }&pageNum=${pageNum}" class="btn btn-danger">삭제</a>
+			<a href="bdDeleteForm.do?bno=${board.bno }&pageNum=${pageNum}" class="btn btn-danger">삭제</a>
 	</table>
 	<h2 class="text-primary">댓글 작성</h2>
 	<!-- submit할 때 action에 값이 없으면 자신(view.do)을 한번 더 수행 -->

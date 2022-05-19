@@ -29,7 +29,7 @@ public class ReviewController {
 	@Autowired
 	private BoardService bs;
 	
-	@RequestMapping("board/replyList")
+	@RequestMapping("board/rvList")
 	public String replyList(int bno, Model model) {
 		Board board = bs.select(bno);
 		List<Review> rvList = rs.list(bno); 
@@ -39,13 +39,13 @@ public class ReviewController {
 		model.addAttribute("rpList", rpList);
 //		System.out.println("rpsize="+rpList.size());
 //		System.out.println("rvsize="+rvList.size());
-		return "board/replyList";
+		return "board/rvList";
 	}
 	
 	@RequestMapping("board/rDelete")
 	public String rDelete(Review rv) {
 		rs.delete(rv);
-		return "redirect:/board/replyList.do?bno="+rv.getBno();
+		return "redirect:/board/rvList.do?bno="+rv.getBno();
 	}
 	
 	@RequestMapping("board/rInsert")
@@ -70,11 +70,11 @@ public class ReviewController {
 		rs.insertPhoto(photos);
 		// redirect나 forward는 jsp가 아니라 Controller 내부의 다른 메서드를 호출
 		// 댓글 입력한 후에 결과를 바로 보여주기 위해서
-		return "redirect:/board/replyList.do?bno="+rv.getBno();
+		return "redirect:/board/rvList.do?bno="+rv.getBno();
 	}
 	@RequestMapping("board/rUpdate")
 	public String rUpdate(Review rv) {
 		rs.update(rv);
-		return "redirect:/board/replyList.do?bno="+rv.getBno();
+		return "redirect:/board/rvList.do?bno="+rv.getBno();
 	}
 }

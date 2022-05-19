@@ -34,7 +34,7 @@
 		select * from board where bno=#{bno}
 	</select>
 	<insert id="insert" parameterType="board">
-		insert into board values (#{bno}, #{title}, sysdate, sysdate, '집', #{content}, sysdate, 0, 'n', 0)
+		insert into board values (#{bno}, #{title}, sysdate, sysdate, '집', #{content}, sysdate, 0, 'n', #{mno})
 	</insert>
 	<update id="updateReadCount" parameterType="integer">
 		update board set readcount = readcount + 1 where bno=#{bno}

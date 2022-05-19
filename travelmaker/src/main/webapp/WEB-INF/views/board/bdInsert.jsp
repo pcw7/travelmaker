@@ -7,22 +7,16 @@
 
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("삭제 되었습니다");
-		location.href="list.do?pageNum=${pageNum}";
+		alert("입력 되었습니다");
+		location.href="bdList.do?pageNum=${pageNum}";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("삭제 실패 ㅠㅠ");
+		alert("입력 실패 ㅠㅠ");
 		history.back();
 	</script>
 </c:if>
-<c:if test="${result == -1 }">
-	<script type="text/javascript">
-		alert("암호도 모르면서!");
-		history.back();
-	</script>
-</c:if>
-<!-- 주석 -->
+
 </body>
 </html>
