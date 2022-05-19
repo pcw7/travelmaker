@@ -24,7 +24,7 @@
 			"<input type='button' onclick='lst("+bno+")' class='btn btn-info btn-sm' value='취소'>");
 	}
 	function lst(bno) {
-		$('#rvListDisp').load("replyList.do", "bno=${board.bno}");
+		$('#rvListDisp').load("rvList.do", "bno=${board.bno}");
 	}
 	function up(bno, rno) {
 		var sendData = "reply_content="+$('#rt').val()+"&bno="+bno+"&rno="+rno;

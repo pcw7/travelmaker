@@ -6,7 +6,7 @@
 </head><body>
 
 <div class="container" align="center">
-	<h2 class="text-primary">게시글 목록</h2>
+	<h2 class="text-primary">게시글 목록</h2>	<!-- {sessionScope.id} -->
 	<table class="table table-striped">
 		<tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th></tr>
 		<c:if test="${empty list }">
@@ -14,14 +14,13 @@
 		</c:if>
 		<c:if test="${not empty list }">
 			<c:forEach var="board" items="${list }">
-				<tr><td>${bno }<c:set var="bno" value="${bno - 1}"></c:set>
-					<%-- ${board.num } --%></td>
+				<tr><td>${bno }<c:set var="bno" value="${bno - 1}"></c:set></td>
 				<c:if test="${board.del == 'y' }">
 					<td colspan="4">삭제된 글 입니다</td>
 				</c:if>
 				<c:if test="${board.del != 'y' }">
 					<td title="${board.content }">
-						<a href="view.do?bno=${board.bno }&pageNum=${pb.currentPage}" class="btn btn-info btn-sm">${board.title }</a>
+						<a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}" class="btn btn-info btn-sm">${board.title }</a>
 					</td>
 					<td>철수</td>
 					<td>${board.readcount }</td>
@@ -69,7 +68,7 @@
 		<input type="text" name="keyword" value="${board.keyword }">
 		<input type="submit" value="검색">
 	</form>
-	<div align="center"><a href="insertForm.do?bno=0&pageNum=1" class="btn btn-success">게시글 입력</a></div>
+	<div align="center"><a href="bdInsertForm.do?bno=0&pageNum=1" class="btn btn-success">게시글 입력</a></div>
 </div>
 
 </body>

@@ -7,13 +7,11 @@
 </head><body>
 
 <div class="container" align="center">
-	<h2 class="text-primary">게시글 수정</h2>
-	<form action="update.do" method="post" name="frm">
+	<h2 class="text-primary">게시글 삭제</h2>
+	<form action="bdDelete.do" method="post" name="frm">
 		<input type="hidden" name="bno" value="${board.bno }">
 		<input type="hidden" name="pageNum" value="${pageNum }">
 	<table class="table table-bordered table-hover">
-		<tr><td>제목</td><td><input type="text" name="title" required="required" autofocus="autofocus" value="${board.title }"></td></tr>
-		<tr><td>내용</td><td><textarea rows="5" cols="40" name="content" required="required">${board.content }</textarea></td></tr>
 		<tr><td colspan="2" align="center"><input type="submit" value="확인" class="btn btn-info">
 	</table>
 	</form>
