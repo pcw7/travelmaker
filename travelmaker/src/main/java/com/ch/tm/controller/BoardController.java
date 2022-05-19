@@ -16,8 +16,6 @@ import com.ch.tm.service.BoardService;
 public class BoardController {
 	@Autowired
 	private BoardService bs;
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
 	
 	@RequestMapping("home")
 	public String home() {
@@ -88,7 +86,7 @@ public class BoardController {
 		return "board/view";
 	}
 	
-	@RequestMapping("board/list")
+	@RequestMapping("board/bdList")
 	public String list(Board board, String pageNum, Model model) {
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int rowPerPage = 10;
@@ -106,26 +104,7 @@ public class BoardController {
 		model.addAttribute("bno", bno);
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
-		return "board/list";
+		return "board/bdList";
 	}
-	
-//	@RequestMapping("board/list")
-//	public String list(String pageNum, Model model) {
-//		if(pageNum == null || pageNum.equals("")) pageNum = "1";
-//		int rowPerPage = 10;
-//		int currentPage = Integer.parseInt(pageNum);
-//		int total = bs.getTotal();
-//		int startRow = (currentPage - 1) * rowPerPage + 1;
-//		int endRow = startRow + rowPerPage - 1;
-//		List<Board> list = bs.list(startRow, endRow);
-//		PageBean pb = new PageBean(currentPage, rowPerPage, total);
-//		int bno = total - startRow + 1;
-//		String[] title = {"작성자", "내용"};
-//		model.addAttribute("title", title);
-//		model.addAttribute("bno", bno);
-//		model.addAttribute("pb", pb);
-//		model.addAttribute("list", list);
-//		return "board/list";
-//	}
 	
 }
