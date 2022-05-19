@@ -51,7 +51,6 @@
 </style>
 
 </head><body>
-
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -301,9 +300,10 @@ function removeAllChildNods(el) {
  
 </script>
 
+<form id="planForm" method="post" enctype="multipart/form-data">
+
 <input type="text" id="title" value =""/>
 <input type="text" id="xy" value =""/>
-
 <canvas id="canvas" width="1100" height="550"></canvas>
 
 <!-- 코스 그리기 -->
@@ -314,5 +314,6 @@ function removeAllChildNods(el) {
 <a href="logout.do">로그아웃</a>
 <a href="myUpdateForm.do">마이페이지</a>
 </div>
-</body>
+<button id="planSubmitBtn" onclick="uploadCanvasData('${pageContext.request.contextPath}')" >저장</button>
+</form>
 </html>

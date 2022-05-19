@@ -11,7 +11,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("환영합니다");
-		location.href="home.do";
+		location.href="board/list.do";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">

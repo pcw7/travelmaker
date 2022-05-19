@@ -5,8 +5,8 @@
 </head><body>
 
 <script type="text/javascript">
-	// location.href="home.do";
-	location.href="board/list.do";
+	 location.href="home.do";
+	//location.href="board/list.do";
 </script>
 
 </body>
