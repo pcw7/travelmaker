@@ -38,6 +38,17 @@ public class BoardController {
 		return "board/bdInsertForm";
 	}
 	
+	@RequestMapping("board/bdInsertForm2")
+	public String insertForm2(int bno, String pageNum, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		Member member = ms.select(id);
+		model.addAttribute("member", member);
+		model.addAttribute("bno", bno);
+		model.addAttribute("pageNum", pageNum);
+		return "board/bdInsertForm2";
+	}
+	
 	@RequestMapping("board/bdInsert")
 	public String insert(Board board, String pageNum, Model model, HttpServletRequest request) {
 		// num을 자동으로 1씩 증가
