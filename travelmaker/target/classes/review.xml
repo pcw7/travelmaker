@@ -32,7 +32,7 @@
 		select nvl(max(rno),0) + 1 rno from review
 	</select>
 	<insert id="insert" parameterType="review">
-		insert into review values (#{rno},#{reply_content},sysdate,sysdate,'n',0,#{bno})
+		insert into review values (#{rno},#{reply_content},sysdate,sysdate,'n',#{mno},#{bno})
 	</insert>
 	<insert id="insertPhoto" parameterType="reviewphoto">
 		insert into reviewphoto values (reviewphoto_seq.nextval, 1, #{rno}, #{imgName})

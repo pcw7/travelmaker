@@ -56,7 +56,7 @@ drop table member cascade constraints;
 create table member (
 	mno number primary key,          -- 회원번호
 	id varchar2(20) not null,        -- 아이디
-	password varchar2(300) not null,  -- 비밀번호
+	password varchar2(300) not null, -- 비밀번호
 	name varchar2(20) not null,      -- 이름
 	email varchar2(50) not null,     -- 이메일
 	tel varchar2(20) not null,       -- 전화번호

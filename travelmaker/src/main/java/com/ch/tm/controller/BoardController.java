@@ -67,14 +67,6 @@ public class BoardController {
 		return "board/bdUpdate";
 	}
 	
-	@RequestMapping("board/bdDeleteForm")
-	public String deleteForm(int bno, String pageNum, Model model) {
-		Board board = bs.select(bno);
-		model.addAttribute("board", board);
-		model.addAttribute("pageNum", pageNum);
-		return "board/bdDeleteForm";
-	}
-	
 	@RequestMapping("board/bdDelete")
 	public String delete(int bno, String pageNum, Model model) {
 		int result = 0;
@@ -86,9 +78,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board/bdView")
-	public String view(int bno, String pageNum, Model model) {
+	public String view(int bno, String pageNum, Model model, HttpServletRequest request) {
 		bs.updateReadCount(bno);
 		Board board = bs.select(bno);
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		model.addAttribute("id", id);
 		model.addAttribute("board", board);
 		model.addAttribute("pageNum", pageNum);
 		return "board/bdView";
