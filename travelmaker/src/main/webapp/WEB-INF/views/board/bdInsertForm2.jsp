@@ -333,7 +333,7 @@ function removeAllChildNods(el) {
 <a href="logout.do">로그아웃</a>
 <a href="myUpdateForm.do">마이페이지</a>
 </div>
-<button id="planSubmitBtn" onclick="uploadCanvasData('${pageContext.request.contextPath}')" >저장</button>
+<button id="planSubmitBtn" onclick="uploadCanvasData()" >저장</button>
 </form>
 </body>
 </html>

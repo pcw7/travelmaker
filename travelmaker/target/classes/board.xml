@@ -33,9 +33,15 @@
 	<select id="select" parameterType="integer" resultType="board">
 		select * from board where bno=#{bno}
 	</select>
-	<insert id="insert" parameterType="board">
+	<!-- <insert id="insert" parameterType="board">
 		insert into board values (#{bno}, #{title}, sysdate, sysdate, '집', #{content}, sysdate, 0, 'n', #{mno})
+	</insert> -->
+	
+	<insert id="insert" parameterType="board">
+		insert into board values (#{bno}, #{title}, #{s_date}, #{e_date}, ,#{loc},
+			 #{content}, sysdate, 0, 'n', #{mno}, #{courseImg})
 	</insert>
+	
 	<update id="updateReadCount" parameterType="integer">
 		update board set readcount = readcount + 1 where bno=#{bno}
 	</update>
