@@ -331,7 +331,7 @@ function clearNode() {
 function uploadCanvasData(contextPath) {
 
     //폼 데이터 생성
-    var form = $('#reviewIU-form')[0];
+    var form = $('#planForm')[0];
     var formData = new FormData(form);
 
     var canvas = document.getElementById("canvas");
@@ -348,16 +348,16 @@ function uploadCanvasData(contextPath) {
         formData.append("courseImgFile", file, "course.png");
     }
 
-    $j1124.ajax({
+    $.ajax({
         type: 'POST',
-        url: contextPath + '/review',
+        url: contextPath + '/board/list.do',
         data: formData,
         processData: false,	// data 파라미터 강제 string 변환 방지
         contentType: false,	// application/x-www-form-urlencoded; 방지
         cache: false,
         success: function (data) {
             alert("게시글이 등록 되었습니다.");
-            location.replace(contextPath + '/review');
+            location.replace("board/list.do");
         },
         error: function (request, status, error) {
             alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
