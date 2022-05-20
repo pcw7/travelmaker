@@ -22,7 +22,7 @@
 					<td title="${board.content }">
 						<a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}" class="btn btn-info btn-sm">${board.title }</a>
 					</td>
-					<td>철수</td>
+					<td>${board.nickName }</td>
 					<td>${board.readcount }</td>
 					<td>${board.reg_date }</td>
 				</c:if></tr>

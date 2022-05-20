@@ -17,12 +17,13 @@
 		history.back();
 	</script>
 </c:if>
-<c:if test="${result == -1 }">
+
+<%-- <c:if test="${result == -1 }">
 	<script type="text/javascript">
 		alert("암호도 모르면서!");
 		history.back();
 	</script>
-</c:if>
-<!-- 주석 -->
+</c:if> --%>
+
 </body>
 </html>

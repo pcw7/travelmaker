@@ -23,4 +23,8 @@ public class Board {
 	// 검색용
 	private String search;
 	private String keyword;
+	// join용
+	private String nickName;
+	private String id;
+
 }
