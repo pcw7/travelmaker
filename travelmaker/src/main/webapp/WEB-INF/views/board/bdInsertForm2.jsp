@@ -1,8 +1,10 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page session="false" %>
-<html><head><title>TravelMaker</title>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set> 
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Insert title here</title>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/draw_course_tm.js"></script>
 <style type="text/css">
@@ -49,8 +51,25 @@
  	margin: 5px;
  }
 </style>
-
 </head><body>
+
+<div class="container" align="center">
+	<h2 class="text-primary">게시글 입력</h2>
+	<form action="bdInsert.do" method="post" name="frm" onsubmit="return chk()">
+		<input type="hidden" name="bno" value="${bno }">
+		<input type="hidden" name="pageNum" value="${pageNum }">
+		<input type="hidden" name="mno" value="${member.mno }">
+	<table class="table table-bordered table-hover">
+		<tr><td>제목</td><td><input type="text" name="title" required="required" autofocus="autofocus"></td></tr>
+		<tr><td>작성자</td><td>${member.nickName }</td></tr>
+		<tr><td>내용</td><td><textarea rows="5" cols="40" name="content" required="required"></textarea></td></tr>
+		<tr><td colspan="2" align="center"><input type="submit" value="확인" class="btn btn-info">
+	</table>
+	<input type="date" name="s_date">
+	<input type="date" name="e_date">
+	<input type="text" name="loc" value="집">
+	</form>
+</div>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -314,6 +333,7 @@ function removeAllChildNods(el) {
 <a href="logout.do">로그아웃</a>
 <a href="myUpdateForm.do">마이페이지</a>
 </div>
-<button id="planSubmitBtn" onclick="uploadCanvasData('${pageContext.request.contextPath}')" >저장</button>
+<button id="planSubmitBtn" onclick="uploadCanvasData()" >저장</button>
 </form>
+</body>
 </html>

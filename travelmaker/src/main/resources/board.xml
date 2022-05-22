@@ -18,24 +18,43 @@
 		select * from (select a.*, rowNum rn from (select * from board where del='n' order by bno desc
 		) a) where rn between #{startRow} and #{endRow}
 	</select> -->
+	<!-- <select id="list" parameterType="board" resultType="board"> parameterType="board"
+		select * from (select a.*, nickName, rowNum rn from (select * from board b, member m where del='n' and b.mno = m.mno
+			where는 테이블로 부터 데이터 추출 조건 where 뒤에 문장이 있으면 where를 추가하고 없으면 where 생략
+				keyword 값이 있으면 검색 없으면 생략
+				<if test="keyword != null and keyword != ''">
+					and ${search} like '%'||#{keyword}||'%'
+				</if>
+			order by bno desc) a) where rn between #{startRow} and #{endRow}  
+	</select> -->
+	
 	<select id="list" parameterType="board" resultType="board"> <!-- parameterType="board" -->
-		select * from (select a.*, rowNum rn from (select * from board where del='n'
+		select * from (select a.*, rowNum rn from (select b.*, m.nickName from board b, member m where b.del='n' and b.mno = m.mno
 			<!-- where는 테이블로 부터 데이터 추출 조건 where 뒤에 문장이 있으면 where를 추가하고 없으면 where 생략 -->
 				<!-- keyword 값이 있으면 검색 없으면 생략 -->
 				<if test="keyword != null and keyword != ''">
 					and ${search} like '%'||#{keyword}||'%'
 				</if>
-			order by bno desc) a) where rn between #{startRow} and #{endRow}  
+			order by b.bno desc) a) where rn between #{startRow} and #{endRow}  
 	</select>
+	
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(bno), 0) + 1 from board
 	</select>
 	<select id="select" parameterType="integer" resultType="board">
-		select * from board where bno=#{bno}
+		<!-- select * from board where bno=#{bno} -->
+		<!-- select b.*, m.nickName from board b, member m where bno=#{bno} and b.mno = m.mno order by bno -->
+		select b.*, m.nickName, m.id from board b, member m where bno=#{bno} and b.mno = m.mno order by bno
 	</select>
+	<!-- <insert id="insert" parameterType="board">
+		insert into board values (#{bno}, #{title}, sysdate, sysdate, '집', #{content}, sysdate, 0, 'n', #{mno})
+	</insert> -->
+	
 	<insert id="insert" parameterType="board">
-		insert into board values (#{bno}, #{title}, sysdate, sysdate, '집', #{content}, sysdate, 0, 'n', 0)
+		insert into board values (#{bno}, #{title}, #{s_date}, #{e_date}, ,#{loc},
+			 #{content}, sysdate, 0, 'n', #{mno}, #{courseImg})
 	</insert>
+	
 	<update id="updateReadCount" parameterType="integer">
 		update board set readcount = readcount + 1 where bno=#{bno}
 	</update>

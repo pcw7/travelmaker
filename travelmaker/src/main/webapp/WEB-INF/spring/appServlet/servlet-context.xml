@@ -22,6 +22,17 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.ch.tm" />
+	<beans:bean id="sc" class="com.ch.tm.service.SessionChk"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/board/bdUpdateForm.do"/>
+			<mapping path="/board/bdInsertForm.do"/>
+			<mapping path="/board/bdDeleteForm.do"/>
+			<mapping path="/board/bdList.do"/>
+			<mapping path="/board/bdView.do"/>
+			<beans:ref bean="sc"/>
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>

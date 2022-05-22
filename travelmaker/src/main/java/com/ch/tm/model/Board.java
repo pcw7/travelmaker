@@ -16,10 +16,15 @@ public class Board {
 	private int readcount;	
 	private String del;	
 	private int mno;
+	private String courseImg;
 	// paging용
 	private int startRow;
 	private int endRow;
 	// 검색용
 	private String search;
 	private String keyword;
+	// join용
+	private String nickName;
+	private String id;
+
 }

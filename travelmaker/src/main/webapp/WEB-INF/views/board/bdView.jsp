@@ -4,26 +4,10 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- <script type="text/javascript">
-	$(function() {
-		$('#rvListDisp').load("replyList.do","bno=${board.bno}");
-		$('#boardListDisp').load("list.do", "pageNum=${pageNum}");
-		$('#rInsert').click(function() {
-			/* var sendData = "bno="+frm1.bno.value+"&replier="+frm1.replier.value+"&replytext="+frm1.replytext.value; */
-			var sendData = $('#frm1').serialize();
-			$.post("rInsert.do", sendData, function(data) {
-				alert("댓글이 입력 되었습니다");
-				$('#rvListDisp').html(data);
-				frm1.reply_content.value = "";		// 댓글 지우기
-			});
-		});
-	});
-</script>
- -->
 <script type="text/javascript">
 	$(function() {
-		$('#rvListDisp').load("replyList.do","bno=${board.bno}");
-		$('#boardListDisp').load("list.do", "pageNum=${pageNum}");
+		$('#rvListDisp').load("rvList.do","bno=${board.bno}");
+		$('#boardListDisp').load("bdList.do", "pageNum=${pageNum}");
 		$('#rInsert').click(function() {
 			var uploadfiles = [];
 			var formData = new FormData();
@@ -52,6 +36,12 @@
 			});
 		});
 	});
+	function del() {
+		// 확인을 check하면 true이고 취소를 체크하면 false;
+		var ch = confirm("정말로 삭제하시겠습니까 ?");
+		if (ch) location.href="bdDelete.do?bno=${board.bno }&pageNum=${pageNum}";
+		else alert("삭제가 취소 되었습니다");
+	}
 </script>
 
 </head><body>
@@ -61,14 +51,17 @@
 	<table class="table table-bordered table-striped">
 		<tr><td>제목</td><td>${board.title }</td>
 			<td>조회수</td><td>${board.readcount }</td></tr>
-		<tr><td>작성자</td><td>철수</td>
+		<tr><td>작성자</td><td>${board.nickName }</td>
 			<td>작성일</td><td>${board.reg_date }</td></tr>
 		<tr><td>내용</td><td colspan="3"><pre>${board.content }</pre></td></tr>
 		<tr><td colspan="4" align="center">
-			<a href="list.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
-			<a href="updateForm.do?bno=${board.bno }&pageNum=${pageNum}" class="btn btn-warning">수정</a>
-			<!-- 회원 게시판인 경우에는 폼없이 삭제 여부를 묻고 삭제, 비회원인 경우에는 암호를 확인하기 위한 화면-->
-			<a href="deleteForm.do?bno=${board.bno }&pageNum=${pageNum}" class="btn btn-danger">삭제</a>
+			<a href="bdList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
+			<c:if test="${board.id == id}">
+				<a href="bdUpdateForm.do?bno=${board.bno }&pageNum=${pageNum}" class="btn btn-warning">수정</a>
+			</c:if>
+			<c:if test="${board.id == id}">
+				<a class="btn btn-danger" onclick="del()">삭제</a>
+			</c:if>
 	</table>
 	<h2 class="text-primary">댓글 작성</h2>
 	<!-- submit할 때 action에 값이 없으면 자신(view.do)을 한번 더 수행 -->
