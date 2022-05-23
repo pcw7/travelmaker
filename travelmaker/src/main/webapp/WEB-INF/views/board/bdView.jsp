@@ -12,7 +12,8 @@
 			var uploadfiles = [];
 			var formData = new FormData();
 			formData.append('reply_content', frm1.reply_content.value);
-			formData.append('replier', frm1.replier.value);
+			formData.append('mno', frm1.mno.value);
+			formData.append('nickName', frm1.nickName.value);
 			formData.append('bno', frm1.bno.value);
 			var inputFile = $("input[name='file']");
 			var files = inputFile[0].files;
@@ -67,6 +68,19 @@
 	<!-- submit할 때 action에 값이 없으면 자신(view.do)을 한번 더 수행 -->
 	<form action="" method="post" enctype="multipart/form-data" name="frm1" id="frm1">
 		<input type="hidden" name="bno" value="${board.bno }">
+		<input type="hidden" name="mno" value="${member.mno }">
+		<input type="hidden" name="nickName" value="${member.nickName }">
+		<table class="table table-hover">
+			 	<tr><th>작성자</th><td>${member.nickName }</td>
+				<td>댓글</td><td><textarea rows="3" cols="30" name="reply_content"></textarea></td></tr>
+				<tr><td>사진 <span class="glyphicon glyphicon-picture"></span></td>
+					<td><input type="file" name="file" multiple="multiple"></td></tr>
+				<tr><td><input type="button" value="댓글 입력" id="rInsert"></td></tr>		
+		</table>
+	</form>
+	
+	<%-- <form action="" method="post" enctype="multipart/form-data" name="frm1" id="frm1">
+		<input type="hidden" name="bno" value="${board.bno }">
 		<table class="table table-hover">
 			 	<tr><th>작성자</th><td><input type="text" name="replier" value="철수"></td>
 				<td>댓글</td><td><textarea rows="3" cols="30" name="reply_content"></textarea></td></tr>
@@ -74,7 +88,8 @@
 					<td><input type="file" name="file" multiple="multiple"></td></tr>
 				<tr><td><input type="button" value="댓글 입력" id="rInsert"></td></tr>		
 		</table>
-	</form>
+	</form> --%>
+	
 	<div id="rvListDisp"></div>
 	<div id="boardListDisp"></div>
 </div>

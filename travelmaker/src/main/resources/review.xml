@@ -26,7 +26,7 @@
 		select p.*, r.* from reviewphoto p, review r where p.rno=r.rno and bno=#{bno} order by p.rno desc
 	</select>
 	<select id="list" parameterType="integer" resultType="review">
-		select * from review where bno=#{bno} order by rno
+		select r.*, m.nickName from review r, member m where bno=#{bno} and r.mno = m.mno order by rno
 	</select>
 	<select id="getMaxRno" resultType="integer">
 		select nvl(max(rno),0) + 1 rno from review
