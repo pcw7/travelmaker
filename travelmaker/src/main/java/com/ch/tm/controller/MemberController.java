@@ -28,13 +28,13 @@ public class MemberController {
 	private JavaMailSender jMailSender;
 	
 	// 로그인 입력
-	@RequestMapping("loginForm")
+	@RequestMapping("member/loginForm")
 	public String loginForm() {
-		return "/member/loginForm";
+		return "member/loginForm";
 	}
 	
 	// 로그인 결과
-	@RequestMapping("login")
+	@RequestMapping("member/login")
 	public String login(Member member, Model model, HttpSession session) {
 		int result = 0; // 암호가 다름
 		Member member2 = ms.select(member.getId());
@@ -46,17 +46,17 @@ public class MemberController {
 				session.setAttribute("id", member.getId());
 			}
 		model.addAttribute("result", result);
-		return "/member/login";
+		return "member/login";
 	}
 	
 	// 회원가입 입력
-	@RequestMapping("joinForm")
+	@RequestMapping("member/joinForm")
 	public String joinForm() {
-		return "/member/joinForm";
+		return "member/joinForm";
 	}
 	
 	// 아이디 중복체크
-	@RequestMapping(value= "idChk", produces = "text/html;charset=utf-8")
+	@RequestMapping(value= "member/idChk", produces = "text/html;charset=utf-8")
 	@ResponseBody  // jsp를 통하지않고 직접 문자를 전달
 	public String idChk(String id) {
 		String msg = "";
@@ -67,7 +67,7 @@ public class MemberController {
 	}
 	
 	// 별명 중복체크
-	@RequestMapping(value= "nickNameChk", produces = "text/html;charset=utf-8")
+	@RequestMapping(value= "member/nickNameChk", produces = "text/html;charset=utf-8")
 	@ResponseBody
 	public String nickNameChk(String nickName) {
 		String msg = "";
@@ -78,7 +78,7 @@ public class MemberController {
 	}
 	
 	// 회원가입 결과
-	@RequestMapping("join")
+	@RequestMapping("member/join")
 	public String join(Member member, Model model, HttpSession session) throws IOException {
 		int result = 0;
 		Member member2 = ms.select(member.getId());
@@ -89,17 +89,17 @@ public class MemberController {
 			result = ms.insert(member);
 		} else result = -1; // 이미 가입된 아이디
 		model.addAttribute("result", result);
-		return "/member/join";
+		return "member/join";
 	}
 	
 	// 아이디 찾기 입력
-	@RequestMapping("findIdForm")
+	@RequestMapping("member/findIdForm")
 	public String findIdForm() {
 		return "/member/findIdForm";
 	}
 	
 	// 아이디 찾기 결과
-	@RequestMapping("findId")
+	@RequestMapping("member/findId")
 	public String findId(Member member, Model model) {
 		int result = 0;
 		Member member2 = ms.selectFindId(member);
@@ -110,17 +110,17 @@ public class MemberController {
 			result = -1;
 		}
 		model.addAttribute("result", result);
-		return "/member/findId";
+		return "member/findId";
 	}
 	
 	// 비밀번호 찾기 입력
-	@RequestMapping("findPwForm")
+	@RequestMapping("member/findPwForm")
 	public String findPwForm() {
-		return "/member/findPwForm";
+		return "member/findPwForm";
 	}
 	
 	// 비밀번호 찾기 결과
-	@RequestMapping("findPw")
+	@RequestMapping("member/findPw")
 	public String findPw(Member member, Model model) {
 		int result = 0;
 		Member member2 = ms.selectFindPw(member);
@@ -164,43 +164,43 @@ public class MemberController {
 			result = -1;
 		}
 		model.addAttribute("result", result);
-		return "/member/findPw";
+		return "member/findPw";
 	}
 	
 	// 로그아웃
-	@RequestMapping("logout")
+	@RequestMapping("member/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "/member/logout";
+		return "member/logout";
 	}
 	
 	// 회원 정보 수정 입력
-	@RequestMapping("myUpdateForm")
+	@RequestMapping("mypage/myUpdateForm")
 	public String myUpdateForm(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
 		Member member = ms.select(id);
 		model.addAttribute("member", member);
-		return "/mypage/myUpdateForm";
+		return "mypage/myUpdateForm";
 	}
 	
 	// 회원 정보 수정 결과
-	@RequestMapping("myUpdate")
+	@RequestMapping("member/myUpdate")
 	public String myUpdate(Member member, Model model, HttpSession session) {
 		int result = 0;
 		String encPassword = passwordEncoder.encode(member.getPassword());
 		member.setPassword(encPassword);
 		result = ms.update(member);
 		model.addAttribute("result", result);
-		return "/mypage/myUpdate";
+		return "mypage/myUpdate";
 	}
 	
-	@RequestMapping("delete")
+	@RequestMapping("member/delete")
 	public String delete(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
 		int result = ms.delete(id);
 		if (result > 0) session.invalidate();
 		model.addAttribute("result", result);
-		return "/mypage/delete";
+		return "mypage/delete";
 	}
 	
 	
