@@ -16,6 +16,7 @@ public class Board {
 	private int readcount;	
 	private String del;	
 	private int mno;
+	private String courseImg;
 	// paging용
 	private int startRow;
 	private int endRow;

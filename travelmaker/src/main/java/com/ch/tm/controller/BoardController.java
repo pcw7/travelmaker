@@ -5,16 +5,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ch.tm.model.Board;
 import com.ch.tm.model.Member;
-import com.ch.tm.service.PageBean;
 import com.ch.tm.service.BoardService;
 import com.ch.tm.service.MemberService;
+import com.ch.tm.service.PageBean;
 @Controller
 public class BoardController {
 	@Autowired
@@ -38,6 +39,7 @@ public class BoardController {
 		return "board/bdInsertForm";
 	}
 	
+	// 하영
 	@RequestMapping("board/bdInsertForm2")
 	public String insertForm2(int bno, String pageNum, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -48,6 +50,29 @@ public class BoardController {
 		model.addAttribute("pageNum", pageNum);
 		return "board/bdInsertForm2";
 	}
+	
+	// 하영
+	@RequestMapping("bdInsert2")
+    public void bdInsert2(@RequestBody(required = false) MultipartFile courseImgFile,
+                             Board board) {
+        int result = 0;
+        int number = bs.getMaxNum();
+		board.setBno(number);
+		
+		if (courseImgFile != null) {
+        	board.setCourseImg(courseImgFile.getOriginalFilename());
+        }
+
+        result = bs.insert(board);
+        
+//        try {
+//            if (courseImgFile != null) {
+//                fileUtil.courseImgSave(board.get), courseImgFile);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+    }
 	
 	@RequestMapping("board/bdInsert")
 	public String insert(Board board, String pageNum, Model model, HttpServletRequest request) {

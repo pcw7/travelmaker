@@ -328,10 +328,10 @@ function clearNode() {
 //}
 
 //canvas 파일 이미지변환후 서버 업로드
-function uploadCanvasData(contextPath) {
+function uploadCanvasData() {
 
     //폼 데이터 생성
-    var form = $('#planForm')[0];
+    var form = $('#frm')[0];
     var formData = new FormData(form);
 
     var canvas = document.getElementById("canvas");
@@ -339,18 +339,18 @@ function uploadCanvasData(contextPath) {
         var imageBase64 = canvas.toDataURL('image/png');
 
         //base64 to blob
-        var decodedImg = atob(imageBase64.split(',')[1]);
+        var decodedImg = atob(imageBase64.split(',')[1]);  // base64 데이터 디코딩
         var array = [];
         for (var i = 0; i < decodedImg.length; i++) {
             array.push(decodedImg.charCodeAt(i));
         }
-        var file = new Blob([new Uint8Array(array)], {type: 'image/png'});
+        var file = new Blob([new Uint8Array(array)], {type: 'image/png'}); // Blob 생성
         formData.append("courseImgFile", file, "course.png");
     }
 
     $.ajax({
         type: 'POST',
-        url: contextPath + '/board/list.do',
+        url: 'bdInsert2.do',
         data: formData,
         processData: false,	// data 파라미터 강제 string 변환 방지
         contentType: false,	// application/x-www-form-urlencoded; 방지
