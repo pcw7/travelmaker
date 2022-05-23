@@ -2,6 +2,8 @@ package com.ch.tm.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -26,5 +28,6 @@ public class Board {
 	// join용
 	private String nickName;
 	private String id;
-
+	// upload용
+	// private MultipartFile file;
 }

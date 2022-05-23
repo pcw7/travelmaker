@@ -27,6 +27,9 @@ create table plan (
 
 select * from plan;
 
+drop sequence plan_seq;
+create sequence plan_seq;
+
 drop table review cascade constraints;
 create table review ( 
 	rno	NUMBER primary key,								-- 리뷰번호

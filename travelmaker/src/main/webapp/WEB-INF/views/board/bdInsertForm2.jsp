@@ -52,24 +52,7 @@
  }
 </style>
 </head><body>
-
-<div class="container" align="center">
-	<h2 class="text-primary">게시글 입력</h2>
-	<form action="bdInsert.do" method="post" name="frm" onsubmit="return chk()">
-		<input type="hidden" name="bno" value="${bno }">
-		<input type="hidden" name="pageNum" value="${pageNum }">
-		<input type="hidden" name="mno" value="${member.mno }">
-	<table class="table table-bordered table-hover">
-		<tr><td>제목</td><td><input type="text" name="title" required="required" autofocus="autofocus"></td></tr>
-		<tr><td>작성자</td><td>${member.nickName }</td></tr>
-		<tr><td>내용</td><td><textarea rows="5" cols="40" name="content" required="required"></textarea></td></tr>
-		<tr><td colspan="2" align="center"><input type="submit" value="확인" class="btn btn-info">
-	</table>
-	<input type="date" name="s_date">
-	<input type="date" name="e_date">
-	<input type="text" name="loc" value="집">
-	</form>
-</div>
+<h2 class="text-primary">게시글 입력</h2>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -303,8 +286,10 @@ function displayInfowindow(marker, title) {
    infowindow.open(map, marker);
    //마커에 클릭이벤트를 등록합니다
    kakao.maps.event.addListener(marker, 'click', function(e) {
-      jQuery('#title').val(title);
-      jQuery('#xy').val(marker.getPosition());
+	  jQuery('#name').val(title);
+      // jQuery('#xy').val(marker.getPosition());
+      jQuery('#map_x').val(marker.getPosition().getLat());
+      jQuery('#map_y').val(marker.getPosition().getLng());
       drawNodeAndLine();
       e.stopPropagation();
    });     
@@ -319,10 +304,23 @@ function removeAllChildNods(el) {
  
 </script>
 
-<form id="planForm" method="post" enctype="multipart/form-data">
+<div class="container" align="center">
+<form name="frm" id="frm" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="bno" value="${bno }">
+	<input type="hidden" name="pageNum" value="${pageNum }">
+	<input type="hidden" name="mno" value="${member.mno }">
 
-<input type="text" id="title" value =""/>
-<input type="text" id="xy" value =""/>
+	<table class="table table-bordered table-hover">
+		<tr><td>제목</td><td><input type="text" name="title" required="required" autofocus="autofocus"></td></tr>
+		<tr><td>작성자</td><td>${member.nickName }</td></tr>
+		<tr><td>내용</td><td><textarea rows="5" cols="40" name="content" required="required"></textarea></td></tr>
+	</table>
+	출발일<input type="date" name="s_date">
+	도착일<input type="date" name="e_date">
+	지역<input type="text" name="loc" value="집">
+<input type="text" id="name" value =""/>
+<input type="text" id="map_x" value =""/>
+<input type="text" id="map_y" value =""/>
 <canvas id="canvas" width="1100" height="550"></canvas>
 
 <!-- 코스 그리기 -->
@@ -333,7 +331,8 @@ function removeAllChildNods(el) {
 <a href="logout.do">로그아웃</a>
 <a href="myUpdateForm.do">마이페이지</a>
 </div>
-<button id="planSubmitBtn" onclick="uploadCanvasData()" >저장</button>
+<button type="button" id="submitBtn" onclick="uploadCanvasData()" >저장</button>
 </form>
+</div>
 </body>
 </html>

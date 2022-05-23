@@ -1,27 +1,42 @@
 package com.ch.tm.controller;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ch.tm.model.Board;
 import com.ch.tm.model.Member;
+import com.ch.tm.model.Plan;
 import com.ch.tm.service.BoardService;
 import com.ch.tm.service.MemberService;
 import com.ch.tm.service.PageBean;
+import com.ch.tm.service.PlanService;
 @Controller
 public class BoardController {
 	@Autowired
 	private BoardService bs;
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private PlanService ps;
 	
 	@RequestMapping("home")
 	public String home() {
@@ -52,26 +67,40 @@ public class BoardController {
 	}
 	
 	// 하영
-	@RequestMapping("bdInsert2")
-    public void bdInsert2(@RequestBody(required = false) MultipartFile courseImgFile,
-                             Board board) {
-        int result = 0;
+	@RequestMapping(value = "bdInsert2", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	@ResponseBody
+//    public void bdInsert2(@RequestBody MultipartFile courseImg, Board board, 
+//    		String pageNum, HttpSession session) throws IOException {
+	public void bdInsert2(MultipartHttpServletRequest request, Board board,
+			Plan plan, HttpSession session) throws Exception {
         int number = bs.getMaxNum();
 		board.setBno(number);
 		
-		if (courseImgFile != null) {
-        	board.setCourseImg(courseImgFile.getOriginalFilename());
-        }
-
-        result = bs.insert(board);
+		MultipartFile courseImg = (MultipartFile) request.getFiles("file");
+		String path = session.getServletContext().getRealPath("/resources/course");
+				
+        String fileName = courseImg.getOriginalFilename();
+        board.setCourseImg(fileName);
+        System.out.println("fileName");
         
-//        try {
-//            if (courseImgFile != null) {
-//                fileUtil.courseImgSave(board.get), courseImgFile);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        bs.insert(board);
+        System.out.println("result");
+       
+        // String real = session.getServletContext().getRealPath("/resources/course");
+        // Path savePath = Paths.get(real.toString() + "/" + fileName);
+        // File saveFile = new File(savePath.toString());
+        File savePath = new File(path);
+        
+        if(!savePath.exists()) {
+        	savePath.mkdirs();
+        }
+        
+        try {
+        	courseImg.transferTo(new File(path, fileName));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}       
+               
     }
 	
 	@RequestMapping("board/bdInsert")
