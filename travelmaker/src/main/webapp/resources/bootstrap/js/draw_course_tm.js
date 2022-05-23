@@ -146,7 +146,7 @@ function drawNode(x, y) {
         ctx.fill();
         
         //텍스트 추가
-        addText(x, y + 25, document.getElementById('title').value);
+        addText(x, y + 25, document.getElementById('name').value);
 
         //toggle값에 따라 방향 반전 (drawCurve 호출시 toggle)
         if (toggle) {
@@ -332,21 +332,27 @@ function uploadCanvasData() {
 
     //폼 데이터 생성
     var form = $('#frm')[0];
-    var formData = new FormData(form);
+	var formData = new FormData(form);
 
     var canvas = document.getElementById("canvas");
-    if (canvas != null) {
-        var imageBase64 = canvas.toDataURL('image/png');
+    var imageBase64 = canvas.toDataURL('image/png');
+    alert(imageBase64);
 
-        //base64 to blob
-        var decodedImg = atob(imageBase64.split(',')[1]);  // base64 데이터 디코딩
-        var array = [];
-        for (var i = 0; i < decodedImg.length; i++) {
-            array.push(decodedImg.charCodeAt(i));
-        }
-        var file = new Blob([new Uint8Array(array)], {type: 'image/png'}); // Blob 생성
-        formData.append("courseImgFile", file, "course.png");
+    //base64 to blob
+    var decodedImg = atob(imageBase64.split(',')[1]);  // base64 데이터 디코딩
+    var array = [];
+    for (var i = 0; i < decodedImg.length; i++) {
+    	array.push(decodedImg.charCodeAt(i));
     }
+    alert(array)
+    
+    var file = new Blob([new Uint8Array(array)], {type: 'image/png'}); // Blob 생성
+    var fileName = 'courseImg_'+ new Date().getMilliseconds() + '.png';
+    formData.append("courseImg", file, fileName);
+    alert(fileName);
+//    for (var value of formData.values()) {
+//    	console.log(value);
+//    }
 
     $.ajax({
         type: 'POST',
@@ -357,7 +363,7 @@ function uploadCanvasData() {
         cache: false,
         success: function (data) {
             alert("게시글이 등록 되었습니다.");
-            location.replace("board/list.do");
+            location.replace('bdList.do');
         },
         error: function (request, status, error) {
             alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
