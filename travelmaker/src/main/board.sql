@@ -41,7 +41,10 @@ create table review (
 	bno	NUMBER references board(bno) not null			-- 게시글번호
 );
 
+
 -- references member(mno)
+
+select * from review;
 
 drop table reviewphoto cascade constraints;
 create table reviewphoto (

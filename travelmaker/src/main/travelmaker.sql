@@ -29,7 +29,8 @@ create table board (
 	reg_date DATE not null,						-- 작성일	
 	readcount NUMBER default 0 not null,		-- 조회수	
 	del	CHAR(1) default 'n' not null,		 	-- 삭제여부	
-	mno NUMBER not null							-- 회원번호 
+	mno NUMBER not null,						-- 회원번호
+	courseImg VARCHAR2(20) not null             -- 코스 이미지    
 );
 
 select * from board;

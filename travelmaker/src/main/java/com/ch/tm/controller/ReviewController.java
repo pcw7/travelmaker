@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +17,34 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ch.tm.model.Board;
+import com.ch.tm.model.Member;
 import com.ch.tm.model.Review;
 import com.ch.tm.model.ReviewPhoto;
 import com.ch.tm.service.BoardService;
+import com.ch.tm.service.MemberService;
 import com.ch.tm.service.ReviewService;
 
 @Controller
 public class ReviewController {
 	@Autowired
 	private ReviewService rs;
-	
+	@Autowired
+	private MemberService ms;
 	@Autowired
 	private BoardService bs;
 	
 	@RequestMapping("board/rvList")
-	public String replyList(int bno, Model model) {
+	public String replyList(int bno, Model model, HttpServletRequest request) {
 		Board board = bs.select(bno);
 		List<Review> rvList = rs.list(bno); 
-		List<ReviewPhoto> rpList = rs.listphoto(bno); 
+		List<ReviewPhoto> rpList = rs.listphoto(bno);
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		Member member = ms.select(id);
+		model.addAttribute("member", member);
+		model.addAttribute("id", id);
+		
 		model.addAttribute("board", board);
 		model.addAttribute("rvList", rvList);
 		model.addAttribute("rpList", rpList);

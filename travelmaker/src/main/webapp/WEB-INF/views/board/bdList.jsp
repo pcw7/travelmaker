@@ -1,34 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>
+<style type="text/css">@import url("${path}/resources/css/instagram.css");</style>
+<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
+
 </head><body>
 
+<section class="main">
+	<c:if test="${not empty list }">
+	<div class="hihi">
+		<c:forEach var="board" items="${list }">
+			<c:if test="${board.del != 'y' }">
+				<a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}">
+			    <div class="wrapper">
+			        <div class="left-col">
+			            <div class="post">
+			                <div class="info">
+			                    <div class="user">
+			                        <div class="profile-pic"><img src="${path }/resources/images/img/cover 1.png" alt=""></div>
+			                        <p class="username">${board.nickName }</p>
+			                    </div>
+			                    <img src="${path }/resources/images/img/option.PNG" class="options" alt="">
+			                </div>
+			                <img src="${path }/resources/images/img/cover 1.png" class="post-image" alt="">
+			                <div class="post-content">
+			                    <div class="reaction-wrapper">
+			                        <!-- <img src="resources/images/img/like.PNG" class="icon" alt=""> -->
+			                        <img src="${path }/resources/images/img/comment.PNG" class="icon" alt="">
+			                        <img src="${path }/resources/images/img/send.PNG" class="icon" alt="">
+			                    </div>
+			                    <p class="likes">1,012 likes</p>
+			                    <p class="likes">${board.readcount } readcount</p>
+			                    <p class="description"><span>${board.title }</span></p>
+			                    <p class="post-time">${board.reg_date }</p>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+				</a>
+		    </c:if>
+    	</c:forEach>
+    	</div>
+	</c:if>
+</section>
+
 <div class="container" align="center">
-	<h2 class="text-primary">게시글 목록</h2>	<!-- {sessionScope.id} -->
-	<table class="table table-striped">
-		<tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th></tr>
-		<c:if test="${empty list }">
-			<tr><td colspan="5">게시글이 없습니다</td>
-		</c:if>
-		<c:if test="${not empty list }">
-			<c:forEach var="board" items="${list }">
-				<tr><td>${bno }<c:set var="bno" value="${bno - 1}"></c:set></td>
-				<c:if test="${board.del == 'y' }">
-					<td colspan="4">삭제된 글 입니다</td>
-				</c:if>
-				<c:if test="${board.del != 'y' }">
-					<td title="${board.content }">
-						<a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}" class="btn btn-info btn-sm">${board.title }</a>
-					</td>
-					<td>${board.nickName }</td>
-					<td>${board.readcount }</td>
-					<td>${board.reg_date }</td>
-				</c:if></tr>
-			</c:forEach>
-		</c:if>
-	</table>
 	<div align="center">
 		<ul class="pagination">
 			<!-- 시작페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
@@ -68,7 +95,7 @@
 		<input type="text" name="keyword" value="${board.keyword }">
 		<input type="submit" value="검색">
 	</form>
-	<div align="center"><a href="bdInsertForm2.do?bno=0&pageNum=1" class="btn btn-success">게시글 입력</a></div>
+	<div align="center"><a href="bdInsertForm2.do?bno=0&pageNum=1">게시글 입력</a></div>
 </div>
 
 </body>

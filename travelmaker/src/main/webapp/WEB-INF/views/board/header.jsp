@@ -9,7 +9,7 @@
 <style>
 	caption { font-size: 30px; }
 	.err { color: red; font-weight: bold; }
-	th { background: green; color: white; }
+	th { background: white; color: gray; }
 </style>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>

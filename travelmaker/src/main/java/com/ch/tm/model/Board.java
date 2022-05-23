@@ -29,5 +29,5 @@ public class Board {
 	private String nickName;
 	private String id;
 	// upload용
-	// private MultipartFile file;
+	private MultipartFile file;
 }
