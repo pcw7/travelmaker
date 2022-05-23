@@ -364,3 +364,7 @@ body{
         height: 300px;
     }
 }
+
+.hihi{
+	flex-direction: column;
+}
