@@ -336,7 +336,6 @@ function uploadCanvasData() {
 
     var canvas = document.getElementById("canvas");
     var imageBase64 = canvas.toDataURL('image/png');
-    alert(imageBase64);
 
     //base64 to blob
     var decodedImg = atob(imageBase64.split(',')[1]);  // base64 데이터 디코딩
@@ -344,11 +343,11 @@ function uploadCanvasData() {
     for (var i = 0; i < decodedImg.length; i++) {
     	array.push(decodedImg.charCodeAt(i));
     }
-    alert(array)
     
     var file = new Blob([new Uint8Array(array)], {type: 'image/png'}); // Blob 생성
-    var fileName = 'courseImg_'+ new Date().getMilliseconds() + '.png';
-    formData.append("courseImg", file, fileName);
+    var today = new Date();
+    var fileName = 'courseImg_'+ today.toLocaleDateString() + '_' + today.getMilliseconds() + '.png';
+    formData.append("file", file, fileName);
     alert(fileName);
 //    for (var value of formData.values()) {
 //    	console.log(value);
@@ -360,10 +359,10 @@ function uploadCanvasData() {
         data: formData,
         processData: false,	// data 파라미터 강제 string 변환 방지
         contentType: false,	// application/x-www-form-urlencoded; 방지
+        enctype: 'multipart/form-data',
         cache: false,
         success: function (data) {
             alert("게시글이 등록 되었습니다.");
-            location.replace('bdList.do');
         },
         error: function (request, status, error) {
             alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);

@@ -7,7 +7,6 @@
 
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("입력 되었습니다");
 		location.href="bdList.do?pageNum=${pageNum}";
 	</script>
 </c:if>

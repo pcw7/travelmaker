@@ -67,40 +67,27 @@ public class BoardController {
 	}
 	
 	// 하영
-	@RequestMapping(value = "bdInsert2", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	@ResponseBody
-//    public void bdInsert2(@RequestBody MultipartFile courseImg, Board board, 
-//    		String pageNum, HttpSession session) throws IOException {
-	public void bdInsert2(MultipartHttpServletRequest request, Board board,
-			Plan plan, HttpSession session) throws Exception {
-        int number = bs.getMaxNum();
+	@RequestMapping("board/bdInsert2")
+	public String bdInsert2(Board board, HttpSession session, String pageNum,
+			Model model) throws IOException {
+        int result = 0;
+        
+		int number = bs.getMaxNum();
 		board.setBno(number);
-		
-		MultipartFile courseImg = (MultipartFile) request.getFiles("file");
-		String path = session.getServletContext().getRealPath("/resources/course");
 				
-        String fileName = courseImg.getOriginalFilename();
+        String fileName = board.getFile().getOriginalFilename();
         board.setCourseImg(fileName);
-        System.out.println("fileName");
-        
-        bs.insert(board);
+        String real = session.getServletContext().getRealPath("/resources/course");
+        FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+		fos.write(board.getFile().getBytes());
+		fos.close();        
+        		
+        result = bs.insert(board);
         System.out.println("result");
-       
-        // String real = session.getServletContext().getRealPath("/resources/course");
-        // Path savePath = Paths.get(real.toString() + "/" + fileName);
-        // File saveFile = new File(savePath.toString());
-        File savePath = new File(path);
-        
-        if(!savePath.exists()) {
-        	savePath.mkdirs();
-        }
-        
-        try {
-        	courseImg.transferTo(new File(path, fileName));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}       
-               
+     
+        model.addAttribute("result", result);
+        model.addAttribute("pageNum", pageNum);
+        return "board/bdInsert"; 
     }
 	
 	@RequestMapping("board/bdInsert")
