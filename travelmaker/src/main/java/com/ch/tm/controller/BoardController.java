@@ -135,6 +135,8 @@ public class BoardController {
 		Board board = bs.select(bno);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		Member member = ms.select(id);
+		model.addAttribute("member", member);
 		model.addAttribute("id", id);
 		model.addAttribute("board", board);
 		model.addAttribute("pageNum", pageNum);

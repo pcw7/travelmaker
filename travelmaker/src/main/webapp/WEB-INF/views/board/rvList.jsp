@@ -43,7 +43,7 @@
 		<tr><td colspan="4">삭제된 댓글입니다</td></tr>
 	</c:if>
 	<c:if test="${rv.del!='y' }">
-		<tr><td>철수</td><!-- 댓글 작성자 -->
+		<tr><td>${rv.nickName }</td><!-- 댓글 작성자 -->	
 			<td id="td_${rv.rno }">${rv.reply_content }</td><!-- 댓글 -->
 			<td>${rv.update_date}</td>
 			<td>
@@ -54,13 +54,13 @@
 		 	</c:forEach></td>
 			<!-- 댓글 작성자와 로그인 한사람의 이름을 비교 같으면 수정/삭제 권한 제공
 				  회원게시판이 아니라서 임으로 게시글 작성자와 비교 -->
-			<%-- <c:if test="${board.writer=='철수' }"> --%>
-				<td id="btn_${rv.rno }">
+			<td id="btn_${rv.rno }">		
+				<c:if test="${rv.nickName==member.nickName }">
 					<input type="button" class="btn btn-warning btn-sm" value="수정"
 						onclick="rUpdate(${rv.bno},${rv.rno })">
 					<input type="button" class="btn btn-danger btn-sm" value="삭제"
-						onclick="rDelete(${rv.bno},${rv.rno })"></td>
-			<%-- </c:if> --%>
+						onclick="rDelete(${rv.bno},${rv.rno })">
+				</c:if></td>
 	</c:if>
 </c:forEach>
 </table>

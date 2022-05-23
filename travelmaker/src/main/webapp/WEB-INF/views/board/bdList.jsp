@@ -68,7 +68,7 @@
 		<input type="text" name="keyword" value="${board.keyword }">
 		<input type="submit" value="검색">
 	</form>
-	<div align="center"><a href="bdInsertForm2.do?bno=0&pageNum=1" class="btn btn-success">게시글 입력</a></div>
+	<div align="center"><a href="bdInsertForm.do?bno=0&pageNum=1">게시글 입력</a></div>
 </div>
 
 </body>
