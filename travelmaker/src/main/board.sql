@@ -10,7 +10,7 @@ create table board (
 	readcount NUMBER default 0 not null,		-- 조회수	
 	del	CHAR(1) default 'n' not null,		 	-- 삭제여부	
 	mno NUMBER not null,						-- 회원번호
-	courseImg VARCHAR2(20) not null             -- 코스 이미지    
+	courseImg VARCHAR2(100) not null             -- 코스 이미지    
 );
 
 -- references member(mno) 

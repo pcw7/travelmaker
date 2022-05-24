@@ -19,17 +19,16 @@
 	<div class="hihi">
 		<c:forEach var="board" items="${list }">
 			<c:if test="${board.del != 'y' }">
-			    <div class="wrapper"><a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}">
+			    <div class="wrapper">
 			        <div class="left-col">
 			            <div class="post">
 			                <div class="info">
 			                    <div class="user">
-			                        <div class="profile-pic"><img src="${path }/resources/images/img/cover 1.png" alt=""></div>
+			                        <div class="profile-pic"><img src="${path }/resources/images/logo.png" alt=""></div>
 			                        <p class="username">${board.nickName }</p>
 			                    </div>
-			                    <img src="${path }/resources/images/img/option.PNG" class="options" alt="">
 			                </div>
-			                <img src="${path }/resources/images/img/cover 1.png" class="post-image" alt="">
+			                <a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}"><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></a>
 			                <div class="post-content">
 			                    <div class="reaction-wrapper">
 			                        <!-- <img src="resources/images/img/like.PNG" class="icon" alt=""> -->
@@ -41,7 +40,7 @@
 			                </div>
 			            </div>
 			        </div>
-			    </a></div>
+			    </div>
 		    </c:if>
     	</c:forEach>
     	</div>
@@ -53,8 +52,8 @@
 		<ul class="pagination">
 			<!-- 시작페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 			<c:if test="${pb.startPage > pb.pagePerBlock }">
-				<li><a href="bdList.do?pageNum=1"><span class="glyphicon glyphicon-backward"></span></a></li>
-				<li><a href="bdList.do?pageNum=${pb.startPage - 1 }"><span class="glyphicon glyphicon-triangle-left"></span></a></li>			
+				<li><a href="bdList.do?pageNum=1"><img alt="처음으로" src="${path }/resources/images/doubleleft.png"></a></li>
+				<li><a href="bdList.do?pageNum=${pb.startPage - 1 }"><img alt="이전" src="${path }/resources/images/back.png"></a></li>			
 			</c:if>
 			<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
 				<c:if test="${pb.currentPage == i }">
@@ -66,8 +65,8 @@
 			</c:forEach>
 			<!-- 보여줄 것이 남아 있으면 endPage보다 totalPage가 크다 -->
 			<c:if test="${pb.endPage < pb.totalPage }">
-				<li><a href="bdList.do?pageNum=${pb.endPage + 1 }"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
-				<li><a href="bdList.do?pageNum=${pb.totalPage }"><span class="glyphicon glyphicon-forward"></span></a></li>
+				<li><a href="bdList.do?pageNum=${pb.endPage + 1 }"><img alt="다음" src="${path }/resources/images/forward.png"></a></li>
+				<li><a href="bdList.do?pageNum=${pb.totalPage }"><img alt="마지막으로" src="${path }/resources/images/doubleright.png"></a></li>
 			</c:if>
 		</ul>
 	</div>

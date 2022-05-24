@@ -5,7 +5,7 @@
 </head><body>
 
 <script type="text/javascript">
-	// location.href="home.do";
+	// location.href="insertBoard.do";
     location.href="board/bdList.do";
 </script>
 
