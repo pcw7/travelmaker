@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
+<%@ include file="header.jsp" %>    
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title>
-
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>
-<style type="text/css">@import url("${path}/resources/css/instagram.css");</style>
-<script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
 
 <script type="text/javascript">
 	$(function() {
@@ -24,6 +16,7 @@
 			formData.append('bno', frm1.bno.value);
 			var inputFile = $("input[name='file']");
 			var files = inputFile[0].files;
+			// var files = e.originalEvent.dataTransfer.files; // 드래그 그림들
 			for (var i = 0; i < files.length; i++) {
 				var file = files[i];
 				uploadfiles.push(file);  // 업로드 파일 목록배열에 추가
@@ -52,32 +45,6 @@
 </script>
 
 </head><body>
-
-<section class="main" style="size: 1000px;">
-	<div class="wrapper">
-		<div class="left-col">
-			<div class="post">
-				<div class="info">
-			    	<div class="user">
-			            <p class="username">${board.title }</p>
-			        </div>
-			        <div class="reaction-wrapper">
-	                    <img src="${path }/resources/images/img/comment.PNG" class="icon" alt=""><p class="likes">1,012 likes</p>
-                        <img src="${path }/resources/images/img/send.PNG" class="icon" alt=""><p class="likes">${board.readcount } readcount</p>
-                    </div>
-			    </div>
-			    <a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}"><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></a>
-			    <div class="post-content">
-                    <p class="description"><span>${board.title }</span></p>
-                    <p class="post-time">${board.reg_date }</p>
-                    <div class="comment-wrapper">
-                    	<p class="username"><span>${board.content }</span>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <div class="container" align="center">
 	<h2 class="text-primary">게시글 상세 내역</h2>

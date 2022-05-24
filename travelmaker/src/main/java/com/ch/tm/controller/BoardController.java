@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -71,20 +72,16 @@ public class BoardController {
 	public String bdInsert2(Board board, HttpSession session, String pageNum,
 			Model model) throws IOException {
         int result = 0;
-        
 		int number = bs.getMaxNum();
 		board.setBno(number);
-				
         String fileName = board.getFile().getOriginalFilename();
         board.setCourseImg(fileName);
         String real = session.getServletContext().getRealPath("/resources/course");
         FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
 		fos.write(board.getFile().getBytes());
 		fos.close();        
-        		
         result = bs.insert(board);
         System.out.println("result");
-     
         model.addAttribute("result", result);
         model.addAttribute("pageNum", pageNum);
         return "board/bdInsert"; 
@@ -166,5 +163,26 @@ public class BoardController {
 		model.addAttribute("list", list);
 		return "board/bdList";
 	}
+	
+//	게시글 자동 입력	
+//	@RequestMapping("insertBoard")
+//	public String insertBoard(Model model) {
+//		for (int i = 0; i<230; i++) {
+//			Board board = new Board();
+//			int number = bs.getMaxNum();
+//			board.setBno(number);
+//			board.setTitle("안녕"+i);
+//			board.setS_date(Date.valueOf("2022-05-24"));
+//			board.setE_date(Date.valueOf("2022-05-25"));
+//			board.setLoc("서울");
+//			board.setContent("안녕"+i);
+//			board.setMno(1);
+//			board.setCourseImg("courseImg_2022. 5. 24._273.png");
+//			bs.insert(board);
+//		}
+//		model.addAttribute("pageNum", "1");
+//		model.addAttribute("result", 1);
+//		return "board/bdInsert";
+//	}
 	
 }
