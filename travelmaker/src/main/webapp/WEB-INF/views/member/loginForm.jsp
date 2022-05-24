@@ -10,7 +10,6 @@
 <style type="text/css">@import url("${path}/resources/css/loginForm.css");</style>
 </head>
 <body>
-<%-- <script type="module" src="${path}/resources/js/gradation.js"></script> --%>
 <div class="wrapper">
 <div>
 	<img class="logo" src="${path }/resources/images/logo.png">
