@@ -52,7 +52,7 @@
 	</insert> -->
 	
 	<insert id="insert" parameterType="board">
-		insert into board values (#{bno}, #{title}, #{s_date}, #{e_date}, ,#{loc},
+		insert into board values (#{bno}, #{title}, #{s_date}, #{e_date}, #{loc},
 			 #{content}, sysdate, 0, 'n', #{mno}, #{courseImg})
 	</insert>
 	
