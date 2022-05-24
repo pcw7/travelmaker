@@ -24,10 +24,9 @@
 			            <div class="post">
 			                <div class="info">
 			                    <div class="user">
-			                        <div class="profile-pic"><img src="${path }/resources/images/img/cover 1.png" alt=""></div>
+			                        <div class="profile-pic"><img src="${path }/resources/images/logo.png" alt=""></div>
 			                        <p class="username">${board.nickName }</p>
 			                    </div>
-			                    <img src="${path }/resources/images/img/option.PNG" class="options" alt="">
 			                </div>
 			                <img src="${path }/resources/images/img/cover 1.png" class="post-image" alt="">
 			                <div class="post-content">
