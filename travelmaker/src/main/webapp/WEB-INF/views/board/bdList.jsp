@@ -7,13 +7,10 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title>
 
-
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>
 <style type="text/css">@import url("${path}/resources/css/instagram.css");</style>
-<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
-<script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 </head><body>
 
@@ -22,8 +19,7 @@
 	<div class="hihi">
 		<c:forEach var="board" items="${list }">
 			<c:if test="${board.del != 'y' }">
-				<a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}">
-			    <div class="wrapper">
+			    <div class="wrapper"><a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}">
 			        <div class="left-col">
 			            <div class="post">
 			                <div class="info">
@@ -37,18 +33,15 @@
 			                <div class="post-content">
 			                    <div class="reaction-wrapper">
 			                        <!-- <img src="resources/images/img/like.PNG" class="icon" alt=""> -->
-			                        <img src="${path }/resources/images/img/comment.PNG" class="icon" alt="">
-			                        <img src="${path }/resources/images/img/send.PNG" class="icon" alt="">
+			                        <img src="${path }/resources/images/img/comment.PNG" class="icon" alt=""><p class="likes">1,012 likes</p>
+			                        <img src="${path }/resources/images/img/send.PNG" class="icon" alt=""><p class="likes">${board.readcount } readcount</p>
 			                    </div>
-			                    <p class="likes">1,012 likes</p>
-			                    <p class="likes">${board.readcount } readcount</p>
 			                    <p class="description"><span>${board.title }</span></p>
 			                    <p class="post-time">${board.reg_date }</p>
 			                </div>
 			            </div>
 			        </div>
-			    </div>
-				</a>
+			    </a></div>
 		    </c:if>
     	</c:forEach>
     	</div>

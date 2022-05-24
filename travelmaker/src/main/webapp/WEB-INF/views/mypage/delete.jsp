@@ -11,7 +11,7 @@
 <c:if test="${result > 0}">
 	<script type="text/javascript">
 		alert("탈퇴 되었습니다.");
-		location.href="loginForm.do";
+		location.href="../member/loginForm.do";
 	</script>
 </c:if>
 <c:if test="${result == 0}">

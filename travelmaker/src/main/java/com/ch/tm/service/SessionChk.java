@@ -12,7 +12,7 @@ public class SessionChk extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		if(session == null || session.getAttribute("id") == null) {
-			response.sendRedirect("http://localhost:8080/tm/loginForm.do");
+			response.sendRedirect("http://localhost:8080/tm/member/loginForm.do");
 			return false;
 		}
 		return true;
