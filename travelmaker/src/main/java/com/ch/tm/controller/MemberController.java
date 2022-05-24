@@ -184,7 +184,7 @@ public class MemberController {
 	}
 	
 	// 회원 정보 수정 결과
-	@RequestMapping("member/myUpdate")
+	@RequestMapping("mypage/myUpdate")
 	public String myUpdate(Member member, Model model, HttpSession session) {
 		int result = 0;
 		String encPassword = passwordEncoder.encode(member.getPassword());
@@ -194,7 +194,7 @@ public class MemberController {
 		return "mypage/myUpdate";
 	}
 	
-	@RequestMapping("member/delete")
+	@RequestMapping("mypage/delete")
 	public String delete(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
 		int result = ms.delete(id);

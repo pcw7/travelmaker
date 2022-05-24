@@ -146,7 +146,7 @@ public class BoardController {
 	@RequestMapping("board/bdList")
 	public String list(Board board, String pageNum, Model model, HttpServletRequest request) {
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
-		int rowPerPage = 10;
+		int rowPerPage = 4;
 		int currentPage = Integer.parseInt(pageNum);
 		int total = bs.getTotal(board);
 		int startRow = (currentPage - 1) * rowPerPage + 1;

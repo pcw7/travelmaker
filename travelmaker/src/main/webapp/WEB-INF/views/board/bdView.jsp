@@ -7,7 +7,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#rvListDisp').load("rvList.do","bno=${board.bno}");
-		$('#boardListDisp').load("bdList.do", "pageNum=${pageNum}");
+		/* $('#boardListDisp').load("bdList.do", "pageNum=${pageNum}"); */
 		$('#rInsert').click(function() {
 			var uploadfiles = [];
 			var formData = new FormData();
@@ -91,7 +91,7 @@
 	</form> --%>
 	
 	<div id="rvListDisp"></div>
-	<div id="boardListDisp"></div>
+	<!-- <div id="boardListDisp"></div> -->
 </div>
 
 </body>
