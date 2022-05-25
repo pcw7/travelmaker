@@ -7,12 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">@import url("${path}/resources/css/joinForm.css");</style>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript">
 	// 아이디 중복 검사
 	function idChk() {
 		if (!frm.id.value) {
-			alert("아이디를 입력한 후에 체크하세요");
+			alert("아이디를 입력한 후에 체크하세요.");
 			frm.id.focus();
 			return false;
 		}
@@ -24,7 +25,7 @@
 	// 별명 중복 검사
 	function nickNameChk() {
 		if (!frm.nickName.value) {
-			alert("별명을 입력한 후에 체크하세요");
+			alert("별명을 입력한 후에 체크하세요.");
 			frm.nickName.focus();
 			return false;
 		}
@@ -84,7 +85,7 @@
 				}
 			}
 		} else {
-			msg = "비밀번호를 입력해 주세요";
+			msg = "비밀번호를 입력해 주세요.";
 		}
 		document.getElementById("pwChk1").innerHTML = msg;
 	} 
@@ -92,9 +93,9 @@
 	// 암호와 암호확인 일치 검사
 	function pwChk2(str) {
 		if (frm.password.value != frm.password2.value) {
-			document.getElementById("pwChk2").innerHTML = "비밀번호와 비밀번호 확인이 다릅니다";
+			document.getElementById("pwChk2").innerHTML = "비밀번호와 비밀번호 확인이 다릅니다.";
 		} else {
-			document.getElementById("pwChk2").innerHTML = "비밀번호와 비밀번호 확인이 일치합니다";
+			document.getElementById("pwChk2").innerHTML = "비밀번호와 비밀번호 확인이 일치합니다.";
 		}
 	}
 
@@ -103,7 +104,7 @@
 		var pw = frm.password.value;
 		
 		if (frm.password.value != frm.password2.value) {
-			alert("비밀번호와 비밀번호 확인이 다릅니다");
+			alert("비밀번호와 비밀번호 확인이 다릅니다.");
 			frm.password.focus();
 			frm.password.value = "";
 			frm.password2.value = "";
@@ -118,41 +119,59 @@
 	
 	// 비밀번호 보기/숨기기
 	$(document).ready(function() {
-		$('.btn').on('click', function() {
+		$('.chkIcon').on('click', function() {
 			$('#password').toggleClass('active');
 			if($('#password').hasClass('active')){
 				$(this).prev('input').attr('type', 'text');
+				$('.chkIcon').attr('src','${path }/resources/images/blue_eye.png');
 			} else {
 				$(this).prev('input').attr('type', 'password');
+				$('.chkIcon').attr('src','${path }/resources/images/gray_eye.png');
 			}
 		});
-	});
+	});	
+	
 </script>
 </head>
 <body>
+<div class="wrap">
+<div class="joinForm">
 <div>
 	<h2>회원가입</h2>
 </div>
+<div class="formDiv">
 <form action="join.do" method="post" name="frm" onsubmit="return chk()">
-	아이디<input type="text" name="id" required="required" autofocus="autofocus">
-	<input type="button" value="중복체크" onclick="idChk()">
-	<div id="idChk1"></div>
-	비밀번호<input type="password" name="password" id="password" required="required"
+	<p class="p_space">아이디</p>
+	<input class="textBox" type="text" name="id" required="required" autofocus="autofocus">
+	<input class="chkBtn" type="button" value="중복확인" onclick="idChk()">
+	<div class="chkDiv" id="idChk1"></div>
+	<p class="p_space">비밀번호</p>
+	<input class="textBox" type="password" name="password" id="password" required="required"
 		onKeyup="pwChk(this)" style="ime-mode:disabled;">
-	<input type="button" class="btn" value="**" >
-	<div id="pwChk1"></div>	
-	비밀번호 확인<input type="password" name="password2" required="required"
+	<img class="chkIcon" src="${path }/resources/images/gray_eye.png"></img>
+	<!-- <input class="chkBtn" type="button" class="btn" value="**" > -->
+	<div class="chkDiv" id="pwChk1"></div>	
+	<p class="p_space">비밀번호 확인</p>
+	<input class="textBox" type="password" name="password2" required="required"
 		onKeyup="pwChk2()"><br>
-	<div id="pwChk2"></div>
-	이름<input type="text" name="name" required="required"><br>
-	이메일<input type="email" name="email" required="required"><br>
-	전화번호<input type="text" name="tel" required="required"
-		pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000"><br>
-	별명<input type="text" name="nickName" required="required">
-	<input type="button" value="중복체크" onclick="nickNameChk()">
-	<div id="nickNameChk1"></div>
-	<input type="submit" value="회원가입">
+	<div class="chkDiv" id="pwChk2"></div>
+	<p class="p_space">이름</p>
+	<input class="textBox" type="text" name="name" required="required"><br>
+	<p class="p_space">이메일</p>
+	<input class="textBox" type="email" name="email" required="required"><br>
+	<p class="p_space">전화번호</p>
+	<input class="textBox" type="text" name="tel" required="required"
+		pattern="\d{3}-\d{3,4}-\d{4}" placeholder="000-0000-0000"><br>
+	<p class="p_space">별명</p>
+	<input class="textBox" type="text" name="nickName" required="required">
+	<input class="chkBtn" type="button" value="중복확인" onclick="nickNameChk()">
+	<div class="chkDiv" id="nickNameChk1"></div>
+	<input class="submitBtn" type="submit" value="회원가입">
 </form>
-<a href="loginForm.do">로그인</a>
+<p class="p_space2" >계정이 있으신가요?</p>
+<input class="link" type="button" onclick="location.href='loginForm.do';" value="로그인">
+</div>
+</div>
+</div>
 </body>
 </html>
