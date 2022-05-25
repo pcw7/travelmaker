@@ -19,7 +19,7 @@
 <form action="findId.do" method="post">
 	<input class="textBox" type="text" name="name" required="required" autofocus="autofocus"
 		placeholder="이름"><br>
-	<input class="textBox" type="text" name="tel" required="required" pattern="\d{3}-\d{4}-\d{4}" 
+	<input class="textBox" type="text" name="tel" required="required" pattern="\d{3}-\d{3,4}-\d{4}" 
 		placeholder="전화번호"><br>
 	<input class="submitBtn" type="submit" value="확인">
 </form>
