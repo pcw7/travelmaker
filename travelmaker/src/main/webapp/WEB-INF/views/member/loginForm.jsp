@@ -22,13 +22,13 @@
 		placeholder="아이디"><br>
 	<input class="password" type="password" name="password" required="required"
 		placeholder="비밀번호"><br>
-	<input class="submit" type="submit" value="로그인">
+	<input class="submitBtn" type="submit" value="로그인">
 </form>
 </div>
 <div>	
-<a href="joinForm.do">회원가입</a>
-<a href="findIdForm.do">아이디 찾기</a>
-<a href="findPwForm.do">비밀번호 찾기</a>
+<a class="link" href="joinForm.do">회원가입</a>
+<a class="link" href="findIdForm.do">아이디 찾기</a>
+<a class="link" href="findPwForm.do">비밀번호 찾기</a>
 </div> 
 </div>
 </div>
