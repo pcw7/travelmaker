@@ -8,9 +8,9 @@ body {
 }
 
 .header{
-	width: 100%;
 	height: 10%;
 	/* border: 1px solid gray; */
+	display: flex;
 }
 
 .header2{
@@ -20,9 +20,9 @@ body {
 }
 
 .header3{
-	width: 100%;
 	height: 5%;
 	/* border: 1px solid gray; */
+	display: flex;
 }
 
 .body{
@@ -35,13 +35,20 @@ body {
 	height: 28%
 }
 
+.body3{
+	display: flex;
+	height: auto;
+}
+
 .content{
-	width: 70%;
+	width: 60%;
 	/* border: 1px solid gray; */
+	border: 0.5px solid #f1f1f1;
+	border-top: none;
 }
 
 .leftSideBar, .rightSideBar{
-	width: 15%;
+	width: 20%;
 	/* border: 1px solid gray; */
 }
 
@@ -62,13 +69,37 @@ body {
 	float: right;
 }
 
-.a80{
-	width: 80%;
-	/* border: 1px solid gray; */
+.a48{
+	width: 48%;
+	border: 0.5px solid #f1f1f1;
+	border-right: none;
+}
+
+.a12{
+	width: 12%;
+	border: 0.5px solid #f1f1f1;
+	border-left: none;
 }
 
 .a20{
 	width: 20%;
+	/* border: 1px solid gray; */
+}
+
+.b60{
+	width: 60%;
+	/* border: 1px solid gray; */
+}
+
+.a60{
+	width: 60%;
+	border: 0.5px solid #f1f1f1;
+	border-top: none;
+	/* border: 1px solid gray; */
+}
+
+.a40{
+	width: 40%;
 	/* border: 1px solid gray; */
 }
 
@@ -85,8 +116,8 @@ body {
 .file label{
 	display: inline-block;
 	width: 100px;
-	height: 45px;
-	background-color: #4a4a4a;
+	height: 40px;
+	background-color: #5D9FFF;
 	color: #fff;
 	cursor: pointer;
 	line-height: 45px;
@@ -95,11 +126,62 @@ body {
 }
 
 .file input[type="file"]{
-	position: absolute;
+	/* position: absolute; */
 	width: 1px;
 	height: 1px;
 	margin: -1px;
 	clip: rect(0,0,0,0);
 	overflow: hidden;
 	padding: 0;
+}
+
+.btn{
+	text-decoration : none;
+	/* padding: 15px 25px;
+    display: inline-block; */
+    margin-left: 5px;
+    margin-top: 10px;
+    float: left;
+    display: block;
+    width: 90px;
+    height: 25px;
+    background: #5D9FFF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.btn2{
+	text-decoration : none;
+	/* padding: 15px 25px;
+    display: inline-block; */
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    background: #5D9FFF;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn3{
+	text-decoration : none;
+    display: inline-block;
+    width: 70px;
+    height: 35px;
+    background: #5D9FFF;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.text_center{
+	text-align: center;
 }

@@ -52,36 +52,51 @@
 </script>
 
 </head><body>
-
-<div class="header">
-	<h2>여행게시판</h2>
-	<p>지역 : ${board.loc }</p>
+<div class="header2">
+	<div class="a20"></div>
+	<div class="b60">
+		<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 여행게시판</h2>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 지역 : ${board.loc }</p>
+	</div>
+	<div class="a40">
+		<c:if test="${board.id == id}">
+			<a href="bdUpdateForm.do?bno=${board.bno }&pageNum=${pageNum}" class="btn">수정</a>
+		</c:if>
+		<c:if test="${board.id == id}">
+			<a class="btn" onclick="del()" style="cursor: pointer;">삭제</a>
+		</c:if>
+		<a href="bdList.do?pageNum=${pageNum }" class="btn">게시글 목록</a>
+	</div>
 </div>
 <div class="header2">
-	<div class="a80">
-		<p>${board.title }</p>
+	<div class="a20"></div>
+	<div class="a48">
+		<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.title }</h2>
 		<img src="${path }/resources/images/img/comment.PNG" class="icon" alt="">1,012 likes
     	<img src="${path }/resources/images/img/send.PNG" class="icon" alt="">${board.readcount } readcount
 	</div>
-	<div class="a20">
+	<div class="a12">
 		<img src="${path }/resources/images/img/send.PNG" class="icon_right" alt="">
 	</div>
+	<div class="a20"></div>
 </div>
 <div class="header3">
-	작성자 : ${board.nickName }		<p class="post-time">${board.reg_date }</p>
+	<div class="a20"></div>
+	<div class="a60"><p><b>&nbsp;&nbsp;&nbsp;&nbsp; 글쓴이 : ${board.nickName }</b>		<b class="post-time">${board.reg_date }</b></div>
+	<div class="a20"></div>
 </div>
 <div class="body">
 	<div class="leftSideBar"></div>
 	<div class="content">
 		<div><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></div>
-		<div>${board.content }</div>
+		<div class="text_center"><pre>${board.content }</pre></div>
 	</div>
 	<div class="rightSideBar"></div>
 </div>
 <div class="body2">
 	<div class="leftSideBar"></div>
-	<div class="content">
-		<p>댓글 작성</p>
+	<div class="content" align="center">
+		<h3 style="margin-right: 550px">댓글 작성</h3>
 		<!-- submit할 때 action에 값이 없으면 자신(view.do)을 한번 더 수행 -->
 		<form action="" method="post" enctype="multipart/form-data" name="frm1" id="frm1">
 			<input type="hidden" name="bno" value="${board.bno }">
@@ -89,20 +104,21 @@
 			<input type="hidden" name="nickName" value="${member.nickName }">
 			<table>
 				<tr><td><textarea rows="10" cols="70" name="reply_content"></textarea></td></tr>
-				<tr><div class="file">
-						<td><label for="file">이미지</label>
-							<input type="file" name="file" id="file" multiple="multiple"></td>
-					</div></tr>
-				<tr><td><input type="button" value="리뷰 올리기" id="rInsert"></td></tr>		
 			</table>
+			<div class="file" style="margin-right: 380px">
+						<label for="file">이미지</label>
+						<input type="file" name="file" id="file" multiple="multiple">
+			</div>
+			<input type="button" value="리뷰 올리기" id="rInsert" class="btn2" style="margin-left: 380px;">
 		</form>
 	</div>
 	<div class="rightSideBar"></div>
 </div>
-<div class="body">
+<div class="body3">
 	<div class="leftSideBar"></div>
 	<div class="content">
-		<div id="rvListDisp"></div>
+		<h3 style="margin-left: 300px">댓글</h3>
+		<div id="rvListDisp" align="center"></div>
 	</div>
 	<div class="rightSideBar"></div>
 </div>

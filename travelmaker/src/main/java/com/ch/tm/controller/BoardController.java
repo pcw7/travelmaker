@@ -153,7 +153,7 @@ public class BoardController {
 		List<Board> list = bs.list(board);
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
 		int bno = total - startRow + 1;
-		String[] title = {"내용"};
+		String[] title = {"내용","글쓴이","지역"};
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		model.addAttribute("id", id);
@@ -177,7 +177,7 @@ public class BoardController {
 //			board.setLoc("서울");
 //			board.setContent("안녕"+i);
 //			board.setMno(1);
-//			board.setCourseImg("courseImg_2022. 5. 24._273.png");
+//			board.setCourseImg("courseImg_2022. 5. 26._756.png");
 //			bs.insert(board);
 //		}
 //		model.addAttribute("pageNum", "1");

@@ -3,8 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardns">
 	<select id="getTotal" parameterType="board" resultType="integer">
-		select count(*) from board
-		<where> del='n'
+		select count(*) from board b, member m
+		<where> b.del='n'
 				<!-- keyword 값이 있으면 검색 없으면 생략 -->
 				<if test="keyword != null and keyword != ''">
 					and	${search} like '%'||#{keyword}||'%'

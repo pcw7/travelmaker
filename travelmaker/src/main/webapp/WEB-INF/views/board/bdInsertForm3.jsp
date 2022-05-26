@@ -314,18 +314,7 @@ function removeAllChildNods(el) {
 	</table>
 	출발일<input type="date" name="s_date">
 	도착일<input type="date" name="e_date">
-	지역<select name="loc">
-			<option value="서울">서울</option>
-			<option value="경기도">경기도</option>
-			<option value="강원도">강원도</option>
-			<option value="충청북도">충청북도</option>
-			<option value="충청남도">충청남도</option>
-			<option value="전라북도">전라북도</option>
-			<option value="전라남도">전라남도</option>
-			<option value="경상북도">경상북도</option>
-			<option value="경상남도">경상남도</option>
-			<option value="제주도">제주도</option>
-	   </select>
+	지역<input type="text" name="loc" value="집">
 <input type="text" id="name" value =""/>
 <input type="text" id="map_x" value =""/>
 <input type="text" id="map_y" value =""/>

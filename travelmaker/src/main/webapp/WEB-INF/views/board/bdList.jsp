@@ -71,11 +71,24 @@
 		</ul>
 	</div>
 </div>
-
 <div align="center" style="position: fixed; top: 30%; left: 10px">
+	<!-- <select name="loc" onchange="window.open(value,'_blank');"> 새창 -->
+	<select name="loc" onchange="window.location.href = value;">
+		<option value="지역">지역</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=서울">서울</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=경기도">경기도</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=강원도">강원도</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=충청북도">충청북도</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=충청남도">충청남도</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=전라북도">전라북도</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=전라남도">전라남도</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=경상북도">경상북도</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=경상남도">경상남도</option>
+		<option value="http://localhost:8080/tm/board/bdList.do?search=loc&keyword=제주도">제주도</option>
+	</select>
 	<form action="bdList.do?pageNum=1">
 		<select name="search">
-			<c:forTokens var="sh" items="content" delims="," varStatus="i">
+			<c:forTokens var="sh" items="content,m.nickName,loc" delims="," varStatus="i">
 				<c:if test="${sh==board.search }">
 					<option value="${sh }" selected="selected">${title[i.index] }</option>
 				</c:if>
@@ -87,7 +100,7 @@
 		<input type="text" name="keyword" value="${board.keyword }">
 		<input type="submit" value="검색">
 	</form>
-	<div align="center"><a href="bdInsertForm2.do?bno=0&pageNum=1">게시글 입력</a></div>
+	<div align="center"><a href="bdInsertForm2.do?bno=0&pageNum=1" class="btn3">게시글 입력</a></div>
 </div>
 
 </body>
