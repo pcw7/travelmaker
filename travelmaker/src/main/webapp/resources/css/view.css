@@ -2,7 +2,7 @@
 
 body {
 	width: 98%;
-	height: 1000px;
+	height: 1300px;
 	/* font-size: 3.5em; */
 	/* text-align: center; */
 }
@@ -10,19 +10,19 @@ body {
 .header{
 	width: 100%;
 	height: 10%;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 }
 
 .header2{
 	height: 10%;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 	display: flex;
 }
 
 .header3{
 	width: 100%;
 	height: 5%;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 }
 
 .body{
@@ -30,20 +30,25 @@ body {
 	height: 60%
 }
 
+.body2{
+	display: flex;
+	height: 28%
+}
+
 .content{
 	width: 70%;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 }
 
 .leftSideBar, .rightSideBar{
 	width: 15%;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 }
 
 .footer{
 	width: 100%;
 	height: 15%;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 }
 
 .icon{
@@ -59,12 +64,12 @@ body {
 
 .a80{
 	width: 80%;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 }
 
 .a20{
 	width: 20%;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 }
 
 .post-time{
@@ -75,4 +80,26 @@ body {
 
 .post-image{
 	height: 500px;
+}
+
+.file label{
+	display: inline-block;
+	width: 100px;
+	height: 45px;
+	background-color: #4a4a4a;
+	color: #fff;
+	cursor: pointer;
+	line-height: 45px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.file input[type="file"]{
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	clip: rect(0,0,0,0);
+	overflow: hidden;
+	padding: 0;
 }

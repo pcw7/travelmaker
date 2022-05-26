@@ -71,15 +71,45 @@
 	작성자 : ${board.nickName }		<p class="post-time">${board.reg_date }</p>
 </div>
 <div class="body">
-	<div class="leftSideBar">leftSideBar영역</div>
+	<div class="leftSideBar"></div>
 	<div class="content">
 		<div><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></div>
 		<div>${board.content }</div>
 	</div>
-	<div class="rightSideBar">rightSideBar영역</div>
+	<div class="rightSideBar"></div>
+</div>
+<div class="body2">
+	<div class="leftSideBar"></div>
+	<div class="content">
+		<p>댓글 작성</p>
+		<!-- submit할 때 action에 값이 없으면 자신(view.do)을 한번 더 수행 -->
+		<form action="" method="post" enctype="multipart/form-data" name="frm1" id="frm1">
+			<input type="hidden" name="bno" value="${board.bno }">
+			<input type="hidden" name="mno" value="${member.mno }">
+			<input type="hidden" name="nickName" value="${member.nickName }">
+			<table>
+				<tr><td><textarea rows="10" cols="70" name="reply_content"></textarea></td></tr>
+				<tr><div class="file">
+						<td><label for="file">이미지</label>
+							<input type="file" name="file" id="file" multiple="multiple"></td>
+					</div></tr>
+				<tr><td><input type="button" value="리뷰 올리기" id="rInsert"></td></tr>		
+			</table>
+		</form>
+	</div>
+	<div class="rightSideBar"></div>
+</div>
+<div class="body">
+	<div class="leftSideBar"></div>
+	<div class="content">
+		<div id="rvListDisp"></div>
+	</div>
+	<div class="rightSideBar"></div>
 </div>
 
-<div class="footer">Footer영역</div>
+<div class="footer"></div>
+
+
 
 </body>
 </html>
