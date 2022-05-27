@@ -27,7 +27,6 @@
 			for (var i = 0; i < files.length; i++) {
 				var file = files[i];
 				uploadfiles.push(file);  // 업로드 파일 목록배열에 추가
-//				preview(file, size - 1); // 미리보기
 			}
 			$.each(uploadfiles, function(idx, file) {
 				formData.append('file', file, file.name);
@@ -37,8 +36,9 @@
 				processData:false, enctype:'multipart/form-data',
 				success: function(data) {
 					alert("댓글이 작성되었습니다");
-					// $('form').hide();
-					// $('#disp').html(data);
+					$('#rvListDisp').html(data);
+					frm1.reply_content.value="";
+					frm1.file.value=null;
 				}
 			});
 		});

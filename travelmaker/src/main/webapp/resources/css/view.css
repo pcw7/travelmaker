@@ -1,11 +1,18 @@
 @charset "UTF-8";
 
-body {
+body{
+    width: 98%;
+    background: #fafafa;
+    position: relative;
+    /* overflow: hidden; */
+}
+
+/* body {
 	width: 98%;
 	height: 1300px;
-	/* font-size: 3.5em; */
-	/* text-align: center; */
-}
+	font-size: 3.5em;
+	text-align: center;
+} */
 
 .header{
 	height: 10%;

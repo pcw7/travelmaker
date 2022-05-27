@@ -46,12 +46,14 @@
 </script></head><body>
 <c:if test="${not empty rvList }">
 	<!-- <h3 class="text-primary">댓글</h3> -->
-<table>
+
 <c:forEach var="rv" items="${rvList }">
 	<%-- <c:if test="${rv.del=='y' }">
 		<tr><td colspan="4">삭제된 댓글입니다</td></tr>
 	</c:if> --%>
 	<c:if test="${rv.del!='y' }">
+	<div>
+		<table>
 		<tr><td width="20%">${rv.nickName }</td><td class="post-time">${rv.update_date}</td></tr>	
 		<tr><td></td><td id="td_${rv.rno }" height="100">${rv.reply_content }</td><td></td>
 			<td id="btn_${rv.rno }">		
@@ -61,16 +63,17 @@
 					<input type="button" value="삭제" class="btn3"
 						onclick="rDelete(${rv.bno},${rv.rno })">
 				</c:if></td></tr>
-		<tr><td></td>
+		</table>
 			<c:forEach var="reviewphoto" items="${rpList }">
 				<c:if test="${reviewphoto.rno==rv.rno }">			
-					<td height="200"><img alt="${reviewphoto.imgName }" src="${path }/resources/upload/${reviewphoto.imgName }" width="100"></td>
+					<img alt="${reviewphoto.imgName }" src="${path }/resources/upload/${reviewphoto.imgName }" width="130" height="130">
 			 	</c:if>
-		 	</c:forEach></tr>
+		 	</c:forEach>
+	</div>
 			<!-- 댓글 작성자와 로그인 한사람의 이름을 비교 같으면 수정/삭제 권한 제공 -->
 	</c:if>
 </c:forEach>
-</table>
+
 </c:if>
 </body>
 </html>
