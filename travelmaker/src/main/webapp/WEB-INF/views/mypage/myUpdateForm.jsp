@@ -151,7 +151,7 @@
 	<li class="nav_li2"><a href="">좋아요 목록</a></li>
 </ul>
 </div>
-<div>
+<div class="main">
 <h3>내 정보 수정</h3>
 <form action="myUpdate.do" method="post" name="frm"
 	onsubmit="return chk()">

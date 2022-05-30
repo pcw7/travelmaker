@@ -1,5 +1,23 @@
 @charset "UTF-8";
 
+div {
+	border: 1px solid #bbb;
+}
+
+.nav {
+	float: left;
+	width: 220px;
+	height: 500px;
+	margin-left: 50px;
+}
+
+.main {
+	display: inline-block;
+	width: 500px;
+	height: 500px;
+	margin-left: 15px;
+}
+
 .nav_ul {
 	list-style-type: none;
 	width: 220px;
