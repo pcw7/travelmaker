@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">@import url("${path}/resources/css/myUpdateForm.css");</style>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript">
 	//별명 중복 검사
@@ -142,6 +143,15 @@
 </script>
 </head>
 <body>
+<div class="nav">
+<ul class="nav_ul">
+	<li class="nav_li1">마이페이지</li>
+	<li class="nav_li2"><a href="">내 정보 수정</a></li>
+	<li class="nav_li2"><a href="myBoard.do">내가 쓴 글</a></li>
+	<li class="nav_li2"><a href="">좋아요 목록</a></li>
+</ul>
+</div>
+<div class="main">
 <h3>내 정보 수정</h3>
 <form action="myUpdate.do" method="post" name="frm"
 	onsubmit="return chk()">
@@ -159,7 +169,7 @@
 	이메일<input type="email" name="email" required="required"
 		value="${member.email }"><br>
 	전화번호<input type="text" name="tel" required="required"
-		pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000"
+		pattern="\d{3}-\d{3,4}-\d{4}" placeholder="000-0000-0000"
 		value="${member.tel }"><br>
 	별명<input type="text" name="nickName" required="required"
 		value="${member.nickName }">
@@ -168,5 +178,6 @@
 	<input type="submit" value="수정">	
 	<input type="button" onclick="del()" value="회원 탈퇴">
 </form>
+</div>
 </body>
 </html>

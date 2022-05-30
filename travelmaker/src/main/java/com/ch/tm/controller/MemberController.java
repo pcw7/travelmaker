@@ -61,8 +61,8 @@ public class MemberController {
 	public String idChk(String id) {
 		String msg = "";
 		Member member = ms.select(id);
-		if (member == null) msg = "사용가능한 아이디입니다";
-		else msg = "이미 사용 중인 아이디입니다";
+		if (member == null) msg = "사용가능한 아이디입니다.";
+		else msg = "이미 사용 중인 아이디입니다.";
 		return msg;		
 	}
 	
@@ -72,7 +72,7 @@ public class MemberController {
 	public String nickNameChk(String nickName) {
 		String msg = "";
 		Member member = ms.selectNickName(nickName);
-		if (member == null) msg = "사용가능한 별명입니다";
+		if (member == null) msg = "사용가능한 별명입니다.";
 		else msg = "이미 사용 중인 별명입니다.";
 		return msg;		
 	}
@@ -95,7 +95,7 @@ public class MemberController {
 	// 아이디 찾기 입력
 	@RequestMapping("member/findIdForm")
 	public String findIdForm() {
-		return "/member/findIdForm";
+		return "member/findIdForm";
 	}
 	
 	// 아이디 찾기 결과
@@ -202,6 +202,13 @@ public class MemberController {
 		model.addAttribute("result", result);
 		return "mypage/delete";
 	}
-	
+
+	@RequestMapping("mypage/myBoard")
+	public String myBoard(Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		Member member = ms.select(id);
+		model.addAttribute("member", member);
+		return "mypage/myBoard";
+	}
 	
 }

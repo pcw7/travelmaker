@@ -6,11 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<style type="text/css">@import url("${path}/resources/css/findId.css");</style>
 </head>
 <body>
+<div class="wrap">
+<div class="findId">
+<div>
 <h2>아이디 찾기</h2>
+</div>
 <c:if test="${result == 1 }">
-	회원님의 아이디는 '${member.id }'입니다.<br>
+	<p class="p_space">회원님의 아이디는 '${member.id }'입니다.</p>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
@@ -24,8 +30,14 @@
 		history.back();
 	</script>
 </c:if>
-<a href="findPwForm.do">비밀번호 찾기</a>
-<a href="loginForm.do">로그인</a>
-<a href="joinForm.do">회원가입</a>
+<div class="linkDiv">
+<input class="link" type="button" onclick="location.href='findPwForm.do';" value="비밀번호 찾기">
+<input class="link" type="button" onclick="location.href='loginForm.do';" value="로그인">
+<!-- <a class="link" href="findPwForm.do">비밀번호 찾기</a>
+<a class="link" href="loginForm.do">로그인</a>
+<a class="link" href="joinForm.do">회원가입</a> -->
+</div>
+</div>
+</div>
 </body>
 </html>

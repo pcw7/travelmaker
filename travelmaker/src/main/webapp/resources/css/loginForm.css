@@ -16,8 +16,7 @@ body {
 } 
 
 .loginForm {
-	/* border: solid 1px white; */
-	height: 270px;
+	height: 220px;
 	display: flex;
     align-items : center;
     justify-content:center; 
@@ -25,8 +24,10 @@ body {
 }
 
 .logoImg {
-	width: 100px;
-	background: white;
+	width: 140px;
+	border-radius: 70%;
+	background-color: rgba( 255, 255, 255, 0.7 );
+	padding: 10px;
 }
 
 .wrap {
@@ -43,22 +44,48 @@ body {
 	width : 250px;
 	height: 30px;
 	margin: 5px;
+	border-radius: 6px;
+	border: none;
+	outline-color: gray;
 }
 
-.submit {
+.id:focus, .password:focus {
+	outline: 2px solid #808080;
+}
+
+.submitBtn {
 	width : 260px;
-	height: 30px;
-	margin: 5px;
+	height: 35px;
+	margin: 10px 5px;
+	border:0 solid black;
+	background-color: #373b44;
+	opacity: 0.3;
+	color: white;
+	transition: background 0.4s ease-in-out,
+	            color 0.4s ease-in-out;
+	font-weight: bold;
+	border-radius: 7px;
+	cursor: pointer;
 }
 
-a {
+.submitBtn:hover {
+	opacity: 0.6;
+	background-color: white;
+	color: #373b44;
+}
+
+
+.link {
  	text-decoration-line: none;
  	font-size: 14px;
  	margin: 5px;
- 	color: black;
+ 	color: #383838;
 }
 
-
+.link:hover {
+	color: white;
+	opacity: 0.8;
+}
 
 
 /* 움직이는 오로라 시작 */  
