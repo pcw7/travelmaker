@@ -52,16 +52,14 @@
 		<tr><td colspan="4">삭제된 댓글입니다</td></tr>
 	</c:if> --%>
 	<c:if test="${rv.del!='y' }">
-	<div>
+	<div class="border_gray">
 		<table>
 		<tr><td width="20%">${rv.nickName }</td><td class="post-time">${rv.update_date}</td></tr>	
 		<tr><td></td><td id="td_${rv.rno }" height="100">${rv.reply_content }</td><td></td>
 			<td id="btn_${rv.rno }">		
 				<c:if test="${rv.nickName==member.nickName }">
-					<input type="button" value="수정" class="btn3"
-						onclick="rUpdate(${rv.bno},${rv.rno })">
-					<input type="button" value="삭제" class="btn3"
-						onclick="rDelete(${rv.bno},${rv.rno })">
+					<input type="button" value="수정" class="btn3" onclick="rUpdate(${rv.bno},${rv.rno })">
+					<input type="button" value="삭제" class="btn3" onclick="rDelete(${rv.bno},${rv.rno })">
 				</c:if></td></tr>
 		</table>
 			<c:forEach var="reviewphoto" items="${rpList }">

@@ -57,12 +57,12 @@
 			</c:if>
 			<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
 				<c:if test="${pb.currentPage == i }">
-					<li class="active"><a href="bdList.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li>
-					<%-- <button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button> --%>
+					<%-- <li class="active"><a href="bdList.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li> --%>
+					<button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button>
 				</c:if>
 				<c:if test="${pb.currentPage != i }">
-					<li><a href="bdList.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li>
-					<%-- <button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button> --%>
+					<%-- <li><a href="bdList.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li> --%>
+					<button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button>
 				</c:if>
 			</c:forEach>
 			<!-- 보여줄 것이 남아 있으면 endPage보다 totalPage가 크다 -->
