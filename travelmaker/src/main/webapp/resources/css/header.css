@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
 .right{
-	float: right;	
+	float: right;
+	text-decoration: none;	
+}
+
+.logo {
+	width: 120px;
+	height: 55px;
 }

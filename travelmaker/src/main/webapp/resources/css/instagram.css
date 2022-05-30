@@ -392,3 +392,18 @@ li{
     font-weight: bold;
     line-height: 25px;
 }
+
+.btn4 { 
+	color: #000; 
+	border-radius: 30px; 
+	transition: transform 0.3 ease; 
+	box-shadow: 0.3s ease; 
+	background-color: white; 
+	border-color: white;
+	padding: 2px;
+}
+.btn4:hover { 
+	transform: translate(0, -6px);
+	background-color: #5D9FFF;
+	color : white;
+}

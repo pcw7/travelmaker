@@ -88,7 +88,7 @@
 <div class="body">
 	<div class="leftSideBar"></div>
 	<div class="content">
-		<div><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></div>
+		<div><center><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></center></div>
 		<div class="text_center"><pre>${board.content }</pre></div>
 	</div>
 	<div class="rightSideBar"></div>

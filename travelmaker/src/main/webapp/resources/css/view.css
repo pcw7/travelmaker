@@ -192,3 +192,9 @@ body{
 .text_center{
 	text-align: center;
 }
+
+.border_gray{
+	border-bottom: 1px solid #f1f1f1;
+	width: 600px;
+	padding: 5px;
+}
