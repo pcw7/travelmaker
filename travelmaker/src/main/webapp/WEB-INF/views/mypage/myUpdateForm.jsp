@@ -147,7 +147,7 @@
 <ul class="nav_ul">
 	<li class="nav_li1">마이페이지</li>
 	<li class="nav_li2"><a href="">내 정보 수정</a></li>
-	<li class="nav_li2"><a href="">내가 쓴 글</a></li>
+	<li class="nav_li2"><a href="myBoard.do">내가 쓴 글</a></li>
 	<li class="nav_li2"><a href="">좋아요 목록</a></li>
 </ul>
 </div>

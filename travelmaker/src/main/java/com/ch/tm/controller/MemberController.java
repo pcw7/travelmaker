@@ -202,6 +202,13 @@ public class MemberController {
 		model.addAttribute("result", result);
 		return "mypage/delete";
 	}
-	
+
+	@RequestMapping("mypage/myBoard")
+	public String myBoard(Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		Member member = ms.select(id);
+		model.addAttribute("member", member);
+		return "mypage/myBoard";
+	}
 	
 }
