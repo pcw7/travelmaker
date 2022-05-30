@@ -21,6 +21,7 @@ div {
 .nav_ul {
 	list-style-type: none;
 	width: 220px;
+	height: 500px;
 	background-color: #5D9FFF;
 	margin: 0;
 	padding: 0;
@@ -30,10 +31,13 @@ div {
 	font-size: 23px;
 	font-weight: bold;
 	text-align: center;
+	color: white;
 }
 
 .nav_li2 {
 	padding: 10px;
+	padding-left: 20px;
+	font-weight: bold;
 }
 .nav li a {
 	text-decoration: none;
