@@ -50,3 +50,17 @@ create table plan (
 
 select * from plan;
 
+drop table likes;
+create table likes (
+	lno NUMBER primary key,                        -- 좋아요번호
+ 	bno NUMBER references board(bno) not null,     -- 게시글번호
+	mno NUMBER references member(mno) not null     -- 회원번호
+);
+
+select * from likes;
+
+drop sequence seq_likes_lno;
+create sequence seq_likes_lno;
+
+
+
