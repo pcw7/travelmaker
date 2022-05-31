@@ -92,6 +92,28 @@
 		});
 		
 	}
+	
+	// 좋아요 조회
+	$(document).ready(function() {
+			$.post('likesSelect.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
+				$('.likes').attr('src', '${path }/resources/images/'+data);
+			});
+			$.post('likesCount.do?bno=${board.bno }', function(data) {
+				$('#likesTotal').html(data);
+			});
+	});
+
+	// 좋아요 기능
+	$(document).ready(function() {
+		$('.likes').on('click', function() {	
+			$.post('likesUpdate.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
+				$('.likes').attr('src', '${path }/resources/images/'+data);
+				$.post('likesCount.do?bno=${board.bno }', function(data) {
+					$('#likesTotal').html(data);
+				});
+			});
+		});
+	});
 </script>
 
 </head><body>
@@ -115,11 +137,11 @@
 	<div class="a20"></div>
 	<div class="a48">
 		<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.title }</h2>
-		<img src="${path }/resources/images/img/comment.PNG" class="icon" alt="">1,012 likes
+		<img src="${path }/resources/images/heart.png" class="likesIcon"><span id="likesTotal"></span>
     	<img src="${path }/resources/images/img/send.PNG" class="icon" alt="">${board.readcount } readcount
 	</div>
 	<div class="a12">
-		<img src="${path }/resources/images/img/send.PNG" class="icon_right" alt="">
+		<img src="${path }/resources/images/heart.png" class="likes">
 	</div>
 	<div class="a20"></div>
 </div>

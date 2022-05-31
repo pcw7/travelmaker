@@ -407,3 +407,9 @@ li{
 	background-color: #5D9FFF;
 	color : white;
 }
+
+.likeIcon {
+	width: 30px;
+	cursor: pointer;
+}
+

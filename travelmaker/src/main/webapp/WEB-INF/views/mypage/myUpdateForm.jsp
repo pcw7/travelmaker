@@ -152,7 +152,9 @@
 </ul>
 </div>
 <div class="main">
+<div class="main_header">
 <h3>내 정보 수정</h3>
+</div>
 <form action="myUpdate.do" method="post" name="frm"
 	onsubmit="return chk()">
 	<input type="hidden" name="id" value="${member.id }">

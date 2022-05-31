@@ -7,12 +7,16 @@
 		<typeAlias alias="review" type="com.ch.tm.model.Review" />
 		<typeAlias alias="reviewphoto" type="com.ch.tm.model.ReviewPhoto" />
 		<typeAlias alias="member" type="com.ch.tm.model.Member" />
+		<typeAlias alias="likes" type="com.ch.tm.model.Likes" />
 		<typeAlias alias="plan" type="com.ch.tm.model.Plan" />
+		
 	</typeAliases>
 	<mappers>
 		<mapper resource="board.xml" />
 		<mapper resource="review.xml" />
 		<mapper resource="member.xml" />
 		<mapper resource="plan.xml" />
+		<mapper resource="likes.xml" />
+		
 	</mappers>
 </configuration>
