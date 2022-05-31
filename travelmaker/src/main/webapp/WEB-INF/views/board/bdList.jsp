@@ -11,13 +11,33 @@
 <%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>
 <style type="text/css">@import url("${path}/resources/css/instagram.css");</style>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript">
+// 좋아요 조회
+$(document).ready(function() {
+	<c:forEach var="board" items="${list }" varStatus="status">
+		$.post('likesSelect.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
+			$('#likeIcon${status.count}').attr('src', '${path }/resources/images/'+data);
+		});
+	</c:forEach>
+});
 
+//좋아요 기능
+<c:forEach var="board" items="${list }" varStatus="status">
+$(document).ready(function() {
+	$('#likeIcon${status.count}').on('click', function() {	
+		$.post('likesUpdate.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
+			$('#likeIcon${status.count}').attr('src', '${path }/resources/images/'+data);
+		});
+	});
+});
+</c:forEach>
+</script>
 </head><body>
 
 <section class="main">
 	<c:if test="${not empty list }">
 	<div class="hihi">
-		<c:forEach var="board" items="${list }">
+		<c:forEach var="board" items="${list }" varStatus="status">
 			<c:if test="${board.del != 'y' }">
 			    <div class="wrapper">
 			        <div class="left-col">
@@ -32,7 +52,8 @@
 			                <div class="post-content">
 			                    <div class="reaction-wrapper">
 			                        <!-- <img src="resources/images/img/like.PNG" class="icon" alt=""> -->
-			                        <img src="${path }/resources/images/img/comment.PNG" class="icon" alt=""><p class="likes">1,012 likes</p>
+			                        <%-- <img src="${path }/resources/images/img/comment.PNG" class="icon" alt=""><p class="likes">1,012 likes</p> --%>
+			                        <img src="${path }/resources/images//heart.png" class="likeIcon" id="likeIcon${status.count}"><p class="likes">1,012 likes</p>
 			                        <img src="${path }/resources/images/img/send.PNG" class="icon" alt=""><p class="likes">${board.readcount } readcount</p>
 			                    </div>
 			                    <p class="description"><span>${board.title }</span></p>
