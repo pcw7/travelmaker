@@ -1,11 +1,44 @@
 @charset "UTF-8";
 
-.right{
-	float: right;
-	text-decoration: none;	
+.header {
+	height: 60px;
+	border: none;
 }
 
 .logo {
+	position: fixed;
+	top: 0px;
+	left: 10px;
 	width: 120px;
 	height: 55px;
 }
+
+.MyPage {
+	position: fixed;
+	top: 0px;
+	right: 110px;
+	width: 120px;
+	height: 55px;
+}
+
+.Logout{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	width: 120px;
+	height: 55px;
+}
+
+/* .right1{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	text-decoration: none;	
+}
+
+.right2{
+	position: fixed;
+	top: 0px;
+	right: 100px;
+	text-decoration: none;	
+} */

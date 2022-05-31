@@ -11,6 +11,7 @@
 <%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>
 <style type="text/css">@import url("${path}/resources/css/view.css");</style>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script type="text/javascript">
 	$(function() {
@@ -35,7 +36,18 @@
 				url:'rInsert.do', data:formData, type:'post',contentType:false,
 				processData:false, enctype:'multipart/form-data',
 				success: function(data) {
-					alert("댓글이 작성되었습니다");
+					// alert("댓글이 작성되었습니다");
+					
+					Swal.fire({
+						  title: '댓글이 작성되었습니다',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 					$('#rvListDisp').html(data);
 					frm1.reply_content.value="";
 					frm1.file.value=null;
@@ -44,10 +56,41 @@
 		});
 	});
 	function del() {
-		// 확인을 check하면 true이고 취소를 체크하면 false;
+		/* 확인을 check하면 true이고 취소를 체크하면 false;
 		var ch = confirm("정말로 삭제하시겠습니까 ?");
 		if (ch) location.href="bdDelete.do?bno=${board.bno }&pageNum=${pageNum}";
-		else alert("삭제가 취소 되었습니다");
+		else alert("삭제가 취소 되었습니다"); */
+		
+		Swal.fire({
+			title: '정말로 삭제하시겠습니까?',
+			width: 600,
+			padding: '3em',
+			color: '#716add',
+			background: '#fff url(${path }/resources/images/alert.png)',
+			backdrop: `
+			  rgba(40,23,100,0.1)
+			`, 
+			closeOnClickOutside : false,
+			showCancelButton : true,
+			confirmButtonText : "예",
+			cancelButtonText : "아니오",
+		}).then(result => {
+			   if (result.isConfirmed) { 
+				   location.href="bdDelete.do?bno=${board.bno }&pageNum=${pageNum}";
+			   } else Swal.fire({
+					 	title: '삭제가 취소되었습니다',
+					  	width: 600,
+					  	padding: '3em',
+					  	color: '#716add',
+					  	background: '#fff url(${path }/resources/images/alert.png)',
+					  	backdrop: `
+						    rgba(40,23,100,0.1)
+						`, 
+						closeOnClickOutside : false,
+						confirmButtonText : "예"
+			   });  
+		});
+		
 	}
 	
 	// 좋아요 조회
@@ -104,7 +147,7 @@
 </div>
 <div class="header3">
 	<div class="a20"></div>
-	<div class="a60"><p><b>&nbsp;&nbsp;&nbsp;&nbsp; 글쓴이 : ${board.nickName }</b>		<b class="post-time">${board.reg_date }</b></div>
+	<div class="a60"><p><b>&nbsp;&nbsp;&nbsp;&nbsp; 글쓴이 : ${board.nickName }</b><b class="post-time">${board.reg_date }</b></div>
 	<div class="a20"></div>
 </div>
 <div class="body">

@@ -153,7 +153,31 @@ public class BoardController {
 		List<Board> list = bs.list(board);
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
 		int bno = total - startRow + 1;
-		String[] title = {"내용","글쓴이","지역"};
+		String[] title = {"내용","글쓴이"};
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		model.addAttribute("id", id);
+		model.addAttribute("title", title);
+		model.addAttribute("bno", bno);
+		model.addAttribute("pb", pb);
+		model.addAttribute("list", list);
+		return "board/bdList";
+	}
+	
+	@RequestMapping("board/bdList2")
+	public String list2(Board board, String pageNum, Model model, HttpServletRequest request) {
+		if(pageNum == null || pageNum.equals("")) pageNum = "1";
+		int rowPerPage = 4;
+		int currentPage = Integer.parseInt(pageNum);
+		int total = bs.getTotal(board);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		board.setStartRow(startRow);
+		board.setEndRow(endRow);
+		List<Board> list = bs.list(board);
+		PageBean pb = new PageBean(currentPage, rowPerPage, total);
+		int bno = total - startRow + 1;
+		String[] title = {"지역"};
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		model.addAttribute("id", id);

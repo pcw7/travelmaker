@@ -86,7 +86,7 @@
 <div align="center" style="position: fixed; top: 30%; left: 10px; display: none;">
 	<form action="bdList.do?pageNum=1">
 		<select name="search">
-			<c:forTokens var="sh" items="content,m.nickName,loc" delims="," varStatus="i">
+			<c:forTokens var="sh" items="content,m.nickName" delims="," varStatus="i">
 				<c:if test="${sh==board.search }">
 					<option value="${sh }" selected="selected">${title[i.index] }</option>
 				</c:if>
