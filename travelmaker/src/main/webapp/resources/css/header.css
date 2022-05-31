@@ -3,6 +3,7 @@
 .header {
 	height: 60px;
 	border: none;
+	/* z-index: 20; position 바꿔야 적용됨*/
 }
 
 .logo {

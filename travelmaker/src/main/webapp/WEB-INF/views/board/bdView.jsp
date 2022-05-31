@@ -117,6 +117,7 @@
 </script>
 
 </head><body>
+<div class="all">
 <div class="header2">
 	<div class="a20"></div>
 	<div class="b60">
@@ -135,12 +136,12 @@
 </div>
 <div class="header2">
 	<div class="a20"></div>
-	<div class="a48">
+	<div class="a48" style="background: white;">
 		<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.title }</h2>
 		<img src="${path }/resources/images/heart.png" class="likesIcon"><span id="likesTotal"></span>
     	<img src="${path }/resources/images/img/send.PNG" class="icon" alt="">${board.readcount } readcount
 	</div>
-	<div class="a12">
+	<div class="a12" style="background: white;">
 		<img src="${path }/resources/images/heart.png" class="likes">
 	</div>
 	<div class="a20"></div>
@@ -189,7 +190,7 @@
 </div>
 
 <div class="footer"></div>
-
+</div>
 
 
 </body>

@@ -145,7 +145,7 @@ public class BoardController {
 		List<Board> list = bs.list(board);
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
 		int bno = total - startRow + 1;
-		String[] title = {"내용","글쓴이"};
+		String[] title = {"내용","작성자"};
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		model.addAttribute("id", id);
