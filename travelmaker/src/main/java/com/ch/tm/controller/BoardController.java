@@ -39,10 +39,6 @@ public class BoardController {
 	@Autowired
 	private PlanService ps;
 	
-	@RequestMapping("home")
-	public String home() {
-		return "home";
-	}
 	
 	@RequestMapping("board/bdInsertForm")
 	public String insertForm(int bno, String pageNum, Model model, HttpServletRequest request) {
@@ -71,7 +67,6 @@ public class BoardController {
 	@RequestMapping("board/bdInsert2")
 	public String bdInsert2(Board board, HttpSession session, String pageNum,
 			Model model) throws IOException {
-        int result = 0;
 		int number = bs.getMaxNum();
 		board.setBno(number);
         String fileName = board.getFile().getOriginalFilename();
@@ -80,11 +75,8 @@ public class BoardController {
         FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
 		fos.write(board.getFile().getBytes());
 		fos.close();        
-        result = bs.insert(board);
-        System.out.println("result");
-        model.addAttribute("result", result);
-        model.addAttribute("pageNum", pageNum);
-        return "board/bdInsert"; 
+        bs.insert(board);        
+        return "board/rvList"; 
     }
 	
 	@RequestMapping("board/bdInsert")
@@ -153,7 +145,31 @@ public class BoardController {
 		List<Board> list = bs.list(board);
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
 		int bno = total - startRow + 1;
-		String[] title = {"내용","글쓴이","지역"};
+		String[] title = {"내용","작성자"};
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		model.addAttribute("id", id);
+		model.addAttribute("title", title);
+		model.addAttribute("bno", bno);
+		model.addAttribute("pb", pb);
+		model.addAttribute("list", list);
+		return "board/bdList";
+	}
+	
+	@RequestMapping("board/bdList2")
+	public String list2(Board board, String pageNum, Model model, HttpServletRequest request) {
+		if(pageNum == null || pageNum.equals("")) pageNum = "1";
+		int rowPerPage = 4;
+		int currentPage = Integer.parseInt(pageNum);
+		int total = bs.getTotal(board);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		board.setStartRow(startRow);
+		board.setEndRow(endRow);
+		List<Board> list = bs.list(board);
+		PageBean pb = new PageBean(currentPage, rowPerPage, total);
+		int bno = total - startRow + 1;
+		String[] title = {"지역"};
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		model.addAttribute("id", id);

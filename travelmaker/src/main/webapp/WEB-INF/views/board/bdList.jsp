@@ -79,11 +79,11 @@ $(document).ready(function() {
 			<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
 				<c:if test="${pb.currentPage == i }">
 					<%-- <li class="active"><a href="bdList.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li> --%>
-					<button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button>
+					<button onclick="location.href='bdList.do?pageNum=${i}&search=${board.search}&keyword=${board.keyword}'" class="btn4">${i}</button>
 				</c:if>
 				<c:if test="${pb.currentPage != i }">
 					<%-- <li><a href="bdList.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li> --%>
-					<button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button>
+					<button onclick="location.href='bdList.do?pageNum=${i}&search=${board.search}&keyword=${board.keyword}'" class="btn4">${i}</button>
 				</c:if>
 			</c:forEach>
 			<!-- 보여줄 것이 남아 있으면 endPage보다 totalPage가 크다 -->
@@ -111,7 +111,25 @@ $(document).ready(function() {
 	</select>
 	<form action="bdList.do?pageNum=1">
 		<select name="search">
-			<c:forTokens var="sh" items="content,m.nickName,loc" delims="," varStatus="i">
+			<c:forTokens var="sh" items="content,m.nickName" delims="," varStatus="i">
+				<c:if test="${sh==board.search }">
+					<option value="${sh }" selected="selected">${title[i.index] }</option>
+				</c:if>
+				<c:if test="${sh!=board.search }">
+					<option value="${sh }">${title[i.index] }</option>
+				</c:if>
+			</c:forTokens>
+		</select>
+		<input type="text" name="keyword">
+		<input type="submit" value="검색">
+	</form>
+	<div align="center"><a href="bdInsertForm2.do?bno=0&pageNum=1" class="btn3">게시글 입력</a></div>
+</div>
+
+<div style="display: none;">
+	<form action="bdList2.do?pageNum=1">
+		<select name="search">
+			<c:forTokens var="sh" items="loc" delims="," varStatus="i">
 				<c:if test="${sh==board.search }">
 					<option value="${sh }" selected="selected">${title[i.index] }</option>
 				</c:if>
@@ -123,7 +141,6 @@ $(document).ready(function() {
 		<input type="text" name="keyword" value="${board.keyword }">
 		<input type="submit" value="검색">
 	</form>
-	<div align="center"><a href="bdInsertForm2.do?bno=0&pageNum=1" class="btn3">게시글 입력</a></div>
 </div>
 
 </body>

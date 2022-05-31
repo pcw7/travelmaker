@@ -8,15 +8,16 @@
 
 </head><body>
 
-<div class="header_logo">
-	<a href="${pageContext.request.contextPath }/board/bdList.do"><img class="logo" src="${pageContext.request.contextPath }/resources/images/logo_letter1.png"></a>
+<div class="header">
+	<a href="${pageContext.request.contextPath }/board/bdList.do"><img class="logo" src="${pageContext.request.contextPath }/resources/images/headerLogo.png"></a>
+	<c:set var="id" value="${sessionScope.id}"></c:set>
+	<c:if test="${not empty id }">
+		<a href="${pageContext.request.contextPath }/mypage/myUpdateForm.do"><img class="MyPage" src="${pageContext.request.contextPath }/resources/images/MyPage.png"></a>
+		<a href="${pageContext.request.contextPath }/member/logout.do"><img class="Logout" src="${pageContext.request.contextPath }/resources/images/Logout.png"></a>
+		<%-- <a class="right1" href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a> --%>
+		<%-- <a class="right2" href="${pageContext.request.contextPath }/mypage/myUpdateForm.do">마이페이지</a> --%>
+	</c:if>
 </div>
-<a href="${pageContext.request.contextPath }/board/bdList.do" style="text-decoration: none;">메인화면</a>
-<c:set var="id" value="${sessionScope.id}"></c:set>
-<c:if test="${not empty id }">
-	<a class="right" href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a>
-	<a class="right" href="${pageContext.request.contextPath }/mypage/myUpdateForm.do">마이페이지</a>
-</c:if>
 
 </body>
 </html>

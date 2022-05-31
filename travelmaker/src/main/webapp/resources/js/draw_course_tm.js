@@ -362,7 +362,6 @@ function uploadCanvasData() {
         cache: false,
         success: function (data) {
             alert("게시글이 등록 되었습니다.");
-            // location.href= "bdList.do";
             location.replace('bdList.do');
         },
         error: function (request, status, error) {

@@ -2,7 +2,8 @@
 
 body{
     width: 98%;
-    background: #fafafa;
+    /* background: #fafafa; */
+    background: white;
     position: relative;
     /* overflow: hidden; */
 }
@@ -208,4 +209,8 @@ body{
 	float: right;
 	margin: 20px;
 	cursor: pointer;
+}
+
+table{
+	width: 600px;
 }
