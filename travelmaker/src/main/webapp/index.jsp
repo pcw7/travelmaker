@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
 	// location.href="insertBoard.do";
-    location.href="board/bdList.do";
+    location.href="member/loginForm.do";
 </script>
 
 </body>

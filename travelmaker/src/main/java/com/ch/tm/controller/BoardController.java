@@ -39,10 +39,6 @@ public class BoardController {
 	@Autowired
 	private PlanService ps;
 	
-	@RequestMapping("home")
-	public String home() {
-		return "home";
-	}
 	
 	@RequestMapping("board/bdInsertForm")
 	public String insertForm(int bno, String pageNum, Model model, HttpServletRequest request) {
@@ -71,7 +67,6 @@ public class BoardController {
 	@RequestMapping("board/bdInsert2")
 	public String bdInsert2(Board board, HttpSession session, String pageNum,
 			Model model) throws IOException {
-        int result = 0;
 		int number = bs.getMaxNum();
 		board.setBno(number);
         String fileName = board.getFile().getOriginalFilename();
@@ -80,11 +75,8 @@ public class BoardController {
         FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
 		fos.write(board.getFile().getBytes());
 		fos.close();        
-        result = bs.insert(board);
-        System.out.println("result");
-        model.addAttribute("result", result);
-        model.addAttribute("pageNum", pageNum);
-        return "board/bdInsert"; 
+        bs.insert(board);        
+        return "board/rvList"; 
     }
 	
 	@RequestMapping("board/bdInsert")
