@@ -18,6 +18,9 @@ $(document).ready(function() {
 		$.post('likesSelect.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
 			$('#likeIcon${status.count}').attr('src', '${path }/resources/images/'+data);
 		});
+		$.post('likesCount.do?bno=${board.bno }', function(data) {
+			$('#likesTotal${status.count}').html(data);
+		});		
 	</c:forEach>
 });
 
@@ -27,6 +30,9 @@ $(document).ready(function() {
 	$('#likeIcon${status.count}').on('click', function() {	
 		$.post('likesUpdate.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
 			$('#likeIcon${status.count}').attr('src', '${path }/resources/images/'+data);
+			$.post('likesCount.do?bno=${board.bno }', function(data) {
+				$('#likesTotal${status.count}').html(data);
+			});
 		});
 	});
 });
@@ -51,10 +57,8 @@ $(document).ready(function() {
 			                <a href="bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}"><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></a>
 			                <div class="post-content">
 			                    <div class="reaction-wrapper">
-			                        <!-- <img src="resources/images/img/like.PNG" class="icon" alt=""> -->
-			                        <%-- <img src="${path }/resources/images/img/comment.PNG" class="icon" alt=""><p class="likes">1,012 likes</p> --%>
-			                        <img src="${path }/resources/images//heart.png" class="likeIcon" id="likeIcon${status.count}"><p class="likes">1,012 likes</p>
-			                        <img src="${path }/resources/images/img/send.PNG" class="icon" alt=""><p class="likes">${board.readcount } readcount</p>
+			                        <img src="${path }/resources/images//heart.png" class="likeIcon" id="likeIcon${status.count}"><span class="likesTotal" id="likesTotal${status.count}"></span>
+			                        <img src="${path }/resources/images/readCntEye.png" class="readCntIcon"><p class="likes">${board.readcount }</p>
 			                    </div>
 			                    <p class="description"><span>${board.title }</span></p>
 			                    <p class="post-time">${board.reg_date }</p>

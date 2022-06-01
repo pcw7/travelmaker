@@ -12,4 +12,6 @@ public interface LikesDao {
 
 	int getLikes(int bno);
 
+	int likesTotal(int mno);
+
 }

@@ -1,6 +1,7 @@
 package com.ch.tm.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -15,8 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ch.tm.model.Board;
 import com.ch.tm.model.Member;
+import com.ch.tm.service.BoardService;
+import com.ch.tm.service.LikesService;
 import com.ch.tm.service.MemberService;
+import com.ch.tm.service.PageBean;
 
 @Controller
 public class MemberController {
@@ -26,6 +31,10 @@ public class MemberController {
 	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private JavaMailSender jMailSender;
+	@Autowired
+	private LikesService ls;
+	@Autowired
+	private BoardService bs;
 	
 	// 로그인 입력
 	@RequestMapping("member/loginForm")
@@ -194,6 +203,7 @@ public class MemberController {
 		return "mypage/myUpdate";
 	}
 	
+	// 회원 탈퇴
 	@RequestMapping("mypage/delete")
 	public String delete(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
@@ -203,6 +213,7 @@ public class MemberController {
 		return "mypage/delete";
 	}
 
+	// 마이페이지 - 내가 쓴 글
 	@RequestMapping("mypage/myBoard")
 	public String myBoard(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
@@ -210,5 +221,29 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "mypage/myBoard";
 	}
+	
+	// 마이페이지 - 좋아요 목록
+	@RequestMapping("mypage/likesList")
+	public String likeList(String id, String pageNum, Model model) {
+		Member member = ms.select(id);
+		int mno = member.getMno();
+		
+		if(pageNum == null || pageNum.equals("")) pageNum = "1";
+		int rowPerPage = 4;
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ls.likeTotal(mno);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		List<Board> list = bs.myLikeList(mno, startRow, endRow);
+				
+		PageBean pb = new PageBean(currentPage, rowPerPage, total);
+		
+		model.addAttribute("pb", pb);
+		model.addAttribute("list", list);
+		
+		return "mypage/likesList";
+	}
+	
+	
 	
 }

@@ -44,4 +44,12 @@
 		update board set del='y' where bno=#{bno}
 	</update>
 	
+	<!-- 해당 회원이 좋아요한 게시글 목록 -->
+	<select id="myLikeList" parameterType="map" resultType="board">
+		select * from(select rownum rn, a.* from (select * from board 
+			where del = 'n' and bno in (select bno from likes where mno=#{mno})) a)
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	
 </mapper>

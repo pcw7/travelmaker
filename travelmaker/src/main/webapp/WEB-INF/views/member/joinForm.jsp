@@ -34,14 +34,6 @@
 		});
 	}
 	
-	/* 서버단에서 처리해보기
-	// 비밀번호 유효성 검사
-	function pwChk() {
-		$.post('pwChk.do', "password="+frm.password.value, function(data) {
-			$('#pwChk1').html(data);
-		});
-	} */
-	
 	// 비밀번호 유효성 검사
 	function pwChk(str) {
 		var pw = str.value;
@@ -149,7 +141,6 @@
 	<input class="textBox" type="password" name="password" id="password" required="required"
 		onKeyup="pwChk(this)" style="ime-mode:disabled;">
 	<img class="chkIcon" src="${path }/resources/images/gray_eye.png"></img>
-	<!-- <input class="chkBtn" type="button" class="btn" value="**" > -->
 	<div class="chkDiv" id="pwChk1"></div>	
 	<p class="p_space">비밀번호 확인</p>
 	<input class="textBox" type="password" name="password2" required="required"

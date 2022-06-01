@@ -42,6 +42,11 @@ public class LikesDaoImpl implements LikesDao {
 	public int getLikes(int bno) {
 		return sst.selectOne("likesns.getLikes", bno);
 	}
+
+	@Override
+	public int likesTotal(int mno) {
+		return sst.selectOne("likesns.likesTotal", mno);
+	}
 	
 
 }

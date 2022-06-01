@@ -97,9 +97,9 @@
 	$(document).ready(function() {
 			$.post('likesSelect.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
 				$('.likes').attr('src', '${path }/resources/images/'+data);
-			});
 			$.post('likesCount.do?bno=${board.bno }', function(data) {
 				$('#likesTotal').html(data);
+			});		
 			});
 	});
 
@@ -139,7 +139,7 @@
 	<div class="a48" style="background: white;">
 		<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.title }</h2>
 		<img src="${path }/resources/images/heart.png" class="likesIcon"><span id="likesTotal"></span>
-    	<img src="${path }/resources/images/img/send.PNG" class="icon" alt="">${board.readcount } readcount
+    	<img src="${path }/resources/images/readCntEye.png" class="readCntIcon">${board.readcount }
 	</div>
 	<div class="a12" style="background: white;">
 		<img src="${path }/resources/images/heart.png" class="likes">
@@ -154,6 +154,7 @@
 <div class="body">
 	<div class="leftSideBar"></div>
 	<div class="content">
+		<div class="period">${board.s_date } ~ ${board.e_date }</div>
 		<div><center><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></center></div>
 		<div class="text_center"><pre>${board.content }</pre></div>
 	</div>
