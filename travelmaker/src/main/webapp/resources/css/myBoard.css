@@ -46,7 +46,17 @@
 
 #myBoardDisp {
 	display: inline-block;
-	margin-left: 200px;
+	margin-left: 360px;
 	margin-top: -120px;
 }
+
+.headerSpace{
+	height: 120px;	
+}
+
+.container {
+	margin-bottom: 50px;
+}
+
+
 

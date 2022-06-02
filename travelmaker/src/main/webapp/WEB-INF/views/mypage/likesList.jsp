@@ -39,6 +39,8 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<div class="headerSpace"></div>
+
 <div class="nav">
 <ul class="nav_ul">
 	<li class="nav_li1"><a href="myUpdateForm.do">마이페이지</a></li>
