@@ -164,14 +164,12 @@
 	<input type="hidden" name="id" value="${member.id }">
 	<input type="hidden" name="name" value="${member.name }">
 	<div><span>아이디</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${member.id }</div>
-	<div>
 	<div class="chk"><span>비밀번호</span>
 	<input class="textBox tb1" type="password" name="password" id="password" required="required"
 		autofocus="autofocus" onKeyup="pwChk(this)" style="ime-mode:disabled;">
 	<img class="chkIcon" src="${path }/resources/images/gray_eye.png"></img>
 	</div>
 	<div class="chkDiv1" id="pwChk1"></div>	
-	</div>
 	<div class="chk"><span>비밀번호 확인</span>
 	<input class="textBox tb2" type="password" name="password2" required="required"
 		onKeyup="pwChk2()">

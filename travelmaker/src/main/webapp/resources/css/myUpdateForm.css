@@ -20,6 +20,7 @@ body{
 	border: 2px solid #bbb;
 	background-color: white;
 	margin-bottom: 200px;
+	
 }
 
 .nav_ul {
@@ -160,13 +161,17 @@ body{
 	position: relative;
 }
 
+.wrap {
+	position: relative;
+}
+
 .chkDiv1 {
 	margin: 0;
 	font-size: 11px;
 	position: absolute;
 	color: #E84855;
-	top: 275px;
-	left: 486px;
+ 	top: 275px;
+	left: 870px; 
 }
 
 .chkDiv2 {
@@ -174,8 +179,8 @@ body{
 	font-size: 11px;
 	position: absolute;
 	color: #E84855;
-	top: 315px;
-	left: 486px;
+ 	top: 315px;
+	left: 870px; 
 }
 
 .chkDiv3 {
@@ -183,8 +188,8 @@ body{
 	font-size: 11px;
 	position: absolute;
 	color: #E84855;
-	top: 481px;
-	left: 486px;
+ 	top: 481px;
+	left: 870px; 
 }
 
 .chkBtn {

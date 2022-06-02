@@ -378,7 +378,7 @@ function uploadCanvasData() {
 
     $.ajax({
         type: 'POST',
-        url: 'bdInsert2.do',
+        url: 'bdInsert.do',
         data: formData,
         processData: false,	// data 파라미터 강제 string 변환 방지
         contentType: false,	// application/x-www-form-urlencoded; 방지

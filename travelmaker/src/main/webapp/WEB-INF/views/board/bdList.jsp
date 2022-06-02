@@ -127,7 +127,7 @@ $(document).ready(function() {
 		<input type="text" name="keyword">
 		<input type="submit" value="검색">
 	</form>
-	<div align="center"><a href="bdInsertForm2.do?bno=0&pageNum=1" class="btn">게시글 입력</a></div>
+	<div align="center"><a href="bdInsertForm.do?bno=0&pageNum=1" class="btn">게시글 입력</a></div>
 </div>
 
 <div style="display: none;">

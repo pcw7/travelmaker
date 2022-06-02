@@ -88,23 +88,21 @@ $(document).ready(function() {
 		<ul class="pagination">
 			<!-- 시작페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 			<c:if test="${pb.startPage > pb.pagePerBlock }">
-				<li><a href="../board/bdMyBoard.do?pageNum=1"><img alt="처음으로" src="${path }/resources/images/doubleleft.png"></a></li>
-				<li><a href="../board/bdMyBoard.do?pageNum=${pb.startPage - 1 }"><img alt="이전" src="${path }/resources/images/back.png"></a></li>			
+				<li><a href="likesList.do?id=${sessionScope.id}&pageNum=1"><img alt="처음으로" src="${path }/resources/images/doubleleft.png"></a></li>
+				<li><a href="likesList.do?id=${sessionScope.id}&pageNum=${pb.startPage - 1 }"><img alt="이전" src="${path }/resources/images/back.png"></a></li>			
 			</c:if>
 			<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
 				<c:if test="${pb.currentPage == i }">
-					<li class="active"><a href="../board/bdMyBoard.do?pageNum=${i }">${i }</a></li>
-					<%-- <button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button> --%>
+					<button onclick="location.href='likesList.do?id=${sessionScope.id}&pageNum=${i }'" class="btn4">${i}</button>
 				</c:if>
 				<c:if test="${pb.currentPage != i }">
-					<li><a href="../board/bdMyBoard.do?pageNum=${i }">${i }</a></li>
-					<%-- <button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button> --%>
+					<button onclick="location.href='likesList.do?id=${sessionScope.id}&pageNum=${i }'" class="btn4">${i}</button>
 				</c:if>
 			</c:forEach>
 			<!-- 보여줄 것이 남아 있으면 endPage보다 totalPage가 크다 -->
 			<c:if test="${pb.endPage < pb.totalPage }">
-				<li><a href="../board/bdMyBoard.do?pageNum=${pb.endPage + 1 }"><img alt="다음" src="${path }/resources/images/forward.png"></a></li>
-				<li><a href="../board/bdMyBoard.do?pageNum=${pb.totalPage }"><img alt="마지막으로" src="${path }/resources/images/doubleright.png"></a></li>
+				<li><a href="likesList.do?id=${sessionScope.id}&pageNum=${pb.endPage + 1 }"><img alt="다음" src="${path }/resources/images/forward.png"></a></li>
+				<li><a href="likesList.do?id=${sessionScope.id}&pageNum=${pb.totalPage }"><img alt="마지막으로" src="${path }/resources/images/doubleright.png"></a></li>
 			</c:if>
 		</ul>
 	</div>

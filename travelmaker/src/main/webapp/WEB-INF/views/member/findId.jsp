@@ -33,9 +33,6 @@
 <div class="linkDiv">
 <input class="link" type="button" onclick="location.href='findPwForm.do';" value="비밀번호 찾기">
 <input class="link" type="button" onclick="location.href='loginForm.do';" value="로그인">
-<!-- <a class="link" href="findPwForm.do">비밀번호 찾기</a>
-<a class="link" href="loginForm.do">로그인</a>
-<a class="link" href="joinForm.do">회원가입</a> -->
 </div>
 </div>
 </div>

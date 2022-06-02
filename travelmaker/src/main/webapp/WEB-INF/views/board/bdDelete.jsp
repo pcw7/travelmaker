@@ -19,7 +19,7 @@
 		  padding: '3em',
 		  color: '#716add',
 		  background: '#fff url(${path }/resources/images/alert.png)',
-		  backdrop: `
+		  backdrop: ` 
 			  rgba(40,23,100,0.1)
 		  `, closeOnClickOutside : false
 		}).then(function() {
@@ -33,13 +33,6 @@
 		history.back();
 	</script>
 </c:if>
-
-<%-- <c:if test="${result == -1 }">
-	<script type="text/javascript">
-		alert("암호도 모르면서!");
-		history.back();
-	</script>
-</c:if> --%>
 
 </body>
 </html>

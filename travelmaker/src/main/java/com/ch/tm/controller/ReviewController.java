@@ -48,8 +48,6 @@ public class ReviewController {
 		model.addAttribute("board", board);
 		model.addAttribute("rvList", rvList);
 		model.addAttribute("rpList", rpList);
-//		System.out.println("rpsize="+rpList.size());
-//		System.out.println("rvsize="+rvList.size());
 		return "board/rvList";
 	}
 	

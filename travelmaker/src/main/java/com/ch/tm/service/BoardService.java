@@ -5,10 +5,6 @@ import java.util.List;
 import com.ch.tm.model.Board;
 
 public interface BoardService {
-	
-//	int getTotal();
-
-//	List<Board> list(int startRow, int endRow);
 
 	int getMaxNum();
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ch.tm.model.Board;
 import com.ch.tm.model.Member;
 import com.ch.tm.service.BoardService;
+import com.ch.tm.service.LikesService;
 import com.ch.tm.service.MemberService;
 import com.ch.tm.service.PageBean;
 @Controller
@@ -23,9 +24,11 @@ public class BoardController {
 	private BoardService bs;
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private LikesService ls;
 	
 	@RequestMapping("board/bdInsertForm")
-	public String insertForm(int bno, String pageNum, Model model, HttpServletRequest request) {
+	public String insertForm2(int bno, String pageNum, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		Member member = ms.select(id);
@@ -35,20 +38,8 @@ public class BoardController {
 		return "board/bdInsertForm";
 	}
 	
-	// 하영
-	@RequestMapping("board/bdInsertForm2")
-	public String insertForm2(int bno, String pageNum, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		Member member = ms.select(id);
-		model.addAttribute("member", member);
-		model.addAttribute("bno", bno);
-		model.addAttribute("pageNum", pageNum);
-		return "board/bdInsertForm2";
-	}
 	
-	// 하영
-	@RequestMapping("board/bdInsert2")
+	@RequestMapping("board/bdInsert")
 	public String bdInsert2(Board board, HttpSession session, String pageNum,
 			Model model) throws IOException {
 		int number = bs.getMaxNum();
@@ -62,18 +53,7 @@ public class BoardController {
         bs.insert(board);        
         return "board/rvList"; 
     }
-	
-	@RequestMapping("board/bdInsert")
-	public String insert(Board board, String pageNum, Model model, HttpServletRequest request) {
-		// num을 자동으로 1씩 증가
-		int number = bs.getMaxNum();
-		board.setBno(number);
-		int result = bs.insert(board);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("result", result);
-		return "board/bdInsert";
-	}
-	
+		
 	@RequestMapping("board/bdUpdateForm")
 	public String updateForm(int bno, String pageNum, Model model) {
 		Board board = bs.select(bno);
@@ -97,6 +77,8 @@ public class BoardController {
 		int result = 0;
 		Board board2 = bs.select(bno);
 		result = bs.delete(bno);
+		ls.deleteAll(bno);
+		
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "board/bdDelete";

@@ -47,6 +47,11 @@ public class LikesDaoImpl implements LikesDao {
 	public int likesTotal(int mno) {
 		return sst.selectOne("likesns.likesTotal", mno);
 	}
+
+	@Override
+	public void deleteAll(int bno) {
+		sst.delete("likesns.deleteAll", bno);		
+	}
 	
 
 }

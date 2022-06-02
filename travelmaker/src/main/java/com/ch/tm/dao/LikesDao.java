@@ -14,4 +14,6 @@ public interface LikesDao {
 
 	int likesTotal(int mno);
 
+	void deleteAll(int bno);
+
 }

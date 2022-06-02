@@ -56,10 +56,6 @@
 		});
 	});
 	function del() {
-		/* 확인을 check하면 true이고 취소를 체크하면 false;
-		var ch = confirm("정말로 삭제하시겠습니까 ?");
-		if (ch) location.href="bdDelete.do?bno=${board.bno }&pageNum=${pageNum}";
-		else alert("삭제가 취소 되었습니다"); */
 		
 		Swal.fire({
 			title: '정말로 삭제하시겠습니까?',
