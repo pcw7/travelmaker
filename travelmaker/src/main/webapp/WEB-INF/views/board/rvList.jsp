@@ -59,7 +59,7 @@
 					<input type="button" value="수정" class="btn3" onclick="rUpdate(${rv.bno},${rv.rno })">
 					<input type="button" value="삭제" class="btn3" onclick="rDelete(${rv.bno},${rv.rno })">
 				</c:if></td></tr>	
-		<tr><td></td><td id="td_${rv.rno }" height="100">${rv.reply_content }</td><td></td></tr>
+		<tr><td></td><td id="td_${rv.rno }" height="100"><pre>${rv.reply_content }</pre></td><td></td></tr>
 		</table>
 			<c:forEach var="reviewphoto" items="${rpList }">
 				<c:if test="${reviewphoto.rno==rv.rno }">			
