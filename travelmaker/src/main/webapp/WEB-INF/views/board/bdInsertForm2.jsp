@@ -4,6 +4,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set> 
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title>
+<%-- <link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.min.css"> --%>
 <style type="text/css">@import url("${path}/resources/css/bdInsertForm.css");</style>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="${path}/resources/js/draw_course_tm.js"></script>
