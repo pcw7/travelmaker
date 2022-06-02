@@ -16,9 +16,6 @@ public class Review {
 	private int mno;	
 	private int bno;
 	
-	// upload용
-	// private MultipartFile file;
-	
 	// join용
 	private String nickName;
 }

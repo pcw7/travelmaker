@@ -14,4 +14,6 @@ public interface LikesService {
 
 	int likeTotal(int mno);
 
+	void deleteAll(int bno);
+
 }

@@ -15,10 +15,12 @@ body{
 	display: inline-block;
 	width: 500px;
 	height: 500px;
-	margin-left: 35px;
+	margin-left: 430px;
 	border-radius: 15px;
 	border: 2px solid #bbb;
 	background-color: white;
+	margin-bottom: 200px;
+	
 }
 
 .nav_ul {
@@ -159,13 +161,17 @@ body{
 	position: relative;
 }
 
+.wrap {
+	position: relative;
+}
+
 .chkDiv1 {
 	margin: 0;
 	font-size: 11px;
 	position: absolute;
 	color: #E84855;
-	top: 225px;
-	left: 486px;
+ 	top: 275px;
+	left: 870px; 
 }
 
 .chkDiv2 {
@@ -173,8 +179,8 @@ body{
 	font-size: 11px;
 	position: absolute;
 	color: #E84855;
-	top: 265px;
-	left: 486px;
+ 	top: 315px;
+	left: 870px; 
 }
 
 .chkDiv3 {
@@ -182,8 +188,8 @@ body{
 	font-size: 11px;
 	position: absolute;
 	color: #E84855;
-	top: 431px;
-	left: 486px;
+ 	top: 481px;
+	left: 870px; 
 }
 
 .chkBtn {
@@ -201,5 +207,8 @@ body{
 .chkBtn:hover {
 	opacity: 0.9;
 }
+
+.headerSpace{
+	height: 120px;	
 }
 

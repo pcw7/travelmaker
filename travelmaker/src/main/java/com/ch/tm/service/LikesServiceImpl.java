@@ -36,6 +36,11 @@ public class LikesServiceImpl implements LikesService {
 		return ld.likesTotal(mno);
 	}
 
+	@Override
+	public void deleteAll(int bno) {
+		ld.deleteAll(bno);
+	}
+
 
 	
 	

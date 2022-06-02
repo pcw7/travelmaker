@@ -12,16 +12,6 @@ import com.ch.tm.dao.BoardDao;
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDao bd;
-	
-//	@Override
-//	public int getTotal() {
-//		return bd.getTotal();
-//	}
-
-//	@Override
-//	public List<Board> list(int startRow, int endRow) {
-//		return bd.list(startRow, endRow);
-//	}
 
 	@Override
 	public int getMaxNum() {

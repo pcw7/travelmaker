@@ -14,19 +14,6 @@ import com.ch.tm.model.Board;
 public class BoardDaoImpl implements BoardDao{
 	@Autowired
 	private SqlSessionTemplate sst;
-	
-//	@Override
-//	public int getTotal() {
-//		return sst.selectOne("boardns.getTotal");
-//	}
-
-//	@Override
-//	public List<Board> list(int startRow, int endRow) {
-//		Map<String, Integer> map = new HashMap<String, Integer>();
-//		map.put("startRow", startRow);
-//		map.put("endRow", endRow);
-//		return sst.selectList("boardns.list", map);
-//	}
 
 	@Override
 	public int getMaxNum() {

@@ -10,6 +10,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>
 <style type="text/css">@import url("${path}/resources/css/instagram.css");</style>
+<style type="text/css">@import url("${path}/resources/css/myBoard.css");</style>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript">
 // 좋아요 조회
@@ -40,6 +41,16 @@ $(document).ready(function() {
 </script>
 </head><body>
 
+<div class="headerSpace"></div>
+
+<div class="nav">
+<ul class="nav_ul">
+	<li class="nav_li1"><a href="../mypage/myUpdateForm.do">마이페이지</a></li>
+	<li class="nav_li2"><a href="../mypage/myUpdateForm.do">내 정보 수정</a></li>
+	<li class="nav_li2"><a href="../mypage/myBoard.do">내가 쓴 글</a></li>
+	<li class="nav_li2"><a href="../mypage/likesList.do?id=${sessionScope.id}">좋아요 목록</a></li>
+</ul>
+</div>
 <section class="main">
 	<c:if test="${not empty list }">
 	<div class="hihi">
@@ -82,12 +93,12 @@ $(document).ready(function() {
 			</c:if>
 			<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
 				<c:if test="${pb.currentPage == i }">
-					<li class="active"><a href="../board/bdMyBoard.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li>
-					<%-- <button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button> --%>
+					<%-- <li class="active"><a href="../board/bdMyBoard.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li> --%>
+					<button onclick="location.href='../board/bdMyBoard.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}'" class="btn4">${i}</button>
 				</c:if>
 				<c:if test="${pb.currentPage != i }">
-					<li><a href="../board/bdMyBoard.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li>
-					<%-- <button onclick="location.href='bdList.do?pageNum=${i}'" class="btn4">${i}</button> --%>
+					<%-- <li><a href="../board/bdMyBoard.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}">${i }</a></li> --%>
+					<button onclick="location.href='../board/bdMyBoard.do?pageNum=${i }&search=${board.search}&keyword=${board.keyword}'" class="btn4">${i}</button>
 				</c:if>
 			</c:forEach>
 			<!-- 보여줄 것이 남아 있으면 endPage보다 totalPage가 크다 -->

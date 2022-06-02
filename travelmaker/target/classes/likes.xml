@@ -14,7 +14,7 @@
 	
 	<!-- 좋아요 취소 -->
 	<delete id="delete" parameterType="map">
-		delete likes where bno = #{bno} and mno = #{mno}
+		delete from likes where bno = #{bno} and mno = #{mno}
 	</delete>
 	
 	<!-- 좋아요 수 조회 -->
@@ -26,5 +26,10 @@
 	<select id="likesTotal" parameterType="integer" resultType="integer" >
 		select count(*) from likes where mno = #{mno}
 	</select>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteAll" parameterType="integer">
+		delete from likes where bno = #{bno}
+	</delete>
 
 </mapper>

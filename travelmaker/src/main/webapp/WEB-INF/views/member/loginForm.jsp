@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel Maker</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">@import url("${path}/resources/css/loginForm.css");</style>
 </head>
@@ -32,9 +32,6 @@
 </div> 
 </div>
 </div>
-<!--     <div class="aurora-base aurora-one"></div>
-    <div class="aurora-base aurora-two"></div>
-    <div class="aurora-base aurora-three"></div> -->
 </div>
 </body>
 </html>

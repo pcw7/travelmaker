@@ -35,7 +35,7 @@
 .nav_li2 a {
 	text-decoration: none;
 	font-weight: bold;
-	display: block !important;
+	display: block;
 	color: black;
 	font-size: 17px;
 }
@@ -44,9 +44,19 @@
 	background-color: white;
 }
 
-#myBoardDisp {
-	display: inline-block;
-	margin-left: 200px;
-	margin-top: -120px;
+.headerSpace{
+	height: 120px;	
 }
+
+.container {
+	margin-bottom: 50px;
+}
+
+.main {
+	display: inline-block;
+	margin-left: 660px;
+	margin-top: -170px;	
+}
+
+
 

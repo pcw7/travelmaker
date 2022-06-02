@@ -56,10 +56,6 @@
 		});
 	});
 	function del() {
-		/* 확인을 check하면 true이고 취소를 체크하면 false;
-		var ch = confirm("정말로 삭제하시겠습니까 ?");
-		if (ch) location.href="bdDelete.do?bno=${board.bno }&pageNum=${pageNum}";
-		else alert("삭제가 취소 되었습니다"); */
 		
 		Swal.fire({
 			title: '정말로 삭제하시겠습니까?',
@@ -117,7 +113,7 @@
 </script>
 
 </head><body>
-<div class="all">
+<div class="headerSpace"></div>
 <div class="header2">
 	<div class="a20"></div>
 	<div class="b60">
@@ -163,7 +159,7 @@
 <div class="body2">
 	<div class="leftSideBar"></div>
 	<div class="content" align="center">
-		<h3 style="margin-right: 550px">댓글 작성</h3>
+		<h3 style="margin-right: 450px">댓글 작성</h3>
 		<!-- submit할 때 action에 값이 없으면 자신(view.do)을 한번 더 수행 -->
 		<form action="" method="post" enctype="multipart/form-data" name="frm1" id="frm1">
 			<input type="hidden" name="bno" value="${board.bno }">
@@ -172,11 +168,11 @@
 			<table>
 				<tr><td><textarea rows="10" cols="70" name="reply_content"></textarea></td></tr>
 			</table>
-			<div class="file" style="margin-right: 380px">
+			<div class="file" style="margin-right: 420px">
 						<label for="file">이미지</label>
 						<input type="file" name="file" id="file" multiple="multiple">
 			</div>
-			<input type="button" value="리뷰 올리기" id="rInsert" class="btn2" style="margin-left: 380px;">
+			<input type="button" value="리뷰 올리기" id="rInsert" class="btn2" style="margin-left: 420px; margin-bottom: 10px;">
 		</form>
 	</div>
 	<div class="rightSideBar"></div>
@@ -191,7 +187,6 @@
 </div>
 
 <div class="footer"></div>
-</div>
 
 
 </body>
