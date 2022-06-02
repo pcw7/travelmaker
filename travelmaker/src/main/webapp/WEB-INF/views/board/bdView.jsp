@@ -117,7 +117,7 @@
 </script>
 
 </head><body>
-<div class="all">
+<div class="headerSpace"></div>
 <div class="header2">
 	<div class="a20"></div>
 	<div class="b60">
@@ -172,11 +172,11 @@
 			<table>
 				<tr><td><textarea rows="10" cols="70" name="reply_content"></textarea></td></tr>
 			</table>
-			<div class="file" style="margin-right: 380px">
+			<div class="file" style="margin-right: 500px">
 						<label for="file">이미지</label>
 						<input type="file" name="file" id="file" multiple="multiple">
 			</div>
-			<input type="button" value="리뷰 올리기" id="rInsert" class="btn2" style="margin-left: 380px;">
+			<input type="button" value="리뷰 올리기" id="rInsert" class="btn2" style="margin-left: 300px;">
 		</form>
 	</div>
 	<div class="rightSideBar"></div>
@@ -191,7 +191,6 @@
 </div>
 
 <div class="footer"></div>
-</div>
 
 
 </body>

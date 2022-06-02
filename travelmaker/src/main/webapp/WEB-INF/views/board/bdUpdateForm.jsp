@@ -11,6 +11,7 @@
 
 </head><body>
 
+<div class="headerSpace"></div>
 <div align="center">
 	<h2>게시글 수정</h2>
 	<form action="bdUpdate.do" method="post" name="frm">

@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
-<%-- <%@ include file="header.jsp" %> --%>
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title>
 
