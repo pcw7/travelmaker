@@ -18,9 +18,13 @@
 	</delete>
 	
 	<!-- 좋아요 수 조회 -->
-	<select id="getLikes" parameterType="map" resultType="integer" >
+	<select id="getLikes" parameterType="integer" resultType="integer" >
 		select count(*) from likes where bno = #{bno}
 	</select>
-
 	
+	<!-- 해당 회원이 좋아요한 게시글 수 -->
+	<select id="likesTotal" parameterType="integer" resultType="integer" >
+		select count(*) from likes where mno = #{mno}
+	</select>
+
 </mapper>

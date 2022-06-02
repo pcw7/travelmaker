@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-div {
-	border: 1px solid #bbb;
+body{
+    background: #fafafa;
 }
 
 .nav {
@@ -15,7 +15,10 @@ div {
 	display: inline-block;
 	width: 500px;
 	height: 500px;
-	margin-left: 15px;
+	margin-left: 35px;
+	border-radius: 15px;
+	border: 2px solid #bbb;
+	background-color: white;
 }
 
 .nav_ul {
@@ -28,10 +31,14 @@ div {
 }
 
 .nav_li1 {
+	padding: 25px 0 15px 20px;
+}
+
+.nav_li1 a {
 	font-size: 23px;
 	font-weight: bold;
-	text-align: center;
 	color: white;
+	text-decoration: none;
 }
 
 .nav_li2 {
@@ -39,7 +46,7 @@ div {
 	padding-left: 20px;
 	font-weight: bold;
 }
-.nav li a {
+.nav_li2 a {
 	text-decoration: none;
 	font-weight: bold;
 	display: block;
@@ -47,6 +54,152 @@ div {
 	font-size: 17px;
 }
 
-.nav li a:hover {
+.nav_li2 a:hover {
 	background-color: white;
 }
+
+.main_header {
+	border-bottom: 2px solid #bbb;
+}
+.main_header h3 {
+	margin-left: 30px;
+	margin-top: 28px;
+	margin-bottom: 25px;
+}
+
+.formDiv {
+	margin-left: 50px;
+	margin-top: 20px;
+}
+
+.textBox {
+	position: relative;
+	border:0;
+	width: 220px;
+	border-bottom: 2px solid #ececec;
+}
+
+.textBox:focus {
+	outline: none;
+	border-bottom: 2px solid #5D9FFF;
+}
+
+.tb1 {
+	margin-left: 50px;
+}
+
+.tb2 {
+	margin-left: 11px;
+}
+
+.tb3 {
+	margin-left: 64px;
+}
+
+.tb4 {
+	margin-left: 48px;
+}
+
+.tb5 {
+	margin-left: 79px;
+}
+
+.formDiv div {
+	margin: 10px;
+	margin-bottom: 18px;
+}
+
+.submitBtn {
+	width : 75px;
+	height: 35px;
+	border:0 solid black;
+	background-color: #5D9FFF;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	border-radius: 7px;
+	cursor: pointer;
+	margin-left: 125px;
+	margin-top: 25px;
+}
+
+.submitBtn:hover {
+	opacity: 0.9;
+}
+
+.deleteBtn {
+	width : 75px;
+	height: 35px;
+	margin-bottom: 10px;
+	border:0 solid black;
+	background-color: #D0D0D0;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	border-radius: 7px;
+	cursor: pointer;
+}
+
+.deleteBtn:hover {
+	opacity: 0.9;
+}
+
+.formDiv span {
+	font-weight: 500;
+}
+
+.chkIcon {
+	width: 22px;
+	position: absolute;
+	margin-left: -31px;
+	cursor: pointer;
+}
+
+.chk {
+	position: relative;
+}
+
+.chkDiv1 {
+	margin: 0;
+	font-size: 11px;
+	position: absolute;
+	color: #E84855;
+	top: 225px;
+	left: 486px;
+}
+
+.chkDiv2 {
+	margin: 0;
+	font-size: 11px;
+	position: absolute;
+	color: #E84855;
+	top: 265px;
+	left: 486px;
+}
+
+.chkDiv3 {
+	margin: 0;
+	font-size: 11px;
+	position: absolute;
+	color: #E84855;
+	top: 431px;
+	left: 486px;
+}
+
+.chkBtn {
+	width : 67px;
+	height: 30px;
+	border:0 solid black;
+	background-color: #5D9FFF;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	border-radius: 7px;
+	cursor: pointer;
+}
+
+.chkBtn:hover {
+	opacity: 0.9;
+}
+}
+

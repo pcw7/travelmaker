@@ -59,12 +59,11 @@ public class LikesController {
 	}
 	
 	// 좋아요 수 조회
-		@RequestMapping(value= "board/likesCount.do", produces = "text/html;charset=utf-8")
-		@ResponseBody
-		public int likesCount(int bno) {
-			int result = ls.getLikes(bno);
-						
-			return result;
-		}		
+	@RequestMapping(value= "board/likesCount.do")
+	@ResponseBody
+	public String likesCount(int bno) {
+		String result = Integer.toString(ls.getLikes(bno));
+		return result;
+	}		
 	
 }

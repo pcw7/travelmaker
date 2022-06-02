@@ -31,6 +31,11 @@ public class LikesServiceImpl implements LikesService {
 		return ld.getLikes(bno);
 	}
 
+	@Override
+	public int likeTotal(int mno) {
+		return ld.likesTotal(mno);
+	}
+
 
 	
 	

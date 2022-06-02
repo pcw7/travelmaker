@@ -9,25 +9,41 @@
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>
-<style type="text/css">@import url("${path}/resources/css/myUpdateForm.css");</style>
 <style type="text/css">@import url("${path}/resources/css/instagram.css");</style>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript">
+// 좋아요 조회
+$(document).ready(function() {
+	<c:forEach var="board" items="${list }" varStatus="status">
+		$.post('../board/likesSelect.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
+			$('#likeIcon${status.count}').attr('src', '${path }/resources/images/'+data);
+		});
+		$.post('../board/likesCount.do?bno=${board.bno }', function(data) {
+			$('#likesTotal${status.count}').html(data);
+		});		
+	</c:forEach>
+});
 
+//좋아요 기능
+<c:forEach var="board" items="${list }" varStatus="status">
+$(document).ready(function() {
+	$('#likeIcon${status.count}').on('click', function() {	
+		$.post('../board/likesUpdate.do?bno=${board.bno }&id=${sessionScope.id}', function(data) {
+			$('#likeIcon${status.count}').attr('src', '${path }/resources/images/'+data);
+			$.post('../board/likesCount.do?bno=${board.bno }', function(data) {
+				$('#likesTotal${status.count}').html(data);
+			});
+		});
+	});
+});
+</c:forEach>
+</script>
 </head><body>
-
-<div class="nav">
-<ul class="nav_ul">
-	<li class="nav_li1">마이페이지</li>
-	<li class="nav_li2"><a href="../mypage/myUpdateForm.do">내 정보 수정</a></li>
-	<li class="nav_li2"><a href="../mypage/myBoard.do">내가 쓴 글</a></li>
-	<li class="nav_li2"><a href="">좋아요 목록</a></li>
-</ul>
-</div>
 
 <section class="main">
 	<c:if test="${not empty list }">
 	<div class="hihi">
-		<c:forEach var="board" items="${list }">
+		<c:forEach var="board" items="${list }" varStatus="status">
 			<c:if test="${board.del != 'y' }">
 			    <div class="wrapper">
 			        <div class="left-col">
@@ -41,9 +57,8 @@
 			                <a href="../board/bdView.do?bno=${board.bno }&pageNum=${pb.currentPage}"><img src="${path }/resources/course/${board.courseImg }" class="post-image" alt=""></a>
 			                <div class="post-content">
 			                    <div class="reaction-wrapper">
-			                        <!-- <img src="resources/images/img/like.PNG" class="icon" alt=""> -->
-			                        <img src="${path }/resources/images/img/comment.PNG" class="icon" alt=""><p class="likes">1,012 likes</p>
-			                        <img src="${path }/resources/images/img/send.PNG" class="icon" alt=""><p class="likes">${board.readcount } readcount</p>
+			                        <img src="${path }/resources/images//heart.png" class="likeIcon" id="likeIcon${status.count}"><span class="likesTotal" id="likesTotal${status.count}"></span>
+			                        <img src="${path }/resources/images/readCntEye.png" class="readCntIcon"><p class="likes">${board.readcount }</p>
 			                    </div>
 			                    <p class="description"><span>${board.title }</span></p>
 			                    <p class="post-time">${board.reg_date }</p>
