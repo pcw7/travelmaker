@@ -17,7 +17,7 @@
 			frm.nickName.focus();
 			return false;
 		}
-		$.post('nickNameChk.do', "nickName="+frm.nickName.value, function(data) {
+		$.post('../member/nickNameChk.do', "nickName="+frm.nickName.value, function(data) {
 			$('#nickNameChk1').html(data);
 		});
 	}
@@ -97,18 +97,6 @@
 		}			
 	}
 	
-	// 비밀번호 보기/숨기기
-	$(document).ready(function() {
-		$('.btn').on('click', function() {
-			$('#password').toggleClass('active');
-			if($('#password').hasClass('active')){
-				$(this).prev('input').attr('type', 'text');
-			} else {
-				$(this).prev('input').attr('type', 'password');
-			}
-		});
-	});
-	
 	// 회원탈퇴 
 	function del() {
 		var con = confirm("정말로 탈퇴하시겠습니까?");
@@ -140,46 +128,72 @@
 		}
 	}
 	
+	// 비밀번호 보기/숨기기
+	$(document).ready(function() {
+		$('.chkIcon').on('click', function() {
+			$('#password').toggleClass('active');
+			if($('#password').hasClass('active')){
+				$(this).prev('input').attr('type', 'text');
+				$('.chkIcon').attr('src','${path }/resources/images/blue_eye.png');
+			} else {
+				$(this).prev('input').attr('type', 'password');
+				$('.chkIcon').attr('src','${path }/resources/images/gray_eye.png');
+			}
+		});
+	});	
+	
 </script>
 </head>
 <body>
 <div class="nav">
 <ul class="nav_ul">
-	<li class="nav_li1">마이페이지</li>
-	<li class="nav_li2"><a href="">내 정보 수정</a></li>
+	<li class="nav_li1"><a href="myUpdateForm.do">마이페이지</a></li>
+	<li class="nav_li2"><a href="myUpdateForm.do">내 정보 수정</a></li>
 	<li class="nav_li2"><a href="myBoard.do">내가 쓴 글</a></li>
-	<li class="nav_li2"><a href="">좋아요 목록</a></li>
+	<li class="nav_li2"><a href="likesList.do?id=${sessionScope.id}">좋아요 목록</a></li>
 </ul>
 </div>
 <div class="main">
 <div class="main_header">
 <h3>내 정보 수정</h3>
 </div>
+<div class="formDiv">
 <form action="myUpdate.do" method="post" name="frm"
 	onsubmit="return chk()">
 	<input type="hidden" name="id" value="${member.id }">
 	<input type="hidden" name="name" value="${member.name }">
-	아이디 ${member.id }<br>
-	비밀번호<input type="password" name="password" id="password" required="required"
+	<div><span>아이디</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${member.id }</div>
+	<div class="chk"><span>비밀번호</span>
+	<input class="textBox tb1" type="password" name="password" id="password" required="required"
 		autofocus="autofocus" onKeyup="pwChk(this)" style="ime-mode:disabled;">
-	<input type="button" class="btn" value="**" >
-	<div id="pwChk1"></div>	
-	비밀번호 확인<input type="password" name="password2" required="required"
-		onKeyup="pwChk2()"><br>
-	<div id="pwChk2"></div>
-	이름 ${member.name }<br>
-	이메일<input type="email" name="email" required="required"
-		value="${member.email }"><br>
-	전화번호<input type="text" name="tel" required="required"
+	<img class="chkIcon" src="${path }/resources/images/gray_eye.png"></img>
+	</div>
+	<div class="chkDiv1" id="pwChk1"></div>	
+	<div class="chk"><span>비밀번호 확인</span>
+	<input class="textBox tb2" type="password" name="password2" required="required"
+		onKeyup="pwChk2()">
+	</div>
+	<div class="chkDiv2" id="pwChk2"></div>
+	<div><span>이름</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${member.name }</div>
+	<div><span>이메일</span>
+	<input class="textBox tb3" type="email" name="email" required="required"
+		value="${member.email }">
+	</div>
+	<div><span>전화번호</span>
+	<input class="textBox tb4" type="text" name="tel" required="required"
 		pattern="\d{3}-\d{3,4}-\d{4}" placeholder="000-0000-0000"
-		value="${member.tel }"><br>
-	별명<input type="text" name="nickName" required="required"
+		value="${member.tel }">
+	</div>
+	<div class="chk"><span>별명</span>
+	<input class="textBox tb5" type="text" name="nickName" required="required"
 		value="${member.nickName }">
-	<input type="button" value="중복체크" onclick="nickNameChk()">
-	<div id="nickNameChk1"></div>
-	<input type="submit" value="수정">	
-	<input type="button" onclick="del()" value="회원 탈퇴">
+	<input class="chkBtn" type="button" value="중복체크" onclick="nickNameChk()">
+	</div>
+	<div class="chkDiv3" id="nickNameChk1"></div>
+	<input class="submitBtn" type="submit" value="수정완료">	
+	<input class="deleteBtn" type="button" onclick="del()" value="회원 탈퇴">
 </form>
+</div>
 </div>
 </body>
 </html>

@@ -411,5 +411,15 @@ li{
 .likeIcon {
 	width: 30px;
 	cursor: pointer;
+	margin-right: 5px;
+}
+
+.readCntIcon {
+	width: 27px;
+	margin-right: 5px;
+}
+
+.likesTotal {
+	margin-right: 20px;
 }
 

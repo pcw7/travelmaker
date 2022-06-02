@@ -12,4 +12,6 @@ public interface LikesService {
 
 	int getLikes(int bno);
 
+	int likeTotal(int mno);
+
 }

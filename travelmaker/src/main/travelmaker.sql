@@ -63,4 +63,3 @@ drop sequence seq_likes_lno;
 create sequence seq_likes_lno;
 
 
-

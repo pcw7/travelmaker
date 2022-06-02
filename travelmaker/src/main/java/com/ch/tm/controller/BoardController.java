@@ -2,42 +2,27 @@ package com.ch.tm.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ch.tm.model.Board;
 import com.ch.tm.model.Member;
-import com.ch.tm.model.Plan;
 import com.ch.tm.service.BoardService;
 import com.ch.tm.service.MemberService;
 import com.ch.tm.service.PageBean;
-import com.ch.tm.service.PlanService;
 @Controller
 public class BoardController {
 	@Autowired
 	private BoardService bs;
 	@Autowired
 	private MemberService ms;
-	@Autowired
-	private PlanService ps;
 	
 	@RequestMapping("board/bdInsertForm")
 	public String insertForm(int bno, String pageNum, Model model, HttpServletRequest request) {
@@ -66,7 +51,6 @@ public class BoardController {
 	@RequestMapping("board/bdInsert2")
 	public String bdInsert2(Board board, HttpSession session, String pageNum,
 			Model model) throws IOException {
-        int result = 0;
 		int number = bs.getMaxNum();
 		board.setBno(number);
         String fileName = board.getFile().getOriginalFilename();
@@ -75,11 +59,8 @@ public class BoardController {
         FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
 		fos.write(board.getFile().getBytes());
 		fos.close();        
-        result = bs.insert(board);
-        System.out.println("result");
-        model.addAttribute("result", result);
-        model.addAttribute("pageNum", pageNum);
-        return "board/bdInsert"; 
+        bs.insert(board);        
+        return "board/rvList"; 
     }
 	
 	@RequestMapping("board/bdInsert")

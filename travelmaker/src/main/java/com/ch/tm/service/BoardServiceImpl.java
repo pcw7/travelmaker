@@ -63,4 +63,11 @@ public class BoardServiceImpl implements BoardService {
 		return bd.list(board);
 	}
 
+	@Override
+	public List<Board> myLikeList(int mno, int startRow, int endRow) {
+		return bd.myLikeList(mno, startRow, endRow);
+	}
+
+
+
 }

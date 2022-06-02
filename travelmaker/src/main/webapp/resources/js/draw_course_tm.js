@@ -329,6 +329,33 @@ function clearNode() {
 
 //canvas 파일 이미지변환후 서버 업로드
 function uploadCanvasData() {
+	var frm = document.frm;
+	var title = frm.title.value;
+	var s_date = frm.s_date.value;
+	var e_date = frm.e_date.value;
+	var content = frm.content.value;
+	
+	if (!title) {
+		alert("제목을 입력하세요");
+		return false;
+	} else if (!s_date) {
+		alert("출발일을 입력하세요");
+		return false;
+	} else if (!e_date) {
+		alert("도착일을 입력하세요");
+		return false;
+	} else if (!content) {
+		alert("내용을 입력하세요");
+		return false;
+	}	
+	
+	// 도착일이 출발일보다 늦으면 저장 안되도록
+	var startDate = new Date(s_date);
+	var endDate = new Date(e_date);
+	if (startDate > endDate) {
+		alert("출발일과 도착일을 확인하세요");
+		return false;
+	}
 
     //폼 데이터 생성
     var form = $('#frm')[0];
@@ -348,9 +375,6 @@ function uploadCanvasData() {
     var today = new Date();
     var fileName = 'courseImg_'+ today.toLocaleDateString() + '_' + today.getMilliseconds() + '.png';
     formData.append("file", file, fileName);
-//    for (var value of formData.values()) {
-//    	console.log(value);
-//    }
 
     $.ajax({
         type: 'POST',
@@ -362,7 +386,6 @@ function uploadCanvasData() {
         cache: false,
         success: function (data) {
             alert("게시글이 등록 되었습니다.");
-            // location.href= "bdList.do";
             location.replace('bdList.do');
         },
         error: function (request, status, error) {
