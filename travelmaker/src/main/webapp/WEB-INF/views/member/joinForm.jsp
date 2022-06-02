@@ -9,11 +9,22 @@
 <title>Insert title here</title>
 <style type="text/css">@import url("${path}/resources/css/joinForm.css");</style>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
 	// 아이디 중복 검사
 	function idChk() {
 		if (!frm.id.value) {
-			alert("아이디를 입력한 후에 체크하세요.");
+			/* alert("아이디를 입력한 후에 체크하세요."); */
+			Swal.fire({
+						  title: '아이디를 입력한 후에\n체크하세요.',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			frm.id.focus();
 			return false;
 		}
@@ -25,7 +36,17 @@
 	// 별명 중복 검사
 	function nickNameChk() {
 		if (!frm.nickName.value) {
-			alert("별명을 입력한 후에 체크하세요.");
+			/* alert("별명을 입력한 후에 체크하세요."); */
+			Swal.fire({
+						  title: '별명을 입력한 후에\n 체크하세요.',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			frm.nickName.focus();
 			return false;
 		}
@@ -96,14 +117,34 @@
 		var pw = frm.password.value;
 		
 		if (frm.password.value != frm.password2.value) {
-			alert("비밀번호와 비밀번호 확인이 다릅니다.");
+			/* alert("비밀번호와 비밀번호 확인이 다릅니다."); */
+			Swal.fire({
+						  title: '비밀번호와 비밀번호 확인이\n다릅니다.',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			frm.password.focus();
 			frm.password.value = "";
 			frm.password2.value = "";
 			return false;
 		}
 		if (pw.length < 4 || pw.length > 16) {
-			alert("비밀번호는 최소 4자 이상 최대 16자 이하");
+			/* alert("비밀번호는 최소 4자 이상 최대 16자 이하"); */
+			Swal.fire({
+						  title: '비밀번호는 최소 4자 이상\n최대 16자 이하',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			frm.password.focus();
 			return false;
 		}			

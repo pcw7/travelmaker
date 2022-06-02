@@ -20,9 +20,6 @@
 	<definition name="member/loginForm" extends="nolayout">
 		<put-attribute name="body"	value="/WEB-INF/views/member/loginForm.jsp" />
 	</definition>
-	<definition name="mypage/myBoard" extends="nolayout">
-		<put-attribute name="body"	value="/WEB-INF/views/mypage/myBoard.jsp" />
-	</definition>
 
 	<!-- (2) {1}에는 폴더명 {2}에는 jsp이름 사용 --> 
 	<definition name="*/*" extends="tilesbase">

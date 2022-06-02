@@ -9,11 +9,22 @@
 <title>Insert title here</title>
 <style type="text/css">@import url("${path}/resources/css/myUpdateForm.css");</style>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
 	//별명 중복 검사
 	function nickNameChk() {
 		if (!frm.nickName.value) {
-			alert("별명을 입력한 후에 체크하세요");
+			/* alert("별명을 입력한 후에 체크하세요"); */
+			Swal.fire({
+						  title: '별명을 입력한 후에 체크하세요',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			frm.nickName.focus();
 			return false;
 		}
@@ -84,14 +95,34 @@
 		var pw = frm.password.value;
 		
 		if (frm.password.value != frm.password2.value) {
-			alert("비밀번호와 비밀번호 확인이 다릅니다");
+			/* alert("비밀번호와 비밀번호 확인이 다릅니다"); */
+			Swal.fire({
+						  title: '비밀번호와 비밀번호 확인이\n다릅니다',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			frm.password.focus();
 			frm.password.value = "";
 			frm.password2.value = "";
 			return false;
 		}
 		if (pw.length < 4 || pw.length > 16) {
-			alert("비밀번호는 최소 4자 이상 최대 16자 이하");
+			/* alert("비밀번호는 최소 4자 이상 최대 16자 이하"); */
+			Swal.fire({
+						  title: '비밀번호는 최소 4자 이상\n최대 16자 이하',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			frm.password.focus();
 			return false;
 		}			
@@ -104,7 +135,17 @@
 			pwChk3();
 		}
 		else {
-			alert("탈퇴가 취소 되었습니다");
+			/* alert("탈퇴가 취소 되었습니다"); */
+			Swal.fire({
+						  title: '탈퇴가 취소 되었습니다',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			return;
 		}
 	}
@@ -116,14 +157,34 @@
 		
 		if (pw1.length && pw2.length) {			
 			if (frm.password.value != frm.password2.value) {
-				alert("비밀번호와 비밀번호 확인이 다릅니다");
+				/* alert("비밀번호와 비밀번호 확인이 다릅니다"); */
+				Swal.fire({
+						  title: '비밀번호와 비밀번호 확인이\n다릅니다',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 				frm.password.focus();
 				frm.password.value = "";
 				frm.password2.value = "";
 				return false;
 			} location.href = "delete.do";
 		} else {
-			alert("비밀번호와 비밀번호 확인을 입력하세요");
+			/* alert("비밀번호와 비밀번호 확인을 입력하세요"); */
+			Swal.fire({
+						  title: '비밀번호와 비밀번호 확인을\n입력하세요',
+						  width: 600,
+						  padding: '3em',
+						  color: '#716add',
+						  background: '#fff url(${path }/resources/images/alert.png)',
+						  backdrop: `
+						    rgba(40,23,100,0.1)
+						  `, closeOnClickOutside : false
+					}); 
 			return false;
 		}
 	}
@@ -143,15 +204,20 @@
 	});	
 	
 </script>
+<style type="text/css">
+.li2 {
+	background-color:  #fafafa;
+}
+</style>
 </head>
 <body>
 <div class="headerSpace"></div>
 <div class="nav">
 <ul class="nav_ul">
-	<li class="nav_li1"><a href="myUpdateForm.do">마이페이지</a></li>
-	<li class="nav_li2"><a href="myUpdateForm.do">내 정보 수정</a></li>
-	<li class="nav_li2"><a href="myBoard.do">내가 쓴 글</a></li>
-	<li class="nav_li2"><a href="likesList.do?id=${sessionScope.id}">좋아요 목록</a></li>
+	<li class="nav_li1 li1"><a href="myUpdateForm.do">마이페이지</a></li>
+	<li class="nav_li2 li2"><a href="myUpdateForm.do">내 정보 수정</a></li>
+	<li class="nav_li2 li3"><a href="myBoard.do?id=${sessionScope.id}">내가 쓴 글</a></li>
+	<li class="nav_li2 li4"><a href="likesList.do?id=${sessionScope.id}">좋아요 목록</a></li>
 </ul>
 </div>
 <div class="main">

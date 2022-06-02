@@ -91,12 +91,17 @@ public class MemberController {
 	public String join(Member member, Model model, HttpSession session) throws IOException {
 		int result = 0;
 		Member member2 = ms.select(member.getId());
-		if (member2 == null) {
+		Member member3 = ms.selectNickName(member.getNickName());
+		if (member2 == null && member3 == null) {
 			// BCryptPasswordEncoder를 이용한 암호화
 			String encPassword = passwordEncoder.encode(member.getPassword());
 			member.setPassword(encPassword);
 			result = ms.insert(member);
-		} else result = -1; // 이미 가입된 아이디
+		} else if (member2 != null) {
+			result = -1; // 이미 가입된 아이디
+		} else if (member3 != null) {
+			result = -2; // 이미 가입된 닉네임
+		}
 		model.addAttribute("result", result);
 		return "member/join";
 	}
@@ -212,13 +217,25 @@ public class MemberController {
 		model.addAttribute("result", result);
 		return "mypage/delete";
 	}
-
+	
 	// 마이페이지 - 내가 쓴 글
 	@RequestMapping("mypage/myBoard")
-	public String myBoard(Model model, HttpSession session) {
-		String id = (String)session.getAttribute("id");
+	public String myBoard(Model model, String id, String pageNum) {
 		Member member = ms.select(id);
-		model.addAttribute("member", member);
+		int mno = member.getMno();
+		
+		if(pageNum == null || pageNum.equals("")) pageNum = "1";
+		int rowPerPage = 4;
+		int currentPage = Integer.parseInt(pageNum);
+		int total = bs.allMyBoard(mno);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		List<Board> list = bs.myBoardList(mno, startRow, endRow);
+		PageBean pb = new PageBean(currentPage, rowPerPage, total);
+		
+		model.addAttribute("pb", pb);
+		model.addAttribute("list", list);
+		
 		return "mypage/myBoard";
 	}
 	

@@ -58,6 +58,16 @@ public class BoardServiceImpl implements BoardService {
 		return bd.myLikeList(mno, startRow, endRow);
 	}
 
+	@Override
+	public int allMyBoard(int mno) {
+		return bd.allMyBoard(mno);
+	}
+
+	@Override
+	public List<Board> myBoardList(int mno, int startRow, int endRow) {
+		return bd.myBoardList(mno, startRow, endRow);
+	}
+
 
 
 }
