@@ -12,8 +12,6 @@
 
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		// alert("수정 되었습니다");
-		
 		Swal.fire({
 		  title: '수정되었습니다',
 		  width: 600,

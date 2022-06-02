@@ -11,12 +11,22 @@
 <%-- ${path }를 사용하면 경로가 절대경로로 변경됨 --%>
 <style type="text/css">@import url("${path}/resources/css/view.css");</style>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script type="text/javascript">
 	function rDelete(bno, rno) {
 		var sendData = "bno="+bno+"&rno="+rno;
 		$.post("rDelete.do", sendData, function(data) {
-			alert("삭제 되었습니다");
+			Swal.fire({
+				  title: '삭제되었습니다',
+				  width: 600,
+				  padding: '3em',
+				  color: '#716add',
+				  background: '#fff url(${path }/resources/images/alert.png)',
+				  backdrop: `
+					  rgba(40,23,100,0.1)
+				  `, closeOnClickOutside : false
+			});
 			$("#rvListDisp").html(data);
 		});
 	}
@@ -26,11 +36,10 @@
 		td, div, span등에서 데이터를 읽을 때는 jquery에서 text() */
 		var txt = $('#td_'+rno).text();
 		/* 읽은 데이터를 textarea에 넣어서 수정할 수 있게 만든다 */
-		$('#td_'+rno).html('<textarea row="3" colos="40" id="rt">'+txt+'</textarea>');
+		$('#td_'+rno).html('<textarea rows="5" cols="38" id="rt">'+txt+'</textarea>');
 		/* 버튼 처리를 확인과 취소로 변경 */
-		$('#btn_'+rno).html("<input type='button' onclick='up("+bno+","+rno+
-			")' class='btn3' value='확인'> "+
-			"<input type='button' onclick='lst("+bno+")' class='btn3' value='취소'>");
+		$('#btn_'+rno).html("<input type='button' onclick='lst("+bno+")' class='btn5' value='취소'>"+
+			"<input type='button' onclick='up("+bno+","+rno+")' class='btn5' value='확인'> ");
 	}
 	function lst(bno) {
 		$('#rvListDisp').load("rvList.do", "bno=${board.bno}");
@@ -38,7 +47,16 @@
 	function up(bno, rno) {
 		var sendData = "reply_content="+$('#rt').val()+"&bno="+bno+"&rno="+rno;
 		$.post('rUpdate.do', sendData, function(data) {
-			alert("수정 되었습니다");
+			Swal.fire({
+				  title: '수정되었습니다',
+				  width: 600,
+				  padding: '3em',
+				  color: '#716add',
+				  background: '#fff url(${path }/resources/images/alert.png)',
+				  backdrop: `
+					  rgba(40,23,100,0.1)
+				  `, closeOnClickOutside : false
+			});
 			$('#rvListDisp').html(data);
 		});
 	}
@@ -52,14 +70,15 @@
 	</c:if> --%>
 	<c:if test="${rv.del!='y' }">
 	<div class="border_gray">
-		<table>
-		<tr><td width="20%">${rv.nickName }</td><td></td><td></td><td class="post-time">${rv.update_date}</td></tr>
-		<tr><td></td><td></td><td></td><td id="btn_${rv.rno }">		
-				<c:if test="${rv.nickName==member.nickName }">
-					<input type="button" value="수정" class="btn3" onclick="rUpdate(${rv.bno},${rv.rno })">
-					<input type="button" value="삭제" class="btn3" onclick="rDelete(${rv.bno},${rv.rno })">
-				</c:if></td></tr>	
-		<tr><td></td><td id="td_${rv.rno }" height="100"><pre>${rv.reply_content }</pre></td><td></td></tr>
+		<table style="table-layout:fixed;">
+		<tr><td width="20%">${rv.nickName }</td><td></td>
+		<td id="btn_${rv.rno }">
+			<c:if test="${rv.nickName==member.nickName }">
+				<input type="button" value="삭제" class="btn5" onclick="rDelete(${rv.bno},${rv.rno })">
+				<input type="button" value="수정" class="btn5" onclick="rUpdate(${rv.bno},${rv.rno })">
+			</c:if>
+		</td><td class="post-time">${rv.update_date}</td></tr>
+		<tr><td></td><td id="td_${rv.rno }" height="100" colspan="2" class="td1"><pre>${rv.reply_content }</pre></td></tr>
 		</table>
 			<c:forEach var="reviewphoto" items="${rpList }">
 				<c:if test="${reviewphoto.rno==rv.rno }">			

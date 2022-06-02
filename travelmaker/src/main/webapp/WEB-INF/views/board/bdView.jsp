@@ -159,7 +159,7 @@
 <div class="body2">
 	<div class="leftSideBar"></div>
 	<div class="content" align="center">
-		<h3 style="margin-right: 550px">댓글 작성</h3>
+		<h3 style="margin-right: 450px">댓글 작성</h3>
 		<!-- submit할 때 action에 값이 없으면 자신(view.do)을 한번 더 수행 -->
 		<form action="" method="post" enctype="multipart/form-data" name="frm1" id="frm1">
 			<input type="hidden" name="bno" value="${board.bno }">
@@ -168,11 +168,11 @@
 			<table>
 				<tr><td><textarea rows="10" cols="70" name="reply_content"></textarea></td></tr>
 			</table>
-			<div class="file" style="margin-right: 500px">
+			<div class="file" style="margin-right: 420px">
 						<label for="file">이미지</label>
 						<input type="file" name="file" id="file" multiple="multiple">
 			</div>
-			<input type="button" value="리뷰 올리기" id="rInsert" class="btn2" style="margin-left: 300px;">
+			<input type="button" value="리뷰 올리기" id="rInsert" class="btn2" style="margin-left: 420px; margin-bottom: 10px;">
 		</form>
 	</div>
 	<div class="rightSideBar"></div>
