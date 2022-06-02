@@ -12,7 +12,7 @@
 </head><body>
 
 <div class="headerSpace"></div>
-<div align="center">
+<div align="center" style="margin-bottom: 500px;">
 	<h2>게시글 수정</h2>
 	<form action="bdUpdate.do" method="post" name="frm">
 		<input type="hidden" name="bno" value="${board.bno }">

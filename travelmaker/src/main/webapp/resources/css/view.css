@@ -191,7 +191,9 @@ body{
 }
 
 .text_center{
-	text-align: center;
+	/* text-align: center; */
+	margin-left: 300px;
+	margin-bottom: 100px;
 }
 
 .border_gray{
@@ -239,3 +241,13 @@ table{
 .headerSpace{
 	height: 75px;	
 }
+
+/* tr{
+	border: 1px solid black;
+}
+
+td{
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+} */
