@@ -37,16 +37,21 @@ $(document).ready(function() {
 });
 </c:forEach>
 </script>
+<style type="text/css">
+.li4 {
+	background-color:  #fafafa;
+}
+</style>
 </head>
 <body>
 <div class="headerSpace"></div>
 
 <div class="nav">
 <ul class="nav_ul">
-	<li class="nav_li1"><a href="myUpdateForm.do">마이페이지</a></li>
-	<li class="nav_li2"><a href="myUpdateForm.do">내 정보 수정</a></li>
-	<li class="nav_li2"><a href="myBoard.do">내가 쓴 글</a></li>
-	<li class="nav_li2"><a href="likesList.do?id=${sessionScope.id}">좋아요 목록</a></li>
+	<li class="nav_li1 li1"><a href="myUpdateForm.do">마이페이지</a></li>
+	<li class="nav_li2 li2"><a href="myUpdateForm.do">내 정보 수정</a></li>
+	<li class="nav_li2 li3"><a href="myBoard.do?id=${sessionScope.id}">내가 쓴 글</a></li>
+	<li class="nav_li2 li4"><a href="likesList.do?id=${sessionScope.id}">좋아요 목록</a></li>
 </ul>
 </div>
 

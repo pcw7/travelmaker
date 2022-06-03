@@ -51,5 +51,19 @@
 			where rn between #{startRow} and #{endRow}
 	</select>
 	
+	<!-- 해당 회원이 쓴 글 수 -->
+	<select id="allMyBoard" parameterType="integer" resultType="integer" >
+		select count(*) from board where del = 'n' and mno = #{mno} 
+	</select>
+	
+	<!-- 해당 회원이 쓴 게시글 목록 -->
+	<select id="myBoardList" parameterType="map" resultType="board">
+		select * from (select rownum rn, a.* from (
+		select * from board where del = 'n' and mno=#{mno} order by bno desc) a)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	
+	
+	
 	
 </mapper>

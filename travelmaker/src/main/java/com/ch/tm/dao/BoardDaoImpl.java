@@ -64,5 +64,19 @@ public class BoardDaoImpl implements BoardDao{
 		return sst.selectList("boardns.myLikeList", map);
 	}
 
+	@Override
+	public int allMyBoard(int mno) {
+		return sst.selectOne("boardns.allMyBoard", mno);
+	}
+
+	@Override
+	public List<Board> myBoardList(int mno, int startRow, int endRow) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("mno", mno);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		return sst.selectList("boardns.myBoardList", map);
+	}
+
 
 }
