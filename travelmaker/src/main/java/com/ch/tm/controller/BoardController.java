@@ -2,6 +2,7 @@ package com.ch.tm.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -159,7 +160,7 @@ public class BoardController {
 //			board.setLoc("서울");
 //			board.setContent("안녕"+i);
 //			board.setMno(1);
-//			board.setCourseImg("courseImg_2022. 5. 26._756.png");
+//			board.setCourseImg("courseImg_2022. 6. 3._358.png");
 //			bs.insert(board);
 //		}
 //		model.addAttribute("pageNum", "1");

@@ -7,9 +7,8 @@
 <style type="text/css">@import url("${path}/resources/css/bdInsertForm.css");</style>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="${path}/resources/js/draw_course_tm.js"></script>
-<script type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-</script>
 </head><body>
 <h2 class="text-primary">게시글 입력</h2>
 <div class="map_wrap">
@@ -59,7 +58,18 @@ function searchPlaces() {
     var keyword = document.getElementById('keyword').value;
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        alert('키워드를 입력해주세요!');
+        // alert('키워드를 입력해주세요!');
+        Swal.fire({
+			  title: '키워드를 입력해주세요!',
+			  width: 600,
+			  padding: '3em',
+			  color: '#716add',
+			  background: '#fff url(${path }/resources/images/alert.png)',
+			  backdrop: `
+			    rgba(40,23,100,0.1)
+			  `, closeOnClickOutside : false
+		}); 
+        
         return false;
     }
 
@@ -79,13 +89,31 @@ function placesSearchCB(data, status, pagination) {
         displayPagination(pagination);
 
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
-        alert('검색 결과가 존재하지 않습니다.');
+        // alert('검색 결과가 존재하지 않습니다.');
+        Swal.fire({
+			  title: '검색 결과가 존재하지 않습니다.',
+			  width: 600,
+			  padding: '3em',
+			  color: '#716add',
+			  background: '#fff url(${path }/resources/images/alert.png)',
+			  backdrop: `
+			    rgba(40,23,100,0.1)
+			  `, closeOnClickOutside : false
+		}); 
         return;
 
     } else if (status === kakao.maps.services.Status.ERROR) {
-
-        alert('검색 결과 중 오류가 발생했습니다.');
+        // alert('검색 결과 중 오류가 발생했습니다.');
+        Swal.fire({
+			  title: '검색 결과 중 오류가 발생했습니다.',
+			  width: 600,
+			  padding: '3em',
+			  color: '#716add',
+			  background: '#fff url(${path }/resources/images/alert.png)',
+			  backdrop: `
+			    rgba(40,23,100,0.1)
+			  `, closeOnClickOutside : false
+		}); 
         return;
 
     }

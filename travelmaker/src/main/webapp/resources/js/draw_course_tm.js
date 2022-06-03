@@ -53,7 +53,17 @@ function drawDefaultNode(x, y) {
 function drawNodeAndLine() {
 
   if (btnCount == 16) {
-      alert("여행지를 16개 이상 추가하실 수 없습니다.");
+      // alert("여행지를 15개 이상 추가하실 수 없습니다.");
+      Swal.fire({
+		  title: '여행지를 15개 이상 추가하실 수 없습니다.',
+		  width: 600,
+		  padding: '3em',
+		  color: '#716add',
+		  background: '#fff url(/tm/resources/images/alert.png)',
+		  backdrop: `
+		    rgba(40,23,100,0.1)
+		  `, closeOnClickOutside : false
+      }); 
       return;
   }
 
@@ -336,16 +346,56 @@ function uploadCanvasData() {
 	var content = frm.content.value;
 	
 	if (!title) {
-		alert("제목을 입력하세요");
+		// alert("제목을 입력하세요");
+		Swal.fire({
+			  title: '제목을 입력하세요',
+			  width: 600,
+			  padding: '3em',
+			  color: '#716add',
+			  background: '#fff url(/tm/resources/images/alert.png)',
+			  backdrop: `
+			    rgba(40,23,100,0.1)
+			  `, closeOnClickOutside : false
+	      });
 		return false;
 	} else if (!s_date) {
-		alert("출발일을 입력하세요");
+		// alert("출발일을 입력하세요");
+		Swal.fire({
+			  title: '출발일을 입력하세요',
+			  width: 600,
+			  padding: '3em',
+			  color: '#716add',
+			  background: '#fff url(/tm/resources/images/alert.png)',
+			  backdrop: `
+			    rgba(40,23,100,0.1)
+			  `, closeOnClickOutside : false
+	      });
 		return false;
 	} else if (!e_date) {
-		alert("도착일을 입력하세요");
+		// alert("도착일을 입력하세요");
+		Swal.fire({
+			  title: '도착일을 입력하세요',
+			  width: 600,
+			  padding: '3em',
+			  color: '#716add',
+			  background: '#fff url(/tm/resources/images/alert.png)',
+			  backdrop: `
+			    rgba(40,23,100,0.1)
+			  `, closeOnClickOutside : false
+	      });
 		return false;
 	} else if (!content) {
-		alert("내용을 입력하세요");
+		// alert("내용을 입력하세요");
+		Swal.fire({
+			  title: '내용을 입력하세요',
+			  width: 600,
+			  padding: '3em',
+			  color: '#716add',
+			  background: '#fff url(/tm/resources/images/alert.png)',
+			  backdrop: `
+			    rgba(40,23,100,0.1)
+			  `, closeOnClickOutside : false
+	      });
 		return false;
 	}	
 	
@@ -353,7 +403,17 @@ function uploadCanvasData() {
 	var startDate = new Date(s_date);
 	var endDate = new Date(e_date);
 	if (startDate > endDate) {
-		alert("출발일과 도착일을 확인하세요");
+		// alert("출발일과 도착일을 확인하세요");
+		Swal.fire({
+			  title: '출발일과 도착일을 확인하세요',
+			  width: 600,
+			  padding: '3em',
+			  color: '#716add',
+			  background: '#fff url(/tm/resources/images/alert.png)',
+			  backdrop: `
+			    rgba(40,23,100,0.1)
+			  `, closeOnClickOutside : false
+	      });
 		return false;
 	}
 
@@ -385,7 +445,17 @@ function uploadCanvasData() {
         enctype: 'multipart/form-data',
         cache: false,
         success: function (data) {
-            alert("게시글이 등록 되었습니다.");
+            // alert("게시글이 등록 되었습니다.");
+            Swal.fire({
+  			  title: '게시글이 등록 되었습니다.',
+  			  width: 600,
+  			  padding: '3em',
+  			  color: '#716add',
+  			  background: '#fff url(/tm/resources/images/alert.png)',
+  			  backdrop: `
+  			    rgba(40,23,100,0.1)
+  			  `, closeOnClickOutside : false
+  	      });
             location.replace('bdList.do');
         },
         error: function (request, status, error) {

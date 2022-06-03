@@ -144,7 +144,7 @@
 </div>
 <div class="header3">
 	<div class="a20"></div>
-	<div class="a60"><p><b>&nbsp;&nbsp;&nbsp;&nbsp; 글쓴이 : ${board.nickName }</b><b class="post-time">${board.reg_date }</b></div>
+	<div class="a60"><p><b>&nbsp;&nbsp;&nbsp;&nbsp; 작성자 : ${board.nickName }</b><b class="post-time">${board.reg_date }</b></div>
 	<div class="a20"></div>
 </div>
 <div class="body">
