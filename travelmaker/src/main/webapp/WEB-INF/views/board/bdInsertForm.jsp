@@ -166,7 +166,7 @@ function getListItem(index, places) {
                  
     itemStr += '  <span class="tel">' + places.phone  + '</span>' +
                 '</div>';           
-	
+   
 /*     itemStr += '<div class="place"><button class="placeBtn" onclick="planInsert(\'' + places.place_name + '\',\'' + places.y + '\',\'' + places.x +  '\')">+</button></div>';
  */
     el.innerHTML = itemStr;
@@ -242,7 +242,7 @@ function displayInfowindow(marker, title) {
    infowindow.open(map, marker);
    //마커에 클릭이벤트를 등록합니다
    kakao.maps.event.addListener(marker, 'click', function(e) {
-	  jQuery('#name').val(title);
+     jQuery('#name').val(title);
       // jQuery('#xy').val(marker.getPosition());
       jQuery('#map_x').val(marker.getPosition().getLat());
       jQuery('#map_y').val(marker.getPosition().getLng());
@@ -263,36 +263,36 @@ function removeAllChildNods(el) {
 <div class="container" align="center">
 <form name="frm" id="frm" method="post" enctype="multipart/form-data">
 <canvas id="canvas" width="1100" height="550"></canvas>
-	<input type="hidden" name="bno" value="${bno }">
-	<input type="hidden" name="pageNum" value="${pageNum }">
-	<input type="hidden" name="mno" value="${member.mno }">
-	<input type="hidden" id="name" value =""/>
-	<input type="hidden" id="map_x" value =""/>
-	<input type="hidden" id="map_y" value =""/>
+   <input type="hidden" name="bno" value="${bno }">
+   <input type="hidden" name="pageNum" value="${pageNum }">
+   <input type="hidden" name="mno" value="${member.mno }">
+   <input type="hidden" id="name" value =""/>
+   <input type="hidden" id="map_x" value =""/>
+   <input type="hidden" id="map_y" value =""/>
 
-	<table class="table table-bordered table-hover">
-		<tr><td>제목</td><td><input type="text" name="title" required="required"></td></tr>
-		<tr><td>작성자</td><td>${member.nickName }</td></tr>
-		<tr><td>여행기간</td><td>출발일&nbsp;&nbsp;<input type="date" name="s_date" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
-			도착일&nbsp;&nbsp;<input type="date" name="e_date" required="required"></td></tr>
-		<tr><td>지역</td><td><select name="loc">
-			<option value="서울">서울</option>
-			<option value="경기도">경기도</option>
-			<option value="강원도">강원도</option>
-			<option value="충청북도">충청북도</option>
-			<option value="충청남도">충청남도</option>
-			<option value="전라북도">전라북도</option>
-			<option value="전라남도">전라남도</option>
-			<option value="경상북도">경상북도</option>
-			<option value="경상남도">경상남도</option>
-			<option value="제주도">제주도</option>
-	   </select></td></tr>
-		<tr><td>내용</td><td><textarea rows="5" cols="40" name="content" required="required"></textarea></td></tr>
-	</table>
+   <table class="table table-bordered table-hover">
+      <tr><td>제목</td><td><input type="text" name="title" required="required"></td></tr>
+      <tr><td>작성자</td><td>${member.nickName }</td></tr>
+      <tr><td>여행기간</td><td>출발일&nbsp;&nbsp;<input type="date" name="s_date" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+         도착일&nbsp;&nbsp;<input type="date" name="e_date" required="required"></td></tr>
+      <tr><td>지역</td><td><select name="loc">
+         <option value="서울">서울</option>
+         <option value="경기도">경기도</option>
+         <option value="강원도">강원도</option>
+         <option value="충청북도">충청북도</option>
+         <option value="충청남도">충청남도</option>
+         <option value="전라북도">전라북도</option>
+         <option value="전라남도">전라남도</option>
+         <option value="경상북도">경상북도</option>
+         <option value="경상남도">경상남도</option>
+         <option value="제주도">제주도</option>
+      </select></td></tr>
+      <tr><td>내용</td><td><textarea rows="5" cols="40" name="content" required="required"></textarea></td></tr>
+   </table>
 
 <!-- 코스 그리기 -->
 <script type="text/javascript">
-	[x, y] = drawDefaultNode(x, y);
+   [x, y] = drawDefaultNode(x, y);
 </script>
 <button type="button" id="submitBtn" onclick="uploadCanvasData()" >저장</button>
 </form>

@@ -51,7 +51,7 @@ public class BoardController {
 		fos.write(board.getFile().getBytes());
 		fos.close();        
         bs.insert(board);        
-        return "board/rvList"; 
+        return "board/bdInsert"; 
     }
 		
 	@RequestMapping("board/bdUpdateForm")
