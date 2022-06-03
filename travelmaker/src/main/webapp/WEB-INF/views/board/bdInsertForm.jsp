@@ -270,12 +270,12 @@ function removeAllChildNods(el) {
    <input type="hidden" id="map_x" value =""/>
    <input type="hidden" id="map_y" value =""/>
 
-   <table class="table table-bordered table-hover">
-      <tr><td>제목</td><td><input type="text" name="title" required="required"></td></tr>
-      <tr><td>작성자</td><td>${member.nickName }</td></tr>
-      <tr><td>여행기간</td><td>출발일&nbsp;&nbsp;<input type="date" name="s_date" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+   <table class="insertFormTable">
+      <tr><td class="insert_td">제목</td><td class="insert_td"><input type="text" name="title" required="required"></td></tr>
+      <tr><td class="insert_td">작성자</td><td class="insert_td">${member.nickName }</td></tr>
+      <tr><td class="insert_td">여행기간</td><td class="insert_td">출발일&nbsp;&nbsp;<input type="date" name="s_date" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
          도착일&nbsp;&nbsp;<input type="date" name="e_date" required="required"></td></tr>
-      <tr><td>지역</td><td><select name="loc">
+      <tr><td class="insert_td">지역</td><td class="insert_td"><select name="loc">
          <option value="서울">서울</option>
          <option value="경기도">경기도</option>
          <option value="강원도">강원도</option>
@@ -287,7 +287,7 @@ function removeAllChildNods(el) {
          <option value="경상남도">경상남도</option>
          <option value="제주도">제주도</option>
       </select></td></tr>
-      <tr><td>내용</td><td><textarea rows="5" cols="40" name="content" required="required"></textarea></td></tr>
+      <tr><td class="insert_td">내용</td><td class="insert_td"><textarea rows="5" cols="40" name="content" required="required"></textarea></td></tr>
    </table>
 
 <!-- 코스 그리기 -->
