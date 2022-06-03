@@ -56,7 +56,6 @@
 		});
 	});
 	function del() {
-		
 		Swal.fire({
 			title: '정말로 삭제하시겠습니까?',
 			width: 600,

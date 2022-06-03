@@ -130,24 +130,36 @@
 	
 	// 회원탈퇴 
 	function del() {
-		var con = confirm("정말로 탈퇴하시겠습니까?");
-		if (con) {
-			pwChk3();
-		}
-		else {
-			/* alert("탈퇴가 취소 되었습니다"); */
-			Swal.fire({
-						  title: '탈퇴가 취소 되었습니다',
-						  width: 600,
-						  padding: '3em',
-						  color: '#716add',
-						  background: '#fff url(${path }/resources/images/alert.png)',
-						  backdrop: `
+		Swal.fire({
+			title: '정말로 탈퇴하시겠습니까?',
+			width: 600,
+			padding: '3em',
+			color: '#716add',
+			background: '#fff url(${path }/resources/images/alert.png)',
+			backdrop: `
+			  rgba(40,23,100,0.1)
+			`, 
+			closeOnClickOutside : false,
+			showCancelButton : true,
+			confirmButtonText : "예",
+			cancelButtonText : "아니오",
+		}).then(result => {
+			   if (result.isConfirmed) { 
+				   pwChk3();
+			   } else Swal.fire({
+					 	title: '탈퇴가 취소 되었습니다',
+					  	width: 600,
+					  	padding: '3em',
+					  	color: '#716add',
+					  	background: '#fff url(${path }/resources/images/alert.png)',
+					  	backdrop: `
 						    rgba(40,23,100,0.1)
-						  `, closeOnClickOutside : false
-					}); 
-			return;
-		}
+						`, 
+						closeOnClickOutside : false,
+						confirmButtonText : "예"
+			   });  
+			   return;
+		});
 	}
 	
 	// 회원탈퇴 전 비밀번호 확인

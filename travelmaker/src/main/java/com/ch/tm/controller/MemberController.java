@@ -161,7 +161,7 @@ public class MemberController {
 				mmh.setSubject("트래블메이커 임시비밀번호 입니다.");
 				mmh.setText("임시비밀번호 : " + msg);
 				mmh.setTo(member2.getEmail());
-				mmh.setFrom("jshee1028@naver.com");
+				mmh.setFrom("이메일주소");
 				jMailSender.send(mm);
 				
 				// BCryptPasswordEncoder를 이용한 암호화
