@@ -27,7 +27,7 @@
 		select count(*) from likes where mno = #{mno}
 	</select>
 	
-	<!-- 좋아요 취소 -->
+	<!-- 좋아요 삭제(게시글 삭제될 때 같이 삭제) -->
 	<delete id="deleteAll" parameterType="integer">
 		delete from likes where bno = #{bno}
 	</delete>

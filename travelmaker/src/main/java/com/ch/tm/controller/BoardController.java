@@ -2,6 +2,7 @@ package com.ch.tm.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +52,7 @@ public class BoardController {
 		fos.write(board.getFile().getBytes());
 		fos.close();        
         bs.insert(board);        
-        return "board/rvList"; 
+        return "board/bdInsert"; 
     }
 		
 	@RequestMapping("board/bdUpdateForm")
@@ -146,30 +147,6 @@ public class BoardController {
 		return "board/bdList";
 	}
 	
-	@RequestMapping("board/bdMyBoard")
-	public String bdMyBoard(Board board, String pageNum, Model model, HttpServletRequest request) {
-		if(pageNum == null || pageNum.equals("")) pageNum = "1";
-		int rowPerPage = 4;
-		int currentPage = Integer.parseInt(pageNum);
-		int total = bs.getTotal(board);
-		int startRow = (currentPage - 1) * rowPerPage + 1;
-		int endRow = startRow + rowPerPage - 1;
-		board.setStartRow(startRow);
-		board.setEndRow(endRow);
-		List<Board> list = bs.list(board);
-		PageBean pb = new PageBean(currentPage, rowPerPage, total);
-		int bno = total - startRow + 1;
-		String[] title = {"내용","글쓴이","지역"};
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		model.addAttribute("id", id);
-		model.addAttribute("title", title);
-		model.addAttribute("bno", bno);
-		model.addAttribute("pb", pb);
-		model.addAttribute("list", list);
-		return "board/bdMyBoard";
-	}
-	
 //	게시글 자동 입력	
 //	@RequestMapping("insertBoard")
 //	public String insertBoard(Model model) {
@@ -183,7 +160,7 @@ public class BoardController {
 //			board.setLoc("서울");
 //			board.setContent("안녕"+i);
 //			board.setMno(1);
-//			board.setCourseImg("courseImg_2022. 5. 26._756.png");
+//			board.setCourseImg("courseImg_2022. 6. 3._358.png");
 //			bs.insert(board);
 //		}
 //		model.addAttribute("pageNum", "1");

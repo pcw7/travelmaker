@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">@import url("${path}/resources/css/findId.css");</style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 </head>
 <body>
 <div class="wrap">
@@ -20,14 +22,37 @@
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("아이디 찾기에 실패했습니다");
-		history.back();
+		/* alert("아이디 찾기에 실패했습니다"); 
+		history.back(); */
+		Swal.fire({
+		  title: '아이디 찾기에 실패했습니다',
+		  width: 600,
+		  padding: '3em',
+		  color: '#716add',
+		  background: '#fff url(${path }/resources/images/alert.png)',
+		  backdrop: ` 
+			  rgba(40,23,100,0.1)
+		  `, closeOnClickOutside : false
+		}).then(function() {
+			history.back();	
+		});
 	</script>
 </c:if>
 <c:if test="${result == -1 }">
 	<script type="text/javascript">
-		alert("존재하지 않는 계정입니다.");
-		history.back();
+		/* alert("존재하지 않는 계정입니다."); */
+		Swal.fire({
+		  title: '존재하지 않는 계정입니다.',
+		  width: 600,
+		  padding: '3em',
+		  color: '#716add',
+		  background: '#fff url(${path }/resources/images/alert.png)',
+		  backdrop: ` 
+			  rgba(40,23,100,0.1)
+		  `, closeOnClickOutside : false
+		}).then(function() {
+			history.back();	
+		});
 	</script>
 </c:if>
 <div class="linkDiv">

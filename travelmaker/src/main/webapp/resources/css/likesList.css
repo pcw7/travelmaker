@@ -40,8 +40,8 @@
 	font-size: 17px;
 }
 
-.nav_li2 a:hover {
-	background-color: white;
+.nav_li2:hover {
+	background-color:#fafafa;
 }
 
 .likeslist {

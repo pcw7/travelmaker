@@ -28,5 +28,9 @@ public interface BoardDao {
 
 	List<Board> myLikeList(int mno, int startRow, int endRow);
 
+	int allMyBoard(int mno);
+
+	List<Board> myBoardList(int mno, int startRow, int endRow);
+
 
 }

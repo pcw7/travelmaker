@@ -58,3 +58,15 @@
  	opacity: 0.9;
  
  }
+ 
+ .insertFormTable{
+    width: 60%;
+    border: 1px solid #bbb;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+ }
+ 
+ .insert_td{
+	border: 1px solid #bbb;
+    padding: 10px;
+ }

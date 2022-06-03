@@ -34,6 +34,7 @@ body{
 
 .nav_li1 {
 	padding: 25px 0 15px 20px;
+	border-bottom: 2px solid #bbb;
 }
 
 .nav_li1 a {
@@ -48,6 +49,7 @@ body{
 	padding-left: 20px;
 	font-weight: bold;
 }
+
 .nav_li2 a {
 	text-decoration: none;
 	font-weight: bold;
@@ -56,8 +58,8 @@ body{
 	font-size: 17px;
 }
 
-.nav_li2 a:hover {
-	background-color: white;
+.nav_li2:hover {
+	background-color: #fafafa;
 }
 
 .main_header {
